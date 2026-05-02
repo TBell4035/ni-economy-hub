@@ -1,0 +1,14 @@
+{
+  "lastUpdated": "2026-03-11",
+  "dataVersion": "v3.0",
+  "primarySources": {
+    "NIETS_2024": { "date": "2026-03-11", "url": "https://www.nisra.gov.uk/statistics/business/ni-economic-trade" },
+    "NIABI_2024": { "date": "2026-03-11", "url": "https://www.nisra.gov.uk/statistics/business-statistics/ni-annual-business-inquiry" },
+    "ELMS_NOV25": { "date": "2025-11-11", "url": "https://www.economy-ni.gov.uk/news/northern-ireland-labour-market-statistics-november-2025" },
+    "NICEI_Q4_2024": { "date": "2025-03-01", "url": "https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index" },
+    "HMT_CRA_2025": { "date": "2025-11-19", "url": "https://www.gov.uk/government/statistics/country-and-regional-analysis-2025" },
+    "NIFC_SR_2025": { "date": "2025-07-01", "url": "https://www.nifiscalcouncil.org" },
+    "PRODUCTIVITY_DASHBOARD_2025": { "date": "2025-12-04", "url": "https://www.productivity.ac.uk/research/northern-ireland-productivity-dashboard-2025/" },
+    "AICC_CENSUS_2025": { "date": "2025-08-07", "url": "https://www.aicc.co/artificial-intelligence-capability-census" }
+  }
+}

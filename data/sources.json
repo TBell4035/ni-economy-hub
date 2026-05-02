@@ -1,0 +1,221 @@
+[
+  {
+    "id": "NISRA_NIETS_2024",
+    "organisation": "NISRA",
+    "title": "Northern Ireland Economic Trade Statistics 2024",
+    "date": "2026-03-11",
+    "url": "https://www.nisra.gov.uk/statistics/business/ni-economic-trade",
+    "modules": ["overview", "trade", "business"]
+  },
+  {
+    "id": "NISRA_NIABI_2024",
+    "organisation": "NISRA",
+    "title": "Northern Ireland Annual Business Inquiry 2024",
+    "date": "2026-03-11",
+    "url": "https://www.nisra.gov.uk/statistics/business-statistics/ni-annual-business-inquiry",
+    "modules": ["overview", "output", "business"]
+  },
+  {
+    "id": "NISRA_NICEI_Q4_2024",
+    "organisation": "NISRA",
+    "title": "NI Composite Economic Index Q4 2024",
+    "date": "2025-03-01",
+    "url": "https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index",
+    "modules": ["overview", "output"]
+  },
+  {
+    "id": "NISRA_LFS_2024",
+    "organisation": "NISRA",
+    "title": "Labour Force Survey Annual 2024",
+    "date": "2025-06-01",
+    "url": "https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey",
+    "modules": ["overview", "labour"]
+  },
+  {
+    "id": "DFE_ELMS_NOV25",
+    "organisation": "DfE / NISRA",
+    "title": "Northern Ireland Labour Market Statistics November 2025",
+    "date": "2025-11-11",
+    "url": "https://www.economy-ni.gov.uk/news/northern-ireland-labour-market-statistics-november-2025",
+    "modules": ["overview", "labour"]
+  },
+  {
+    "id": "HMRC_RTI_OCT25",
+    "organisation": "HMRC",
+    "title": "PAYE Real Time Information — NI Employees October 2025",
+    "date": "2025-11-01",
+    "url": "https://www.gov.uk/government/statistics/hmrc-paye-real-time-information-for-northern-ireland",
+    "modules": ["labour"]
+  },
+  {
+    "id": "ONS_REGIONAL_ACCOUNTS_2023",
+    "organisation": "ONS",
+    "title": "Regional Gross Value Added (Balanced) UK 2023",
+    "date": "2024-04-01",
+    "url": "https://www.ons.gov.uk/economy/grossvalueaddedgva/datasets/regionalgrossvalueaddedbalancedbyindustrylocalauthorities",
+    "modules": ["overview", "output", "productivity"]
+  },
+  {
+    "id": "HMT_CRA_2025",
+    "organisation": "HM Treasury",
+    "title": "Country and Regional Analysis 2025",
+    "date": "2025-11-19",
+    "url": "https://www.gov.uk/government/statistics/country-and-regional-analysis-2025",
+    "modules": ["overview", "fiscal"]
+  },
+  {
+    "id": "HMT_SPENDING_REVIEW_2025",
+    "organisation": "HM Treasury",
+    "title": "Spending Review 2025",
+    "date": "2025-06-11",
+    "url": "https://www.gov.uk/government/publications/spending-review-2025",
+    "modules": ["fiscal", "scenarios"]
+  },
+  {
+    "id": "HMT_BGT_OCT25",
+    "organisation": "HM Treasury",
+    "title": "Block Grant Transparency October 2025",
+    "date": "2025-10-09",
+    "url": "https://www.gov.uk/government/publications/block-grant-transparency-october-2025",
+    "modules": ["fiscal"]
+  },
+  {
+    "id": "NIFC_BUDGET_2025_26",
+    "organisation": "NI Fiscal Council",
+    "title": "The NI Executive's 2025-26 Draft Budget: an assessment",
+    "date": "2025-03-01",
+    "url": "https://www.nifiscalcouncil.org/publications/ni-executives-2025-26-draft-budget-assessment",
+    "modules": ["fiscal", "scenarios"]
+  },
+  {
+    "id": "NIFC_SR_RESPONSE_2025",
+    "organisation": "NI Fiscal Council",
+    "title": "NI Fiscal Council Response to 2025 Spending Review",
+    "date": "2025-07-01",
+    "url": "https://www.nifiscalcouncil.org/publications",
+    "modules": ["fiscal", "scenarios"]
+  },
+  {
+    "id": "PRODUCTIVITY_DASHBOARD_2025",
+    "organisation": "QUB / The Productivity Institute",
+    "authors": "Donaldson R., Jordan D., McDonald S., Turner J.",
+    "title": "Northern Ireland Productivity Dashboard 2025",
+    "date": "2025-12-04",
+    "url": "https://www.productivity.ac.uk/research/northern-ireland-productivity-dashboard-2025/",
+    "modules": ["productivity", "overview"]
+  },
+  {
+    "id": "NI_PRODUCTIVITY_2040",
+    "organisation": "QUB / The Productivity Institute",
+    "authors": "Donaldson R., Jordan D., Turner J.",
+    "title": "NI Productivity 2040: Addressing Northern Ireland's productivity gap for greater prosperity",
+    "date": "2025-01-31",
+    "url": "https://www.productivity.ac.uk/research/northern-ireland-2025/",
+    "modules": ["productivity", "scenarios"]
+  },
+  {
+    "id": "NERI_LEVER_RICHES_2025",
+    "organisation": "NERI",
+    "authors": "Mac Flynn P.",
+    "title": "Productivity — The Lever of Riches (New Economic Model: Pillar 1)",
+    "date": "2025-07-01",
+    "url": "https://www.nerinstitute.net/research",
+    "modules": ["productivity", "scenarios"]
+  },
+  {
+    "id": "AICC_CENSUS_2025",
+    "organisation": "AICC / Perspective Economics",
+    "title": "AI Capability Census: Baseline Study of AI Adoption, Opportunity and Impact in Northern Ireland",
+    "date": "2025-08-07",
+    "url": "https://www.aicc.co/artificial-intelligence-capability-census",
+    "modules": ["ai", "productivity", "business"]
+  },
+  {
+    "id": "TRINITY_MICROSOFT_AI_2026",
+    "organisation": "Trinity College Dublin / Microsoft Ireland",
+    "title": "The AI Economy Ireland 2026",
+    "date": "2026-04-29",
+    "url": "https://news.microsoft.com/source/emea/features/trinity-college-dublin-and-microsoft-ireland-research-shows-a-widening-ai-maturity-gap-between-smes-and-large-organisations/",
+    "modules": ["ai", "productivity"]
+  },
+  {
+    "id": "INTERTRADEIRELAND_2024",
+    "organisation": "InterTradeIreland",
+    "title": "Trade Statistics and Annual Report 2024",
+    "date": "2025-03-01",
+    "url": "https://intertradeireland.com/insights/trade-statistics",
+    "modules": ["trade"]
+  },
+  {
+    "id": "CSO_CROSSBORDER_2025",
+    "organisation": "CSO Ireland",
+    "title": "Cross-Border Trade Statistics to November 2025",
+    "date": "2026-01-01",
+    "url": "https://www.cso.ie/en/statistics/trade/",
+    "modules": ["trade"]
+  },
+  {
+    "id": "INVEST_NI_AR_2024_25",
+    "organisation": "Invest Northern Ireland",
+    "title": "Annual Report and Accounts 2024-25",
+    "date": "2025-10-01",
+    "url": "https://www.investni.com/about-us/publications/annual-reports",
+    "modules": ["business", "productivity", "fiscal"]
+  },
+  {
+    "id": "INVEST_NI_STRATEGY_2024_27",
+    "organisation": "Invest Northern Ireland",
+    "title": "Business Strategy 2024-2027",
+    "date": "2024-11-01",
+    "url": "https://www.investni.com/about-us/publications/business-strategy",
+    "modules": ["business", "productivity"]
+  },
+  {
+    "id": "PIVOTAL_MYB_2025",
+    "organisation": "Pivotal Policy",
+    "title": "Northern Ireland's Multi-Year Budget: Challenges and Opportunities",
+    "date": "2025-12-05",
+    "url": "https://www.pivotalpolicy.org/assets/files/publications/20251205-myb-final.final.pdf",
+    "modules": ["fiscal", "scenarios"]
+  },
+  {
+    "id": "NI_ASSEMBLY_SPEND_PER_HEAD_2025",
+    "organisation": "NI Assembly Research and Information Service",
+    "title": "Public Spend per Head: A Comparative Perspective",
+    "date": "2025-01-01",
+    "url": "https://www.niassembly.gov.uk/globalassets/documents/raise/publications/2022-2027/2025/finance/1925.pdf",
+    "modules": ["fiscal"]
+  },
+  {
+    "id": "NIAUDITOFFICE_INVESTNI",
+    "organisation": "NI Audit Office",
+    "title": "Invest NI: A Performance Review",
+    "date": "2023-09-01",
+    "url": "https://www.niauditoffice.gov.uk/publications/invest-ni-performance-review",
+    "modules": ["business", "productivity"]
+  },
+  {
+    "id": "NORTHSTAR_DIFFUSION_2025",
+    "organisation": "NorthStar Briefing",
+    "title": "Why Northern Ireland's Productivity Crisis Needs Diffusion, Not Just Invention",
+    "date": "2025-12-03",
+    "url": "https://northstarbriefing.substack.com/p/why-northern-irelands-productivity",
+    "modules": ["productivity", "ai"]
+  },
+  {
+    "id": "NORTHSTAR_AI_2025",
+    "organisation": "NorthStar Briefing",
+    "title": "Northern Ireland's Year in AI — The Lessons We Learned, The Choices We Face",
+    "date": "2025-12-29",
+    "url": "https://northstarbriefing.substack.com/p/northern-irelands-year-in-ai-the",
+    "modules": ["ai"]
+  },
+  {
+    "id": "UKPARLIAMENT_NI_FUNDING_2025",
+    "organisation": "UK Parliament / NI Affairs Committee",
+    "title": "Funding and Delivery of Public Services in Northern Ireland: Follow Up",
+    "date": "2025-06-17",
+    "url": "https://publications.parliament.uk/pa/cm5901/cmselect/cmniaf/1096/report.html",
+    "modules": ["fiscal"]
+  }
+]

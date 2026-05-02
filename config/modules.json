@@ -1,0 +1,15 @@
+{
+  "modules": {
+    "overview": { "status": "live", "label": "Overview", "icon": "◉", "order": 1 },
+    "output": { "status": "preview", "label": "Output & Growth", "icon": "▲", "order": 2 },
+    "labour": { "status": "preview", "label": "Labour Market", "icon": "⊙", "order": 3 },
+    "trade": { "status": "preview", "label": "Trade & Windsor", "icon": "⇌", "order": 4 },
+    "fiscal": { "status": "preview", "label": "Fiscal Architecture", "icon": "£", "order": 5 },
+    "productivity": { "status": "preview", "label": "Productivity", "icon": "◈", "order": 6 },
+    "ai": { "status": "preview", "label": "AI & Digital Economy", "icon": "◎", "order": 7 },
+    "business": { "status": "preview", "label": "Business Economy", "icon": "◧", "order": 8 },
+    "scenarios": { "status": "preview", "label": "Scenarios", "icon": "◬", "order": 9 },
+    "intelligence": { "status": "preview", "label": "Intelligence Feed", "icon": "⊕", "order": 10 },
+    "sources": { "status": "preview", "label": "Sources", "icon": "≡", "order": 11 }
+  }
+}

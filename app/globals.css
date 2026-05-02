@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg0: #07090d;
+  --bg1: #0d1117;
+  --bg2: #131920;
+  --bg3: #192230;
+  --card: #0f1620;
+  --border: #1e2d3d;
+  --border2: #243444;
+  --text0: #eef2f7;
+  --text1: #b8c8d8;
+  --text2: #6a88a0;
+  --text3: #3a5268;
+  --gold: #e8a020;
+  --teal: #12c4a4;
+  --blue: #3a8fd4;
+  --red: #e05050;
+  --green: #38c070;
+  --amber: #e89020;
+  --purple: #9a70d4;
+  --pink: #d45090;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg0);
+  color: var(--text1);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mono {
+  font-family: 'Courier New', 'Courier', monospace;
+  letter-spacing: 0.03em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg1); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* Theory tag animation */
+.theory-tag {
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.theory-tag:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 9, 13, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Module status badge */
+.status-live    { color: var(--green); border-color: var(--green); }
+.status-preview { color: var(--amber); border-color: var(--amber); }
+
+/* Chart tooltip */
+.chart-tooltip {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+}
+
+/* Insight boxes */
+.insight-box {
+  border-left: 3px solid;
+  border-radius: 0 4px 4px 0;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* Smooth page transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter { animation: fadeIn 0.25s ease forwards; }
