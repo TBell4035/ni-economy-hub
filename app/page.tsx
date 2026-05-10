@@ -163,12 +163,28 @@ export default function OverviewPage() {
           Northern Ireland<br/>
           <span style={{ color: T.gold }}>Economy Hub</span>
         </h1>
-        <p style={{ margin: '0 0 18px', color: T.text2, fontSize: 13, maxWidth: 620, lineHeight: 1.7 }}>
-          A multi-dimensional analytical framework integrating output, labour, trade, fiscal,
-          productivity and AI data within Keynesian, New Growth and Regional Economics theory.
-          Every forecast is confidence-rated. Every data gap is flagged. Based on all available
-          official NI statistics to Q4 2024 / Q3 2025.
-        </p>
+<p style={{ margin: '0 0 6px', color: T.text2, fontSize: 13, maxWidth: 620, lineHeight: 1.7 }}>
+  A multi-dimensional analytical framework integrating output, labour, trade, fiscal,
+  productivity and AI data within Keynesian, New Growth and Regional Economics theory.
+  Every forecast is confidence-rated. Every data gap is flagged. Based on all available
+  official NI statistics to Q4 2024 / Q3 2025.
+</p>
+<p style={{ margin: '0 0 18px', fontSize: 12, lineHeight: 1.6 }}>
+  <span style={{ color: T.text3, fontFamily: 'monospace', fontSize: 10, letterSpacing: 1 }}>
+    BUILT & MAINTAINED BY{' '}
+  </span>
+  <a
+    href="https://www.linkedin.com/in/thomas-bell-299883a0/"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ color: T.teal, textDecoration: 'none', fontFamily: 'monospace', fontSize: 10, letterSpacing: 1 }}
+  >
+    THOMAS BELL
+  </a>
+  <span style={{ color: T.text3, fontFamily: 'monospace', fontSize: 10, letterSpacing: 1 }}>
+    {' '}· ECONOMIST · CATALYST · NORTHERN IRELAND
+  </span>
+</p>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <TheoryTag tag="keynes" />
           <TheoryTag tag="solow" />
