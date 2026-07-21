@@ -154,7 +154,7 @@ export default function OverviewPage() {
           pointerEvents: 'none',
         }}/>
         <div className="mono" style={{ fontSize: 9, letterSpacing: 4, color: T.teal, marginBottom: 10 }}>
-          NORTHERN IRELAND · ECONOMIC INTELLIGENCE · MAY 2026
+          NORTHERN IRELAND · ECONOMIC INTELLIGENCE · JULY 2026
         </div>
         <h1 style={{
           margin: '0 0 12px', fontSize: 30, fontWeight: 800,
@@ -167,7 +167,7 @@ export default function OverviewPage() {
   A multi-dimensional analytical framework integrating output, labour, trade, fiscal,
   productivity and AI data within Keynesian, New Growth and Regional Economics theory.
   Every forecast is confidence-rated. Every data gap is flagged. Based on all available
-  official NI statistics to Q4 2024 / Q3 2025.
+  official NI statistics to Q1 2026 / mid-2026, and a purpose-built NI macro-model.
 </p>
 <p style={{ margin: '0 0 18px', fontSize: 12, lineHeight: 1.6 }}>
   <span style={{ color: T.text3, fontFamily: 'monospace', fontSize: 10, letterSpacing: 1 }}>
@@ -245,25 +245,24 @@ export default function OverviewPage() {
               color={T.gold}
             />
             <KPI
-              label="Employment Rate Q3 2025"
-              value="71.4" unit="%"
-              sub="LFS Jul–Sep 2025 · ELMS"
-              delta="-0.7pp over year"
-              deltaPos={false}
-              color={T.amber}
+              label="Employment Rate Mar–May 2026"
+              value="72.1" unit="%"
+              sub="LFS · NISRA Jul 2026"
+              delta="+0.8pp over quarter"
+              color={T.teal}
             />
             <KPI
-              label="Economic Inactivity Q3 2025"
-              value="26.8" unit="%"
+              label="Economic Inactivity Mar–May 2026"
+              value="26.5" unit="%"
               sub="+6pp above UK avg · LFS"
               delta="Structural — health-driven"
               deltaPos={false}
               color={T.red}
             />
             <KPI
-              label="Median Pay Oct 2025"
-              value="£2,411" unit="/mo"
-              sub="HMRC RTI · +5.7% YoY"
+              label="Median Pay Jun 2026"
+              value="£2,480" unit="/mo"
+              sub="HMRC RTI · +4.9% YoY"
               delta="Real terms positive"
               color={T.green}
             />
@@ -336,7 +335,7 @@ export default function OverviewPage() {
 
           {/* Insight boxes */}
           <Insight type="insight" text="NI's business economy grew 9.6% in GVA terms in 2024 (NIABI confirmed), outperforming UK growth of 1.4% by over 8 percentage points. Construction alone grew 30.7%, adding £1.7bn. This is the strongest confirmed growth in over a decade — but it is partly factor-accumulation driven (more buildings, more workers) rather than productivity driven. The TFP question remains open." />
-          <Insight type="warning" text="The employment rate has cooled from its 2024 annual peak of 74.0% to 71.4% in Q3 2025 — a 2.6 percentage point fall in less than a year. Economic inactivity has risen to 26.8%, now 6 percentage points above the UK average. This is not a cyclical blip — it reflects the structural health-inactivity link that no demand-side policy can resolve without NHS reform." />
+          <Insight type="warning" text="On the July 2026 data, unemployment is just 1.8% — the lowest of any UK region — and the claimant count has fallen to 33,800. Yet economic inactivity remains 26.5%, still around 6 percentage points above the UK average. This is the persistent structural problem: not a shortage of jobs but a large working-age population outside the labour market entirely, driven by long-term sickness. No demand-side policy can resolve it without NHS reform." />
           <Insight type="opportunity" text="Cross-border trade reached £14.6bn in 2024 — a 16.8% increase in a single year, and 6.5x the 2015 level. NI runs a trade surplus with every external market simultaneously. No other UK region holds dual access to the UK Internal Market and EU Single Market for goods. This structural advantage has not been systematically leveraged by Invest NI or DfE in any published inward investment strategy." />
         </div>
       )}

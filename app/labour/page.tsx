@@ -118,10 +118,11 @@ export default function LabourPage() {
           Labour Market
         </h1>
         <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
-          Employment, wages, inactivity and labour supply. Primary sources: NISRA Economic
-          and Labour Market Statistics (ELMS), published monthly by DfE — most recent release
-          November 2025 (Jul–Sep 2025 LFS data). HMRC PAYE RTI provides more timely monthly
-          payroll data but excludes self-employed. LFS is the official ILO-standard measure.
+          Employment, wages, inactivity and labour supply. Primary sources: NISRA Labour
+          Market Report, published monthly by DfE — most recent release July 2026
+          (Mar–May 2026 LFS data; HMRC payroll and claimant data to June 2026). HMRC PAYE RTI
+          provides more timely monthly payroll data but excludes self-employed. LFS is the
+          official ILO-standard measure.
         </p>
         <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
           <TheoryTag tag="hysteresis"/>
@@ -138,18 +139,20 @@ export default function LabourPage() {
         <span className="mono" style={{letterSpacing:1,fontSize:9,color:'#38c070',marginRight:8}}>
           ↻ LATEST DATA
         </span>
-        ELMS November 2025 (published 11 Nov 2025): Employment rate 71.4% (Q3 2025), down 0.7pp
-        year-on-year. Inactivity rising to 26.8%. Median monthly pay £2,411 in Oct 2025 (+5.7% YoY).
-        Claimant count 37,700.
+        NISRA Labour Market Report July 2026 (published 21 Jul 2026): Employment rate 72.1%
+        (Mar–May 2026). Unemployment 1.8% — the lowest of any UK region. Inactivity 26.5%.
+        Payrolled employees 820,800 and median monthly pay £2,480 (June 2026, +4.9% YoY).
+        Claimant count 33,800. NISRA flags a divergence: HMRC payroll shows employment rising
+        over the year while the LFS shows no statistically significant change.
       </div>
 
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(190px,1fr))',gap:10,marginBottom:24}}>
-        <KPI label="Employment Rate Q3 2025" value="71.4" unit="%" sub="LFS Jul–Sep 2025 · ELMS Nov 25" delta="-0.7pp over year" deltaPos={false} color={T.amber}/>
-        <KPI label="Unemployment Rate Q3 2025" value="2.4" unit="%" sub="LFS · claimant count 37,700" delta="+0.7pp over year" deltaPos={false} color={T.amber}/>
-        <KPI label="Economic Inactivity Q3 2025" value="26.8" unit="%" sub="LFS · +6pp above UK avg" delta="Structural — health-driven" deltaPos={false} color={T.red}/>
-        <KPI label="PAYE Employees Oct 2025" value="815,000" sub="HMRC RTI · +1.0% over year" delta="+0.1% over month" color={T.teal}/>
-        <KPI label="Median Pay Oct 2025" value="£2,411" unit="/mo" sub="HMRC RTI · nominal" delta="+5.7% YoY · real terms positive" color={T.green}/>
-        <KPI label="Peak Employment 2024" value="74.0" unit="%" sub="Annual LFS 2024 · historic high" delta="Now cooling to 71.4%" deltaPos={false} color={T.gold}/>
+        <KPI label="Employment Rate (Mar–May 26)" value="72.1" unit="%" sub="LFS · NISRA Jul 2026" delta="+0.8pp over quarter" color={T.teal}/>
+        <KPI label="Unemployment Rate (Mar–May 26)" value="1.8" unit="%" sub="LFS · lowest UK region" delta="-0.4pp over quarter" color={T.green}/>
+        <KPI label="Economic Inactivity (Mar–May 26)" value="26.5" unit="%" sub="LFS · +6pp above UK avg" delta="Structural — health-driven" deltaPos={false} color={T.red}/>
+        <KPI label="Payrolled Employees Jun 2026" value="820,800" sub="HMRC RTI · +1.4% over year" delta="Employment rising on payroll data" color={T.teal}/>
+        <KPI label="Median Pay Jun 2026" value="£2,480" unit="/mo" sub="HMRC RTI · nominal" delta="+4.9% YoY · real terms positive" color={T.green}/>
+        <KPI label="Claimant Count Jun 2026" value="33,800" sub="3.3% of workforce" delta="Down from 37,700" color={T.teal}/>
       </div>
 
       <div style={{display:'flex',gap:0,borderBottom:`1px solid ${T.border}`,marginBottom:20}}>
@@ -224,7 +227,7 @@ export default function LabourPage() {
               </p>
             </div>
 
-            <Insight type="warning" text="The employment rate fell 2.6pp from its 2024 annual peak of 74.0% to 71.4% in Q3 2025. This cooling is faster than expected and warrants monitoring. It may reflect the post-construction-boom labour market adjustment or early signs of broader economic softening." />
+            <Insight type="insight" text="The headline story in the July 2026 release is a divergence between data sources, which NISRA itself flags. HMRC payroll data shows employment rising over the year (payrolled employees +1.4%), while the Labour Force Survey shows no statistically significant change in employment, unemployment or inactivity over the quarter or year. Unemployment at 1.8% is the lowest of any UK region, and the claimant count has fallen to 33,800. The 2024 LFS employment-rate peak of 74.0% partly reflected a since-revised vintage; the payroll series is the more reliable guide to the direction of travel." />
           </div>
         </div>
       )}
@@ -269,7 +272,7 @@ export default function LabourPage() {
               ))}
             </div>
 
-            <Insight type="insight" text="Median pay grew 5.7% YoY to October 2025 — now above CPI (3.5% in July 2025) for the first time since 2021. NI workers are experiencing modest real wage gains. However the NI-UK wage gap persists at approximately 11%, reflecting the structural public sector wage anchor and lower private sector productivity." />
+            <Insight type="insight" text="Median monthly pay grew 4.9% YoY to £2,480 in June 2026 — comfortably above CPI, so NI workers continue to see modest real wage gains. However the NI-UK wage gap persists at approximately 11%, reflecting the structural public sector wage anchor and lower private sector productivity." />
             <Insight type="weak" text="PAYE RTI wage data is classified as 'statistics in development' by NISRA — subject to revision. The figures exclude self-employed income, which in NI's agricultural and construction sectors can be substantial. These are the best available monthly wage indicators but should be treated with appropriate caution." />
           </div>
         </div>
