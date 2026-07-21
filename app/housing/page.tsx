@@ -170,8 +170,8 @@ export default function HousingPage() {
       </div>
 
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(190px,1fr))',gap:10,marginBottom:24}}>
-        <KPI label="Avg House Price Q4 2025" value="£221,233" sub="UU/NIHE HPI · +4.8% YoY" delta="Highest since pre-2008 peak" color={T.gold}/>
-        <KPI label="Annual Growth 2025" value="+9.5" unit="%" sub="NISRA HPI Q1 2025 · fastest in UK" delta="UK average: +4.2%" color={T.amber}/>
+        <KPI label="Avg House Price Q1 2026" value="£198,015" sub="NISRA official NI HPI · +7.4% YoY" delta="Highest since pre-2008 peak" color={T.gold}/>
+        <KPI label="Annual Growth (to Q1 2026)" value="+7.4" unit="%" sub="NISRA official NI HPI" delta="Among fastest in UK" color={T.amber}/>
         <KPI label="Belfast Avg Price Q4 2025" value="£178,000" sub="ONS · +5.4% YoY" delta="Below NI average growth" deltaPos={false} color={T.blue}/>
         <KPI label="Belfast Monthly Rent Jan 26" value="£1,130" sub="ONS Private Rent · +5.8% YoY" delta="NI avg £880 · UK avg £1,367" color={T.teal}/>
         <KPI label="Price-to-Income Ratio 2025" value="7.2x" sub="Median house ÷ median salary" delta="Up from 4.2x in 2015" deltaPos={false} color={T.red}/>
