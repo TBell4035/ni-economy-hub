@@ -180,7 +180,7 @@ export default function OutputPage() {
         <KPI label="GVA Per Head 2023" value="£29,234" sub="ONS Regional Accounts 2023" delta="81% of UK average" deltaPos={false} color={T.gold}/>
         <KPI label="Total Turnover 2024" value="£109.3" unit="bn" sub="NIABI 2024 · record high" delta="+7.5% YoY" color={T.blue}/>
         <KPI label="Construction GVA 2024" value="+30.7" unit="%" sub="Largest sector rise · NIABI 2024" delta="+£1.7bn in one year" color={T.amber}/>
-        <KPI label="NICEI Q4 2024" value="114.8" sub="Q1 2019 = 100 · NISRA" delta="+14.8% since pre-COVID" color={T.teal}/>
+        <KPI label="NICEI Q1 2026" value="+3.6" unit="%" sub="Output y/y · NISRA (25 Jun 2026)" delta="+0.7% qtr · 12.1% above pre-COVID" color={T.teal}/>
       </div>
 
       <div style={{display:'flex',gap:0,borderBottom:`1px solid ${T.border}`,marginBottom:20}}>
