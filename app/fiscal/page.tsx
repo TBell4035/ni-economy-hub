@@ -303,7 +303,7 @@ export default function FiscalPage() {
                 Fiscal Framework Status
               </div>
               <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
-                AS OF MAY 2026 · SOURCES: NI FISCAL COUNCIL, NI AFFAIRS COMMITTEE
+                AS OF JULY 2026 · SOURCES: NI FISCAL COUNCIL, NI AFFAIRS COMMITTEE
               </div>
               {[
                 {label:'Interim Framework agreed',status:'✓ May 2024',col:T.green},
