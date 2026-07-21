@@ -16,13 +16,13 @@ const T = {
 }
 
 const hpiAnnual = [
-  {y:'Q1 10',v:152000},{y:'Q1 11',v:148000},{y:'Q1 12',v:139000},
-  {y:'Q1 13',v:137000},{y:'Q1 14',v:140000},{y:'Q1 15',v:144000},
-  {y:'Q1 16',v:148000},{y:'Q1 17',v:153000},{y:'Q1 18',v:158000},
-  {y:'Q1 19',v:164000},{y:'Q1 20',v:163000},{y:'Q1 21',v:172000},
-  {y:'Q1 22',v:192000},{y:'Q1 23',v:198000},{y:'Q1 24',v:206000},
-  {y:'Q1 25',v:221233},{y:'Q3 25',v:230000},
-  {y:'Q1 26F',v:238000,forecast:true},{y:'Q3 26F',v:244000,forecast:true},
+  {y:'2010',v:118000},{y:'2011',v:106000},{y:'2012',v:94500},
+  {y:'2013',v:96500},{y:'2014',v:105000},{y:'2015',v:112500},
+  {y:'2016',v:118500},{y:'2017',v:122500},{y:'2018',v:129500},
+  {y:'2019',v:132500},{y:'2020',v:139500},{y:'2021',v:150500},
+  {y:'2022',v:165500},{y:'2023',v:168000},{y:'2024',v:182500},
+  {y:'2025',v:195936},{y:'Q1 26',v:198015},
+  {y:'2026F',v:203000,forecast:true},{y:'2027F',v:209000,forecast:true},
 ]
 
 const hpiGrowth = [
@@ -30,8 +30,8 @@ const hpiGrowth = [
   {y:'2017',NI:3.8,UK:4.8},{y:'2018',NI:4.1,UK:3.0},
   {y:'2019',NI:3.9,UK:1.4},{y:'2020',NI:5.3,UK:7.3},
   {y:'2021',NI:10.2,UK:10.2},{y:'2022',NI:8.6,UK:9.8},
-  {y:'2023',NI:5.1,UK:1.1},{y:'2024',NI:7.5,UK:3.4},
-  {y:'2025',NI:9.5,UK:4.2},
+  {y:'2023',NI:1.5,UK:1.1},{y:'2024',NI:8.5,UK:3.4},
+  {y:'2025',NI:7.4,UK:4.2},
 ]
 
 const councilPrices = [
@@ -64,21 +64,21 @@ const supplyData = [
 ]
 
 const affordabilityData = [
-  {y:'2015',ratio:4.2,NI_median:24800,house:152000},
-  {y:'2017',ratio:4.6,NI_median:26100,house:153000},
-  {y:'2019',ratio:5.0,NI_median:27200,house:164000},
-  {y:'2021',ratio:5.4,NI_median:27800,house:172000},
-  {y:'2022',ratio:6.1,NI_median:28400,house:192000},
-  {y:'2023',ratio:6.4,NI_median:28900,house:198000},
-  {y:'2024',ratio:6.8,NI_median:29234,house:206000},
-  {y:'2025',ratio:7.2,NI_median:30000,house:221233},
+  {y:'2015',ratio:4.5,NI_median:24800,house:112500},
+  {y:'2017',ratio:4.7,NI_median:26100,house:122500},
+  {y:'2019',ratio:4.9,NI_median:27200,house:132500},
+  {y:'2021',ratio:5.4,NI_median:27800,house:150500},
+  {y:'2022',ratio:5.8,NI_median:28400,house:165500},
+  {y:'2023',ratio:5.8,NI_median:28900,house:168000},
+  {y:'2024',ratio:6.2,NI_median:29234,house:182500},
+  {y:'2025',ratio:6.5,NI_median:30000,house:195936},
 ]
 
 const crossBorderComparison = [
-  {metric:'Avg house price',NI:221233,ROI:385000,UK:269000},
-  {metric:'Annual growth %',NI:9.5,ROI:7.4,UK:4.2},
+  {metric:'Avg house price',NI:195936,ROI:385000,UK:269000},
+  {metric:'Annual growth %',NI:7.4,ROI:7.4,UK:4.2},
   {metric:'Avg monthly rent £',NI:880,ROI:1850,UK:1367},
-  {metric:'Price-to-income ratio',NI:7.2,ROI:12.1,UK:8.9},
+  {metric:'Price-to-income ratio',NI:6.5,ROI:12.1,UK:8.9},
 ]
 
 const Tip = ({active,payload,label}:any) => {
@@ -174,7 +174,7 @@ export default function HousingPage() {
         <KPI label="Annual Growth (to Q1 2026)" value="+7.4" unit="%" sub="NISRA official NI HPI" delta="Among fastest in UK" color={T.amber}/>
         <KPI label="Belfast Avg Price Q4 2025" value="£178,000" sub="ONS · +5.4% YoY" delta="Below NI average growth" deltaPos={false} color={T.blue}/>
         <KPI label="Belfast Monthly Rent Jan 26" value="£1,130" sub="ONS Private Rent · +5.8% YoY" delta="NI avg £880 · UK avg £1,367" color={T.teal}/>
-        <KPI label="Price-to-Income Ratio 2025" value="7.2x" sub="Median house ÷ median salary" delta="Up from 4.2x in 2015" deltaPos={false} color={T.red}/>
+        <KPI label="Price-to-Income Ratio 2025" value="6.5x" sub="NISRA std. price ÷ median salary" delta="Up from 4.5x in 2015" deltaPos={false} color={T.red}/>
         <KPI label="First-Time Buyers" value="~40" unit="%" sub="Of all transactions · Q4 2025" delta="High vs rest of UK" color={T.green}/>
       </div>
 
@@ -195,7 +195,7 @@ export default function HousingPage() {
 
       {view==='prices'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <ChartCard title="NI Average House Price (£)" subtitle="UU/NIHE HPI · QUARTERLY · 2010–2026F">
+          <ChartCard title="NI Standardised House Price (£)" subtitle="NISRA OFFICIAL NI HPI · STANDARDISED PRICE · 2010–2027F">
             <ResponsiveContainer width="100%" height={220}>
               <AreaChart data={hpiAnnual}>
                 <defs>
@@ -231,7 +231,7 @@ export default function HousingPage() {
             </ResponsiveContainer>
           </ChartCard>
 
-          <ChartCard title="Average Price by Council Area (£, 2025)" subtitle="NISRA HPI / UU · Q1–Q2 2025 · SORTED BY PRICE">
+          <ChartCard title="Average Price by Council Area (£, 2025)" subtitle="ULSTER UNIVERSITY · DISTRICT SIMPLE AVERAGE · 2025 · SORTED BY PRICE">
             <div style={{paddingTop:4}}>
               {councilPrices.map(d=>(
                 <div key={d.area} style={{marginBottom:8}}>
@@ -306,7 +306,7 @@ export default function HousingPage() {
                 Affordability Pressures — 2025
               </div>
               {[
-                {issue:'First-time buyer squeeze',col:T.red,text:'Price-to-income ratio reached 7.2x in 2025 — up from 4.2x in 2015. Despite NI still being cheaper than most UK regions, the pace of deterioration is the fastest in the UK. First-time buyers without parental support are increasingly priced out.'},
+                {issue:'First-time buyer squeeze',col:T.red,text:'Price-to-income ratio reached 6.5x in 2025 — up from 4.5x in 2015. Despite NI still being cheaper than most UK regions, the pace of deterioration is among the fastest in the UK. First-time buyers without parental support are increasingly priced out.'},
                 {issue:'Deposit barrier',col:T.amber,text:'A 10% deposit on the NI average home (£221,000) requires £22,100 — approximately 9 months of median take-home pay. In 2015 the equivalent figure was 6 months. The deposit barrier is growing faster than wages.'},
                 {issue:'Mortgage cost improvement',col:T.green,text:'Bank of England rate cuts to 3.75% in December 2025 have improved mortgage affordability at the margin. Lender competition is strong. First-time buyer mortgage products have improved significantly since the 2023 peak.'},
                 {issue:'Help to Buy NI',col:T.blue,text:'NI has its own Help to Buy: ISA scheme administered by NIHE. Take-up has been significant but the scheme is not designed for the current price environment — the property price cap is under review.'},
@@ -317,7 +317,7 @@ export default function HousingPage() {
                 </div>
               ))}
             </div>
-            <Insight type="warning" text="NI is approaching a structural affordability crisis for younger buyers. The price-to-income ratio of 7.2x has crossed the threshold that the Resolution Foundation identifies as severe affordability stress. Unlike London where the crisis has been decades in the making, NI's deterioration has happened in under a decade — and without the wage growth that partially offset London's problem." />
+            <Insight type="warning" text="NI is approaching a structural affordability crisis for younger buyers. The price-to-income ratio of 6.5x has crossed the threshold that the Resolution Foundation identifies as severe affordability stress. Unlike London where the crisis has been decades in the making, NI's deterioration has happened in under a decade — and without the wage growth that partially offset London's problem." />
           </div>
         </div>
       )}
