@@ -255,14 +255,14 @@ export default function LabourPage() {
                 NI vs UK Wage Comparison
               </div>
               <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
-                OCTOBER 2025 · HMRC PAYE RTI
+                JUNE 2026 · HMRC PAYE RTI
               </div>
               {[
-                {label:'NI Median Monthly Pay',value:'£2,411',color:T.teal},
+                {label:'NI Median Monthly Pay',value:'£2,480',color:T.teal},
                 {label:'UK Median Monthly Pay',value:'£2,700+',color:T.blue},
                 {label:'NI as % of UK',value:'~89%',color:T.amber},
-                {label:'NI YoY growth',value:'+5.7%',color:T.green},
-                {label:'UK CPI Jul 2025',value:'3.5%',color:T.red},
+                {label:'NI YoY growth',value:'+4.9%',color:T.green},
+                {label:'UK CPI (2026)',value:'~3%',color:T.red},
                 {label:'Real wage position',value:'Positive',color:T.green},
               ].map(r=>(
                 <div key={r.label} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'8px 0',borderBottom:`1px solid ${T.border}`}}>

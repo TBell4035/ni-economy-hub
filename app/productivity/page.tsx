@@ -310,7 +310,7 @@ export default function ProductivityPage() {
                 previous short-termism and siloed policymaking.
               </div>
               <p style={{fontSize:12,color:T.text2,lineHeight:1.65,marginTop:12}}>
-                As of May 2026, this recommendation has not been implemented. The NI Executive's
+                As of July 2026, this recommendation has not been implemented. The NI Executive's
                 Programme for Government (March 2025) includes productivity as a priority but
                 does not establish the independent board mechanism recommended.
               </p>

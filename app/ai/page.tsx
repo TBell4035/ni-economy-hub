@@ -194,7 +194,7 @@ export default function AIPage() {
                 {label:'Firm size structure',value:'36 anchor employers (10+ AI professionals) · 92 early-stage firms (0-2 staff) · thin mid-market'},
                 {label:'Top 10 firm concentration',value:'541 FTEs = 40% of all AI employment — high concentration risk'},
                 {label:'AICC investment',value:'£16.3m initiative · 260+ postgraduate scholars · 100+ SMEs engaged'},
-                {label:'Policy gap',value:'No published DfE AI strategy as of May 2026 — DfE Industrial Strategy consultation (Feb 2026) barely mentions AI'},
+                {label:'Policy gap',value:'No published DfE AI strategy as of July 2026 — DfE Industrial Strategy consultation (Feb 2026) barely mentions AI'},
               ].map(r=>(
                 <div key={r.label} style={{padding:'8px 0',borderBottom:`1px solid ${T.border}`}}>
                   <div style={{fontSize:10,color:T.text3,marginBottom:3,fontFamily:'monospace',letterSpacing:0.5}}>{r.label.toUpperCase()}</div>
@@ -205,7 +205,7 @@ export default function AIPage() {
           </div>
 
           <Insight type="insight" text="NI's AI sector generated £82m GVA from 198 firms in 2024 — a solid baseline but 0.19% of total NI GVA. The AICC Census identifies a clear path to £200m GVA by 2028 under the mid-growth scenario. The structural challenge is that 40% of AI employment is concentrated in just 10 firms, and 92 of 198 firms are early-stage with 0-2 AI professionals." />
-          <Insight type="warning" text="There is no published NI AI strategy from DfE as of May 2026. The AICC provides a research and commercialisation infrastructure, but without a clear government strategy linking AI adoption to the productivity agenda, NI risks repeating the pattern identified in the Productivity 2040 report — public investment in innovation without economy-wide diffusion." />
+          <Insight type="warning" text="There is no published NI AI strategy from DfE as of July 2026. The AICC provides a research and commercialisation infrastructure, but without a clear government strategy linking AI adoption to the productivity agenda, NI risks repeating the pattern identified in the Productivity 2040 report — public investment in innovation without economy-wide diffusion." />
         </div>
       )}
 
