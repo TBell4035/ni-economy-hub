@@ -182,7 +182,7 @@ export default function OverviewPage() {
     THOMAS BELL
   </a>
   <span style={{ color: T.text3, fontFamily: 'monospace', fontSize: 10, letterSpacing: 1 }}>
-    {' '}· ECONOMIST · CATALYST · NORTHERN IRELAND
+        {' '}· ECONOMIST · LOUGH SIGNAL · NORTHERN IRELAND
   </span>
 </p>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
