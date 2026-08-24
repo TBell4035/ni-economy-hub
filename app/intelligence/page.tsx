@@ -15,7 +15,7 @@ const T = {
 const SEED_ENTRIES: IntelligenceEntry[] = [
   {
     source_id:'THOMAS_BELL_LINKEDIN_MAR26',
-    source_name:'Thomas Bell · Catalyst',
+    source_name:'Lough Signal',
     source_quality:3,
     alignment:'extends',
     title:'Five charts from NISRA NIETS 2024 — and two questions',
