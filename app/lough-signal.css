@@ -1,0 +1,113 @@
+/* Lough Signal — lead capture styles. Import once (e.g. in app/layout.tsx).
+   Colours/type mirror tokens.css from the brand guide. */
+
+.ls-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  background: #F2EEE6;
+}
+
+.ls-card {
+  width: 100%;
+  max-width: 460px;
+  background: #FAF8F3;
+  border: 1px solid rgba(22, 25, 28, .12);
+  border-radius: 0;              /* guide: 0 radius on cards */
+  padding: 32px;
+  color: #16191C;
+}
+
+.ls-h2 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+
+.ls-body {
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #565B60;
+  margin: 0 0 20px;
+}
+
+.ls-label {
+  display: block;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 14px 0 6px;
+}
+
+.ls-input {
+  width: 100%;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 1px solid rgba(22, 25, 28, .24);
+  border-radius: 2px;
+  background: #fff;
+  color: #16191C;
+  box-sizing: border-box;
+}
+.ls-input:focus-visible {
+  outline: 2px solid #0F4C4A;
+  outline-offset: 1px;
+  border-color: #0F4C4A;
+}
+
+.ls-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #565B60;
+  margin: 16px 0 0;
+  cursor: pointer;
+}
+.ls-check input { margin-top: 3px; flex: 0 0 auto; }
+
+.ls-button {
+  display: inline-block;
+  margin-top: 22px;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #F2EEE6;
+  background: #16191C;
+  border: none;
+  border-radius: 2px;           /* guide: 2px on buttons */
+  padding: 12px 22px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.ls-button:hover { background: #0F4C4A; }
+.ls-button:disabled { opacity: .6; cursor: default; }
+.ls-button:focus-visible { outline: 2px solid #0F4C4A; outline-offset: 2px; }
+
+.ls-error {
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 14px;
+  color: #8C2F26;
+  margin: 16px 0 0;
+}
+
+.ls-fine {
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #63636A;
+  margin: 18px 0 0;
+}
+.ls-fine a { color: #0F4C4A; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
