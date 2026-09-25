@@ -302,7 +302,7 @@ export default function OverviewPage() {
                 </ComposedChart>
               </ResponsiveContainer>
               <div className="mono" style={{ fontSize:12, color:T.text3, marginTop:8 }}>
-                NOTE: NIABI 2024 confirms aGVA +9.6% · NICEI proxy shows +3.6% · both valid, different measures
+                NOTE: calendar-year 2024 — NIABI aGVA +9.6% (business economy) vs NICEI +3.6% (whole-economy proxy); different measures. Latest NICEI: Q2 2026, +2.3% y/y
               </div>
             </ChartCard>
 
@@ -420,7 +420,7 @@ export default function OverviewPage() {
           {/* Structure insights */}
           <Insight type="insight" text="NI sits at 81% of UK GVA per head — above Wales (67%) and North East England (67%) but well below the UK average of £36,100. The gap with London (£67,400) is structural and widening. Within the UK, NI's position has improved marginally — but the more meaningful comparison is with ROI, where GVA per hour worked is now 172% of the UK average, making NI approximately 60% as productive as its nearest neighbour." />
           <Insight type="warning" text="Services dominate NI's GVA at 52% — but these are predominantly low-value domestic services (retail, hospitality, care) rather than high-value tradeable services. The public sector at 24% acts as both a wage floor and a resource allocator, crowding labour from the private sector. NERI's July 2025 analysis confirms NI underperforms both the foreign and domestically-controlled sectors of the ROI economy in almost every sector." />
-          <Insight type="explain" text="Two GVA measures are used throughout this platform. NICEI (+3.6% in 2024) is a quarterly composite index — timely but a proxy, not national accounts. NIABI aGVA (+9.6% in 2024) is the confirmed annual business inquiry figure published March 2026. Construction alone grew 30.7% in NIABI 2024, which explains the gap between the two measures. Both are valid; they measure different things. This platform uses NIABI as the primary confirmed measure and NICEI for quarterly trend analysis." />
+          <Insight type="explain" text="Two GVA measures are used throughout this platform. NICEI (+3.6% over calendar 2024; +2.3% y/y in Q2 2026) is a quarterly composite index — timely but a proxy, not national accounts. NIABI aGVA (+9.6% in 2024) is the confirmed annual business inquiry figure published March 2026. Construction alone grew 30.7% in NIABI 2024, which explains the gap between the two measures. Both are valid; they measure different things. This platform uses NIABI as the primary confirmed measure and NICEI for quarterly trend analysis." />
         </div>
       )}
     </div>

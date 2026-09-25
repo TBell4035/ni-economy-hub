@@ -7,6 +7,7 @@ import {
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
 import { T } from '@/lib/tokens'
+import ServicePrompt from '@/components/ServicePrompt'
 
 
 const northSouthTrade = [
@@ -349,6 +350,7 @@ export default function TradePage() {
           </div>
         </div>
       )}
+      <ServicePrompt from="trade" question="Need a defensible view of cross-border trade for a market or investment decision?" cta="Discuss an Economic Evidence Brief" />
     </div>
   )
 }

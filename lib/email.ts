@@ -1,9 +1,9 @@
 import { Resend } from "resend";
+import { siteUrl } from "@/lib/siteUrl";
 
 const apiKey = process.env.RESEND_API_KEY;
 const fromAddress =
   process.env.EMAIL_FROM ?? "Lough Signal <noreply@loughsignal.co.uk>";
-const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
 
 // Lazily construct so a missing key fails at send-time with a clear message,
 // not at import-time (keeps builds/previews from crashing before config).

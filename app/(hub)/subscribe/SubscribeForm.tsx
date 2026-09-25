@@ -1,12 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import { formsOpen } from "@/lib/launch";
 
 type State = "idle" | "submitting" | "done" | "error";
 
 export default function SubscribeForm({ leadSource }: { leadSource?: string }) {
   const [state, setState] = useState<State>("idle");
   const [error, setError] = useState<string | null>(null);
+
+  if (!formsOpen) {
+    return (
+      <div className="ls-card" role="status">
+        <p className="ls-body">
+          The Lough Signal briefing opens shortly. Sign-up will be available here once
+          registration is complete — the Hub itself is free to use in the meantime.
+        </p>
+      </div>
+    );
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

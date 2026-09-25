@@ -7,6 +7,7 @@ import {
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
 import { T } from '@/lib/tokens'
+import ServicePrompt from '@/components/ServicePrompt'
 
 
 const totalBusinesses = [
@@ -325,6 +326,7 @@ export default function BusinessPage() {
           </div>
         </div>
       )}
+      <ServicePrompt from="business" question="Sizing up a market, a competitor set or a move in your sector?" cta="Discuss a Market Opportunity Snapshot" />
     </div>
   )
 }
