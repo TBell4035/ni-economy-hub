@@ -6,14 +6,8 @@ import {
   Tooltip, Legend, ResponsiveContainer, ReferenceLine
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const hpiAnnual = [
   {y:'2010',v:118000},{y:'2011',v:106000},{y:'2012',v:94500},
@@ -84,7 +78,7 @@ const crossBorderComparison = [
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -98,13 +92,13 @@ const Tip = ({active,payload,label}:any) => {
 const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -118,18 +112,18 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
 }
 
 const ChartCard = ({title,subtitle,children}:{title:string,subtitle:string,children:React.ReactNode}) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -139,15 +133,15 @@ export default function HousingPage() {
   const [view, setView] = useState<'prices'|'affordability'|'supply'|'crossborder'>('prices')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 12 · HOUSING
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Housing Market
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           NI's housing market is outperforming every other UK region on price growth but
           faces structural supply constraints rooted in planning failures and NI Water
           infrastructure capacity. This module draws on NISRA House Price Index,
@@ -155,11 +149,11 @@ export default function HousingPage() {
           and PropertyPal market analysis.
         </p>
         <div style={{
-          background:'#1a0808',border:'1px solid #3a1010',
-          borderRadius:4,padding:'10px 14px',marginBottom:14,
-          fontSize:11,color:'#c06060'
+          background:'rgba(140,47,38,.06)',border:'1px solid rgba(140,47,38,.28)',
+          borderRadius:0,padding:'10px 14px',marginBottom:14,
+          fontSize:12,color:T.risk
         }}>
-          <span className="mono" style={{fontSize:9,letterSpacing:2,color:T.red,marginRight:8}}>
+          <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.red,marginRight:8}}>
             ⚠ DATA GAP
           </span>
           There is no dedicated NI housing economist in the public sector. No published
@@ -170,9 +164,9 @@ export default function HousingPage() {
       </div>
 
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(190px,1fr))',gap:10,marginBottom:24}}>
-        <KPI label="Avg House Price Q1 2026" value="£198,015" sub="NISRA official NI HPI · +7.4% YoY" delta="Highest since pre-2008 peak" color={T.gold}/>
-        <KPI label="Annual Growth (to Q1 2026)" value="+7.4" unit="%" sub="NISRA official NI HPI" delta="Among fastest in UK" color={T.amber}/>
-        <KPI label="Belfast Avg Price Q4 2025" value="£178,000" sub="ONS · +5.4% YoY" delta="Below NI average growth" deltaPos={false} color={T.blue}/>
+        <KPI label="Standardised Price Q2 2026" value="£202,487" sub="LPS/NISRA NI HPI · 19 Aug 2026" delta="+2.1% on quarter" color={T.gold}/>
+        <KPI label="Annual Growth (to Q2 2026)" value="+9.2" unit="%" sub="LPS/NISRA NI HPI" delta="Among fastest in UK" color={T.amber}/>
+        <KPI label="Belfast Std. Price Q2 2026" value="£184,768" sub="LPS/NISRA NI HPI · +7.7% YoY" delta="Below NI average growth" deltaPos={false} color={T.blue}/>
         <KPI label="Belfast Monthly Rent Jan 26" value="£1,130" sub="ONS Private Rent · +5.8% YoY" delta="NI avg £880 · UK avg £1,367" color={T.teal}/>
         <KPI label="Price-to-Income Ratio 2025" value="6.5x" sub="NISRA std. price ÷ median salary" delta="Up from 4.5x in 2015" deltaPos={false} color={T.red}/>
         <KPI label="First-Time Buyers" value="~40" unit="%" sub="Of all transactions · Q4 2025" delta="High vs rest of UK" color={T.green}/>
@@ -185,7 +179,7 @@ export default function HousingPage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='prices'?'Prices & Rents':v==='affordability'?'Affordability':v==='supply'?'Supply':'Cross-Border'}
@@ -205,14 +199,14 @@ export default function HousingPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:8,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={4}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${(v/1000).toFixed(0)}k`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={4}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${(v/1000).toFixed(0)}k`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceLine y={184000} stroke={T.text3} strokeDasharray="3 3"/>
-                <Area type="monotone" dataKey="v" stroke={T.gold} fill="url(#hpG)" strokeWidth={2} name="Avg House Price (£)"/>
+                <Area isAnimationActive={false} type="monotone" dataKey="v" stroke={T.gold} fill="url(#hpG)" strokeWidth={2} name="Avg House Price (£)"/>
               </AreaChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:8}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
               Dashed = pre-2008 peak (£184,000) · Source: Ulster University / NIHE HPI
             </div>
           </ChartCard>
@@ -221,12 +215,12 @@ export default function HousingPage() {
             <ResponsiveContainer width="100%" height={220}>
               <ComposedChart data={hpiGrowth}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
                 <Tooltip content={<Tip/>}/>
-                <Bar dataKey="NI" fill={T.gold} opacity={0.75} name="NI"/>
-                <Line type="monotone" dataKey="UK" stroke={T.blue} strokeWidth={2} dot={false} name="UK" strokeDasharray="4 2"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="NI" fill={T.gold} opacity={0.75} name="NI"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="UK" stroke={T.blue} strokeWidth={2} dot={false} name="UK" strokeDasharray="4 2"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -235,19 +229,19 @@ export default function HousingPage() {
             <div style={{paddingTop:4}}>
               {councilPrices.map(d=>(
                 <div key={d.area} style={{marginBottom:8}}>
-                  <div style={{display:'flex',justifyContent:'space-between',fontSize:11,marginBottom:3}}>
+                  <div style={{display:'flex',justifyContent:'space-between',fontSize:12,marginBottom:3}}>
                     <span style={{color:T.text1}}>{d.area}</span>
-                    <span className="mono" style={{fontSize:11}}>
+                    <span className="mono" style={{fontSize:12}}>
                       <span style={{color:T.gold}}>£{d.price.toLocaleString()}</span>
                       <span style={{color:d.growth>7?T.amber:T.text3,marginLeft:8}}>+{d.growth}%</span>
                     </span>
                   </div>
-                  <div style={{background:T.bg3,height:4,borderRadius:2}}>
+                  <div style={{background:T.bg3,height:4,borderRadius:0}}>
                     <div style={{
                       background:d.area==='Belfast'?T.blue:T.gold,
                       height:4,
                       width:`${(d.price/230000)*100}%`,
-                      borderRadius:2
+                      borderRadius:0
                     }}/>
                   </div>
                 </div>
@@ -256,23 +250,23 @@ export default function HousingPage() {
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Rent Comparison (January 2026)
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 ONS PRIVATE RENT · MONTHLY AVERAGE
               </div>
               {rentData.map(r=>(
                 <div key={r.area} style={{padding:'8px 0',borderBottom:`1px solid ${T.border}`}}>
                   <div style={{display:'flex',justifyContent:'space-between',marginBottom:2}}>
-                    <span style={{fontSize:12,color:T.text1}}>{r.area}</span>
-                    <span className="mono" style={{fontSize:12,color:T.teal,fontWeight:700}}>£{r.rent}/mo</span>
+                    <span style={{fontSize:14,color:T.text1}}>{r.area}</span>
+                    <span className="mono" style={{fontSize:14,color:T.teal,fontWeight:700}}>£{r.rent}/mo</span>
                   </div>
-                  <div style={{fontSize:10,color:T.text3}}>+{r.change}% YoY</div>
+                  <div style={{fontSize:12,color:T.text3}}>+{r.change}% YoY</div>
                 </div>
               ))}
-              <div style={{marginTop:12,fontSize:11,color:T.text2,lineHeight:1.6}}>
+              <div style={{marginTop:12,fontSize:12,color:T.text2,lineHeight:1.6}}>
                 NI rents are the lowest of any UK region — but growing fast. The Belfast-NI gap (£1,130 vs £880) reflects urban premium. NI rents are still 34% below the UK average.
               </div>
             </div>
@@ -287,22 +281,22 @@ export default function HousingPage() {
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={affordabilityData}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${v}x`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${v}x`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceLine y={4.5} stroke={T.green} strokeDasharray="3 3"/>
                 <ReferenceLine y={7.0} stroke={T.red} strokeDasharray="3 3"/>
-                <Line type="monotone" dataKey="ratio" stroke={T.amber} strokeWidth={2.5} dot={{r:3,fill:T.amber}} name="Price-to-Income Ratio"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="ratio" stroke={T.amber} strokeWidth={2.5} dot={{r:3,fill:T.amber}} name="Price-to-Income Ratio"/>
               </LineChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:8}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
               Green dashed = affordable threshold (4.5x) · Red dashed = severe affordability stress (7.0x)
             </div>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Affordability Pressures — 2025
               </div>
               {[
@@ -311,9 +305,9 @@ export default function HousingPage() {
                 {issue:'Mortgage cost improvement',col:T.green,text:'Bank of England rate cuts to 3.75% in December 2025 have improved mortgage affordability at the margin. Lender competition is strong. First-time buyer mortgage products have improved significantly since the 2023 peak.'},
                 {issue:'Help to Buy NI',col:T.blue,text:'NI has its own Help to Buy: ISA scheme administered by NIHE. Take-up has been significant but the scheme is not designed for the current price environment — the property price cap is under review.'},
               ].map(s=>(
-                <div key={s.issue} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.issue}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.issue} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.issue}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>
@@ -328,25 +322,25 @@ export default function HousingPage() {
             <ResponsiveContainer width="100%" height={220}>
               <ComposedChart data={supplyData}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
                 <Tooltip content={<Tip/>}/>
-                <Bar dataKey="completions" fill={T.teal} opacity={0.75} name="Completions"/>
-                <Line type="monotone" dataKey="starts" stroke={T.gold} strokeWidth={2} dot={false} name="Starts"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="completions" fill={T.teal} opacity={0.75} name="Completions"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="starts" stroke={T.gold} strokeWidth={2} dot={false} name="Starts"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 The NI Water Supply Constraint
               </div>
               <div style={{
-                background:'#1a0808',border:'1px solid #3a1010',
-                borderRadius:4,padding:'12px 14px',marginBottom:12,
-                fontSize:12,color:'#c06060',lineHeight:1.65
+                background:'rgba(140,47,38,.06)',border:'1px solid rgba(140,47,38,.28)',
+                borderRadius:0,padding:'12px 14px',marginBottom:12,
+                fontSize:14,color:T.risk,lineHeight:1.65
               }}>
                 NI Water's outdated wastewater infrastructure has stalled new housing projects across multiple council areas. Planning permission is being granted but development cannot proceed because the water and sewerage network cannot support new connections. This is not a planning problem — it is an infrastructure investment problem.
               </div>
@@ -357,8 +351,8 @@ export default function HousingPage() {
                 {issue:'Executive response',text:'The NI Executive committed to a Housing Supply Action Plan in 2024. Implementation progress is limited. The fundamental tension: water investment requires capital that competes with health spending.'},
               ].map(r=>(
                 <div key={r.issue} style={{padding:'7px 0',borderBottom:`1px solid ${T.border}`}}>
-                  <div style={{fontSize:10,color:T.text3,fontFamily:'monospace',letterSpacing:0.5,marginBottom:2}}>{r.issue.toUpperCase()}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.5}}>{r.text}</div>
+                  <div style={{fontSize:12,color:T.text3,fontFamily:'var(--font-mono)',letterSpacing:0.5,marginBottom:2}}>{r.issue.toUpperCase()}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.5}}>{r.text}</div>
                 </div>
               ))}
             </div>
@@ -369,31 +363,31 @@ export default function HousingPage() {
 
       {view==='crossborder'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               NI vs ROI vs UK — Housing Comparison 2025
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               ONS · NISRA · CSO · DAFT.IE · JANUARY 2026
             </div>
             {crossBorderComparison.map((r,i)=>(
               <div key={i} style={{padding:'10px 0',borderBottom:`1px solid ${T.border}`}}>
-                <div className="mono" style={{fontSize:9,color:T.text3,marginBottom:6}}>{r.metric.toUpperCase()}</div>
+                <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:6}}>{r.metric.toUpperCase()}</div>
                 <div style={{display:'flex',gap:16}}>
-                  <div style={{flex:1,textAlign:'center',padding:'8px',background:T.bg2,borderRadius:4}}>
-                    <div className="mono" style={{fontSize:9,color:T.teal,marginBottom:4}}>NI</div>
+                  <div style={{flex:1,textAlign:'center',padding:'8px',background:T.bg2,borderRadius:0}}>
+                    <div className="mono" style={{fontSize:12,color:T.teal,marginBottom:4}}>NI</div>
                     <div style={{fontSize:14,fontWeight:700,color:T.text0}}>
                       {typeof r.NI==='number'&&r.NI>1000?`£${r.NI.toLocaleString()}`:r.NI}
                     </div>
                   </div>
-                  <div style={{flex:1,textAlign:'center',padding:'8px',background:T.bg2,borderRadius:4}}>
-                    <div className="mono" style={{fontSize:9,color:T.gold,marginBottom:4}}>ROI</div>
+                  <div style={{flex:1,textAlign:'center',padding:'8px',background:T.bg2,borderRadius:0}}>
+                    <div className="mono" style={{fontSize:12,color:T.gold,marginBottom:4}}>ROI</div>
                     <div style={{fontSize:14,fontWeight:700,color:T.text0}}>
                       {typeof r.ROI==='number'&&r.ROI>1000?`€${r.ROI.toLocaleString()}`:r.ROI}
                     </div>
                   </div>
-                  <div style={{flex:1,textAlign:'center',padding:'8px',background:T.bg2,borderRadius:4}}>
-                    <div className="mono" style={{fontSize:9,color:T.blue,marginBottom:4}}>UK</div>
+                  <div style={{flex:1,textAlign:'center',padding:'8px',background:T.bg2,borderRadius:0}}>
+                    <div className="mono" style={{fontSize:12,color:T.blue,marginBottom:4}}>UK</div>
                     <div style={{fontSize:14,fontWeight:700,color:T.text0}}>
                       {typeof r.UK==='number'&&r.UK>1000?`£${r.UK.toLocaleString()}`:r.UK}
                     </div>
@@ -404,8 +398,8 @@ export default function HousingPage() {
           </div>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Cross-Border Housing Dynamics
               </div>
               {[
@@ -414,9 +408,9 @@ export default function HousingPage() {
                 {title:'ROI supply crisis comparison',col:T.amber,text:'ROI average rent in Dublin is €2,500+/month, house price €475,000+. The all-island housing crisis is severe on both sides of the border but NI remains markedly more affordable. This relative advantage is a genuine economic asset — but it is eroding.'},
                 {title:'Data gap: cross-border flows',col:T.red,text:'No published data source tracks cross-border residential property transactions. The scale of ROI→NI house purchases and the cross-border rental market is unknown. This is a significant gap for all-island economic analysis.'},
               ].map(s=>(
-                <div key={s.title} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.title}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.title} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.title}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>

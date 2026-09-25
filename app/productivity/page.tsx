@@ -7,14 +7,8 @@ import {
   ResponsiveContainer, ReferenceLine
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const productivityTrend = [
   {y:'2004',NI:72,UK:100,ROI:118},{y:'2006',NI:74,UK:100,ROI:124},
@@ -54,7 +48,7 @@ const radarData = [
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -68,13 +62,13 @@ const Tip = ({active,payload,label}:any) => {
 const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -88,18 +82,18 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
 }
 
 const ChartCard = ({title,subtitle,children}:{title:string,subtitle:string,children:React.ReactNode}) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -109,15 +103,15 @@ export default function ProductivityPage() {
   const [view, setView] = useState<'gap'|'drivers'|'policy'>('gap')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 06 · PRODUCTIVITY
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Productivity & Structural Competitiveness
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           NI's productivity gap is its most persistent economic failure. This module integrates
           the NI Productivity Dashboard 2025 (QUB / Productivity Institute, December 2025),
           NI Productivity 2040 (January 2025), NERI's Lever of Riches (July 2025), and
@@ -147,7 +141,7 @@ export default function ProductivityPage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='gap'?'The Gap':v==='drivers'?'20 Drivers':'Policy Failures'}
@@ -164,17 +158,17 @@ export default function ProductivityPage() {
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={productivityTrend}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={1}/>
-                <YAxis domain={[65,185]} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={1}/>
+                <YAxis domain={[65,185]} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceLine y={100} stroke={T.text3} strokeDasharray="3 3"/>
-                <Line type="monotone" dataKey="NI" stroke={T.teal} strokeWidth={2} dot={{r:3,fill:T.teal}} name="NI"/>
-                <Line type="monotone" dataKey="UK" stroke={T.text3} strokeWidth={1} dot={false} name="UK" strokeDasharray="3 3"/>
-                <Line type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={2} dot={{r:3,fill:T.gold}} name="ROI"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="NI" stroke={T.teal} strokeWidth={2} dot={{r:3,fill:T.teal}} name="NI"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="UK" stroke={T.text3} strokeWidth={1} dot={false} name="UK" strokeDasharray="3 3"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={2} dot={{r:3,fill:T.gold}} name="ROI"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </LineChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:8}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
               NOTE: ROI figures distorted by multinational profit-shifting post-2015. Use ROI modified GNI* for realistic comparison (~125% of UK, not 172%).
             </div>
           </ChartCard>
@@ -187,10 +181,10 @@ export default function ProductivityPage() {
               <ResponsiveContainer width="100%" height={200}>
                 <RadarChart data={radarData}>
                   <PolarGrid stroke={T.border}/>
-                  <PolarAngleAxis dataKey="metric" tick={{fontSize:9,fill:T.text2,fontFamily:'monospace'}}/>
+                  <PolarAngleAxis dataKey="metric" tick={{fontSize:12,fill:T.text2,fontFamily:'var(--font-mono)'}}/>
                   <Radar name="NI" dataKey="NI" stroke={T.teal} fill={T.teal} fillOpacity={0.2}/>
                   <Radar name="ROI" dataKey="ROI" stroke={T.gold} fill={T.gold} fillOpacity={0.1}/>
-                  <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                  <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
                   <Tooltip content={<Tip/>}/>
                 </RadarChart>
               </ResponsiveContainer>
@@ -202,23 +196,23 @@ export default function ProductivityPage() {
 
       {view==='drivers'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               NI Productivity Dashboard 2025 — 20 Drivers
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               QUB / PRODUCTIVITY INSTITUTE · DECEMBER 2025 · DONALDSON, JORDAN, MCDONALD, TURNER
             </div>
-            <div style={{marginBottom:12,fontSize:12,color:T.text2,lineHeight:1.6}}>
+            <div style={{marginBottom:12,fontSize:14,color:T.text2,lineHeight:1.6}}>
               13 of 20 drivers are below the UK average (red). 3 are equal to or above the median (amber). Only 4 are above the UK average (green). 8 drivers have continuously lagged since the first Dashboard in 2022.
             </div>
             {dashboardDrivers.map(d=>(
-              <div key={d.driver} style={{display:'flex',alignItems:'center',gap:10,marginBottom:8,padding:'8px 10px',background:T.bg2,borderRadius:4,borderLeft:`3px solid ${d.status==='red'?T.red:d.status==='green'?T.green:T.amber}`}}>
+              <div key={d.driver} style={{display:'flex',alignItems:'center',gap:10,marginBottom:8,padding:'8px 10px',background:T.bg2,borderRadius:0,borderLeft:`3px solid ${d.status==='red'?T.red:d.status==='green'?T.green:T.amber}`}}>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:11,color:T.text1,marginBottom:2}}>{d.driver}</div>
-                  <div className="mono" style={{fontSize:9,color:T.text3}}>{d.note}</div>
+                  <div style={{fontSize:12,color:T.text1,marginBottom:2}}>{d.driver}</div>
+                  <div className="mono" style={{fontSize:12,color:T.text3}}>{d.note}</div>
                 </div>
-                <div className="mono" style={{fontSize:10,color:d.status==='red'?T.red:d.status==='green'?T.green:T.amber,flexShrink:0}}>
+                <div className="mono" style={{fontSize:12,color:d.status==='red'?T.red:d.status==='green'?T.green:T.amber,flexShrink:0}}>
                   {d.status==='red'?'↓ BELOW':d.status==='green'?'↑ ABOVE':'~ EQUAL'}
                 </div>
               </div>
@@ -230,13 +224,13 @@ export default function ProductivityPage() {
               <ResponsiveContainer width="100%" height={180}>
                 <LineChart data={rdIntensity}>
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                  <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                  <YAxis domain={[0.5,3.0]} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
+                  <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                  <YAxis domain={[0.5,3.0]} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
                   <Tooltip content={<Tip/>}/>
-                  <Line type="monotone" dataKey="NI" stroke={T.teal} strokeWidth={2} dot={{r:3}} name="NI"/>
-                  <Line type="monotone" dataKey="UK" stroke={T.blue} strokeWidth={2} dot={{r:3}} name="UK" strokeDasharray="4 2"/>
-                  <Line type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={2} dot={{r:3}} name="ROI"/>
-                  <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                  <Line isAnimationActive={false} type="monotone" dataKey="NI" stroke={T.teal} strokeWidth={2} dot={{r:3}} name="NI"/>
+                  <Line isAnimationActive={false} type="monotone" dataKey="UK" stroke={T.blue} strokeWidth={2} dot={{r:3}} name="UK" strokeDasharray="4 2"/>
+                  <Line isAnimationActive={false} type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={2} dot={{r:3}} name="ROI"/>
+                  <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
                 </LineChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -249,11 +243,11 @@ export default function ProductivityPage() {
 
       {view==='policy'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               Why Policy Has Failed — NI Productivity 2040
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               QUB / PRODUCTIVITY INSTITUTE · JANUARY 2025 · DONALDSON, JORDAN, TURNER
             </div>
             <TheoryTag tag="north"/>
@@ -265,31 +259,31 @@ export default function ProductivityPage() {
                 {issue:'Invention bias',text:'£232m in R&D grants by 2021, yet innovation-active firms fell from 38% to 32%. Policy is biased toward frontier R&D and academic spin-outs rather than technology diffusion across the 83,900 SME base.',col:T.red},
                 {issue:'Political instability',text:'Executive collapsed 2002-07, 2017-20, 2022-24 — approximately 40% of post-GFA governance time. QUB estimates ~£2.3bn cumulative lost capital investment during suspension periods.',col:T.red},
               ].map(s=>(
-                <div key={s.issue} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.issue}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.issue} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.issue}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>
           </div>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
                 The Diffusion Problem
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 NORTHSTAR BRIEFING · DECEMBER 2025 · ANALYSIS
               </div>
               <TheoryTag tag="diffusion"/>
-              <p style={{fontSize:12,color:T.text2,lineHeight:1.65,marginTop:12,marginBottom:12}}>
+              <p style={{fontSize:14,color:T.text2,lineHeight:1.65,marginTop:12,marginBottom:12}}>
                 NI output per hour worked sits 13% below the UK average and nearly 20% below
                 Ireland. Despite over £232m in R&D grants by 2021 and record venture capital
                 reaching £143m in 2023, the proportion of innovation-active firms has fallen.
                 The system generates early-stage activity concentrated in Belfast, but with
                 thin late-stage deal flow and few Series C rounds.
               </p>
-              <div style={{background:T.bg2,borderRadius:4,padding:'12px 14px',fontSize:12,color:T.text1,lineHeight:1.65}}>
+              <div style={{background:T.bg2,borderRadius:0,padding:'12px 14px',fontSize:14,color:T.text1,lineHeight:1.65}}>
                 <strong style={{color:T.teal}}>Singapore model:</strong> The Productivity Solutions Grant
                 provides financial support for SMEs to adopt pre-approved, off-the-shelf digital
                 tools. Impact evaluations show participating firms achieved 3% productivity
@@ -298,18 +292,18 @@ export default function ProductivityPage() {
               </div>
             </div>
 
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 NI Productivity 2040 — Key Recommendation
               </div>
-              <div style={{background:`${T.gold}12`,border:`1px solid ${T.gold}33`,borderRadius:4,padding:'14px 16px',fontSize:13,color:T.text1,lineHeight:1.7}}>
+              <div style={{background:`${T.gold}12`,border:`1px solid ${T.gold}33`,borderRadius:0,padding:'14px 16px',fontSize:14,color:T.text1,lineHeight:1.7}}>
                 <strong style={{color:T.gold}}>A Productivity and Growth Board</strong> — an independent
                 body working closely with the NI Executive, publishing an annual report on the
                 state of productivity with short- and long-term policy recommendations. Requires
                 political commitment and cross-departmental cooperation. Would help address
                 previous short-termism and siloed policymaking.
               </div>
-              <p style={{fontSize:12,color:T.text2,lineHeight:1.65,marginTop:12}}>
+              <p style={{fontSize:14,color:T.text2,lineHeight:1.65,marginTop:12}}>
                 As of July 2026, this recommendation has not been implemented. The NI Executive's
                 Programme for Government (March 2025) includes productivity as a priority but
                 does not establish the independent board mechanism recommended.

@@ -7,19 +7,13 @@ import {
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
 import M from '@/data/scenarios.json'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -40,8 +34,8 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
@@ -95,15 +89,15 @@ export default function ScenariosPage() {
     q, Output:irf.output[i], Employment:irf.employment[i] }))
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 09 · SCENARIOS &amp; MACRO-MODEL
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Economic Scenarios 2026–2030
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:760,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:760,lineHeight:1.7,marginBottom:14}}>
           This module is powered by a purpose-built <strong style={{color:T.text1}}>core macro-model
           of the NI economy</strong> — a transparent, reproducible replica of the core block of the
           NIESR/ESRI AMNIE model (Bergin, Low, Millard &amp; Verma, 2025), built directly from that
@@ -117,20 +111,20 @@ export default function ScenariosPage() {
       </div>
 
       {/* ---- MODEL PANEL: validation ---- */}
-      <div style={{border:`2px solid ${T.blue}22`,borderTop:`3px solid ${T.blue}`,borderRadius:6,padding:20,marginBottom:20,background:T.card}}>
+      <div style={{border:`2px solid ${T.blue}22`,borderTop:`3px solid ${T.blue}`,borderRadius:0,padding:20,marginBottom:20,background:T.card}}>
         <div style={{fontSize:15,fontWeight:700,color:T.text0,marginBottom:4}}>NI Core Macro-Model</div>
-        <div className="mono" style={{fontSize:10,color:T.blue,marginBottom:12}}>
+        <div className="mono" style={{fontSize:12,color:T.blue,marginBottom:12}}>
           SIMPLIFIED AMNIE REPLICA · ERROR-CORRECTION CORE BLOCK · QUARTERLY
         </div>
-        <p style={{fontSize:12,color:T.text2,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,lineHeight:1.7,marginBottom:14}}>
           The model implements DP-566&rsquo;s consumption, employment, wage, hours, investment and
           housing equations using the paper&rsquo;s published coefficients, solved with an open engine
           (not the proprietary NiGEM). Its correctness test is whether it reproduces the four
           simulations DP-566 itself reports:
         </p>
-        <table style={{width:'100%',borderCollapse:'collapse',fontSize:12}}>
+        <table style={{width:'100%',borderCollapse:'collapse',fontSize:14}}>
           <thead>
-            <tr style={{color:T.text3,fontFamily:'monospace',fontSize:10,textAlign:'left'}}>
+            <tr style={{color:T.text3,fontFamily:'var(--font-mono)',fontSize:12,textAlign:'left'}}>
               <th style={{padding:'6px 8px',borderBottom:`1px solid ${T.border2}`}}>SCENARIO</th>
               <th style={{padding:'6px 8px',borderBottom:`1px solid ${T.border2}`}}>THIS MODEL</th>
               <th style={{padding:'6px 8px',borderBottom:`1px solid ${T.border2}`}}>DP-566</th>
@@ -140,37 +134,37 @@ export default function ScenariosPage() {
             {(M as any).validation.map((v:any,i:number)=>(
               <tr key={i}>
                 <td style={{padding:'6px 8px',borderBottom:`1px solid ${T.border}`,color:T.text1}}>{v.scenario}</td>
-                <td style={{padding:'6px 8px',borderBottom:`1px solid ${T.border}`,color:T.teal,fontFamily:'monospace'}}>{v.model>0?'+':''}{v.model}%</td>
-                <td style={{padding:'6px 8px',borderBottom:`1px solid ${T.border}`,color:T.text2,fontFamily:'monospace'}}>{v.paper}</td>
+                <td style={{padding:'6px 8px',borderBottom:`1px solid ${T.border}`,color:T.teal,fontFamily:'var(--font-mono)'}}>{v.model>0?'+':''}{v.model}%</td>
+                <td style={{padding:'6px 8px',borderBottom:`1px solid ${T.border}`,color:T.text2,fontFamily:'var(--font-mono)'}}>{v.paper}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="mono" style={{fontSize:9,color:T.text3,marginTop:10,lineHeight:1.5}}>
+        <div className="mono" style={{fontSize:12,color:T.text3,marginTop:10,lineHeight:1.5}}>
           Reproduces the paper&rsquo;s two key results: a fiscal multiplier well below 1 (high regional
           import leakage) and a small export multiplier (export production is highly import-intensive).
         </div>
       </div>
 
       {/* ---- MODEL PROJECTION ---- */}
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20,marginBottom:20}}>
-        <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>Model Projection 2026–2030</div>
-        <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>REAL GVA LEVEL INDEX ({lvl.basis}) · MODEL-GENERATED</div>
+      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20,marginBottom:20}}>
+        <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>Model Projection 2026–2030</div>
+        <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>REAL GVA LEVEL INDEX ({lvl.basis}) · MODEL-GENERATED</div>
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
           <div>
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={levelData}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis domain={[98,'auto']} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis domain={[98,'auto']} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
                 <Tooltip content={<Tip/>}/>
-                <Line type="monotone" dataKey="Baseline" stroke={T.teal} strokeWidth={2.5} dot={false}/>
-                <Line type="monotone" dataKey="Downside" stroke={T.red} strokeWidth={1.5} strokeDasharray="4 2" dot={false}/>
-                <Line type="monotone" dataKey="Upside" stroke={T.green} strokeWidth={1.5} strokeDasharray="4 2" dot={false}/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="Baseline" stroke={T.teal} strokeWidth={2.5} dot={false}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="Downside" stroke={T.red} strokeWidth={1.5} strokeDasharray="4 2" dot={false}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="Upside" stroke={T.green} strokeWidth={1.5} strokeDasharray="4 2" dot={false}/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </LineChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:4}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:4}}>
               Avg annual growth — baseline {proj.avg_annual_growth.baseline}% · downside {proj.avg_annual_growth.downside}% · upside {proj.avg_annual_growth.upside}%
             </div>
           </div>
@@ -178,32 +172,32 @@ export default function ScenariosPage() {
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={unempData}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
                 <Tooltip content={<Tip/>}/>
-                <Line type="monotone" dataKey="Baseline" stroke={T.teal} strokeWidth={2.5} dot={false}/>
-                <Line type="monotone" dataKey="Downside" stroke={T.red} strokeWidth={1.5} strokeDasharray="4 2" dot={false}/>
-                <Line type="monotone" dataKey="Upside" stroke={T.green} strokeWidth={1.5} strokeDasharray="4 2" dot={false}/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="Baseline" stroke={T.teal} strokeWidth={2.5} dot={false}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="Downside" stroke={T.red} strokeWidth={1.5} strokeDasharray="4 2" dot={false}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="Upside" stroke={T.green} strokeWidth={1.5} strokeDasharray="4 2" dot={false}/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </LineChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:4}}>UNEMPLOYMENT RATE (%) · OKUN&rsquo;S-LAW LINK TO OUTPUT GAP</div>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:4}}>UNEMPLOYMENT RATE (%) · OKUN&rsquo;S-LAW LINK TO OUTPUT GAP</div>
           </div>
         </div>
-        <div className="mono" style={{fontSize:9,color:T.text3,marginTop:10,lineHeight:1.5}}>{proj.anchor_note}</div>
+        <div className="mono" style={{fontSize:12,color:T.text3,marginTop:10,lineHeight:1.5}}>{proj.anchor_note}</div>
       </div>
 
       {/* ---- IMPULSE-RESPONSE EXPLORER ---- */}
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20,marginBottom:20}}>
-        <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>Impulse Responses</div>
-        <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>% DEVIATION FROM BASELINE · 20 QUARTERS</div>
+      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20,marginBottom:20}}>
+        <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>Impulse Responses</div>
+        <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>% DEVIATION FROM BASELINE · 20 QUARTERS</div>
         <div style={{display:'flex',gap:6,flexWrap:'wrap',marginBottom:14}}>
           {Object.keys(IRF_LABELS).map(k=>(
             <button key={k} onClick={()=>setIrfKey(k)} style={{
               background: irfKey===k?`${T.blue}22`:'transparent',
               color: irfKey===k?T.blue:T.text2,
               border:`2px solid ${irfKey===k?T.blue:T.border}`,
-              padding:'6px 14px',cursor:'pointer',fontSize:10,fontFamily:'monospace',borderRadius:4}}>
+              padding:'6px 14px',cursor:'pointer',fontSize:12,fontFamily:'var(--font-mono)',borderRadius:0}}>
               {IRF_LABELS[k]}
             </button>
           ))}
@@ -211,43 +205,43 @@ export default function ScenariosPage() {
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={irfData}>
             <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-            <XAxis dataKey="q" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-            <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
+            <XAxis dataKey="q" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+            <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
             <Tooltip content={<Tip/>}/>
             <ReferenceLine y={0} stroke={T.border2}/>
-            <Line type="monotone" dataKey="Output" stroke={T.gold} strokeWidth={2} dot={false}/>
-            <Line type="monotone" dataKey="Employment" stroke={T.blue} strokeWidth={2} dot={false}/>
-            <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+            <Line isAnimationActive={false} type="monotone" dataKey="Output" stroke={T.gold} strokeWidth={2} dot={false}/>
+            <Line isAnimationActive={false} type="monotone" dataKey="Employment" stroke={T.blue} strokeWidth={2} dot={false}/>
+            <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
           </LineChart>
         </ResponsiveContainer>
       </div>
 
       {/* ---- NARRATIVE SCENARIO EXPLORER ---- */}
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:10}}>Scenario narratives</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:10}}>Scenario narratives</div>
       <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:20}}>
         {(Object.entries(NARRATIVE) as [keyof typeof NARRATIVE, typeof NARRATIVE[keyof typeof NARRATIVE]][]).map(([k,v])=>(
           <button key={k} onClick={()=>setActive(k)} style={{
             background: active===k?`${v.color}22`:'transparent',
             color: active===k?v.color:T.text2,
             border:`2px solid ${active===k?v.color:T.border}`,
-            padding:'8px 20px',cursor:'pointer',fontSize:11,fontFamily:'monospace',letterSpacing:1,borderRadius:4}}>
+            padding:'8px 20px',cursor:'pointer',fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',borderRadius:0}}>
             {v.label}
           </button>
         ))}
       </div>
-      <div style={{border:`2px solid ${scenario.color}22`,borderTop:`3px solid ${scenario.color}`,borderRadius:6,padding:20,marginBottom:20,background:T.card}}>
+      <div style={{border:`2px solid ${scenario.color}22`,borderTop:`3px solid ${scenario.color}`,borderRadius:0,padding:20,marginBottom:20,background:T.card}}>
         <div style={{fontSize:16,fontWeight:700,color:T.text0,marginBottom:4}}>{scenario.label}</div>
-        <div className="mono" style={{fontSize:10,color:scenario.color,marginBottom:10}}>{scenario.subtitle}</div>
-        <p style={{fontSize:13,color:T.text2,lineHeight:1.7,marginBottom:10}}>{scenario.notes}</p>
-        <div style={{background:T.bg2,borderRadius:4,padding:'10px 14px',fontSize:12,color:T.text2,lineHeight:1.6,marginBottom:12}}>
-          <span style={{color:scenario.color,fontFamily:'monospace',fontSize:10,letterSpacing:1,marginRight:8}}>THEORETICAL BASIS</span>
+        <div className="mono" style={{fontSize:12,color:scenario.color,marginBottom:10}}>{scenario.subtitle}</div>
+        <p style={{fontSize:14,color:T.text2,lineHeight:1.7,marginBottom:10}}>{scenario.notes}</p>
+        <div style={{background:T.bg2,borderRadius:0,padding:'10px 14px',fontSize:14,color:T.text2,lineHeight:1.6,marginBottom:12}}>
+          <span style={{color:scenario.color,fontFamily:'var(--font-mono)',fontSize:12,letterSpacing:'0.04em',marginRight:8}}>THEORETICAL BASIS</span>
           {scenario.theory}
         </div>
-        <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:8}}>KEY RISKS &amp; ASSUMPTIONS</div>
+        <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:8}}>KEY RISKS &amp; ASSUMPTIONS</div>
         {scenario.risks.map((r,i)=>(
           <div key={i} style={{display:'flex',gap:12,marginBottom:8,alignItems:'flex-start'}}>
-            <span className="mono" style={{fontSize:10,color:scenario.color,flexShrink:0}}>·</span>
-            <span style={{fontSize:12,color:T.text2,lineHeight:1.5}}>{r}</span>
+            <span className="mono" style={{fontSize:12,color:scenario.color,flexShrink:0}}>·</span>
+            <span style={{fontSize:14,color:T.text2,lineHeight:1.5}}>{r}</span>
           </div>
         ))}
       </div>

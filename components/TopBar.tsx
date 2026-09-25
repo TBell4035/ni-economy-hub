@@ -1,6 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import modulesConfig from '@/config/modules.json'
+import meta from '@/data/economic/meta.json'
 
 export default function TopBar() {
   const pathname = usePathname()
@@ -9,7 +10,7 @@ export default function TopBar() {
 
   return (
     <div style={{
-      background: 'var(--bg1)',
+      background: 'var(--bone)',
       borderBottom: '1px solid var(--border)',
       padding: '10px 28px',
       display: 'flex',
@@ -20,15 +21,12 @@ export default function TopBar() {
       zIndex: 10,
       flexShrink: 0,
     }}>
-      <div className="mono" style={{ fontSize: 10, color: 'var(--text3)' }}>
-        {moduleConfig?.icon} {moduleConfig?.label?.toUpperCase()}
+      <div className="mono" style={{ fontSize: 12, color: 'var(--text3)' }}>
+        {moduleConfig?.label?.toUpperCase()}
       </div>
       <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-        <span className="mono" style={{ fontSize: 9, color: 'var(--text3)' }}>
-          DATA: NIETS 2024 · NIABI 2024 · ELMS NOV 2025 · HMT CRA NOV 2025
-        </span>
-        <span className="mono" style={{ fontSize: 9, color: 'var(--green)' }}>
-          ● LIVE
+        <span className="mono" style={{ fontSize: 12, color: 'var(--text3)' }}>
+          {meta.dataVersion} · {meta.publicationLabel}
         </span>
       </div>
     </div>

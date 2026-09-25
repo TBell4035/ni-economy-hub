@@ -6,14 +6,8 @@ import {
   Tooltip, Legend, ResponsiveContainer, ReferenceLine
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const vcInvestment = [
   {y:'2018',NI:28,ROI:420},{y:'2019',NI:35,ROI:680},
@@ -117,7 +111,7 @@ const niVsRoiComparison = [
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -131,13 +125,13 @@ const Tip = ({active,payload,label}:any) => {
 const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -151,18 +145,18 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
 }
 
 const ChartCard = ({title,subtitle,children}:{title:string,subtitle:string,children:React.ReactNode}) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -172,15 +166,15 @@ export default function EntrepreneurshipPage() {
   const [view, setView] = useState<'ecosystem'|'funding'|'sectors'|'niroi'>('ecosystem')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 13 · ENTREPRENEURSHIP & INVESTMENT
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Entrepreneurship & Investment
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           NI's startup and investment ecosystem has grown significantly since 2018 but
           remains structurally underdeveloped relative to its ROI neighbour. VC investment
           reached an estimated £156m in 2024. The Series A-to-B pipeline is thin.
@@ -188,11 +182,11 @@ export default function EntrepreneurshipPage() {
           funding flows, sector strengths and the NI-ROI gap.
         </p>
         <div style={{
-          background:'#1a0808',border:'1px solid #3a1010',
-          borderRadius:4,padding:'10px 14px',marginBottom:14,
-          fontSize:11,color:'#c06060'
+          background:'rgba(140,47,38,.06)',border:'1px solid rgba(140,47,38,.28)',
+          borderRadius:0,padding:'10px 14px',marginBottom:14,
+          fontSize:12,color:T.risk
         }}>
-          <span className="mono" style={{fontSize:9,letterSpacing:2,color:T.red,marginRight:8}}>
+          <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.red,marginRight:8}}>
             ⚠ DATA GAP
           </span>
           No single published source consolidates NI venture capital and startup investment data.
@@ -218,7 +212,7 @@ export default function EntrepreneurshipPage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='ecosystem'?'Ecosystem':v==='funding'?'Funding Pipeline':v==='sectors'?'Sectors':'NI vs ROI'}
@@ -233,18 +227,18 @@ export default function EntrepreneurshipPage() {
               <div key={p.name} style={{
                 background:T.card,border:`1px solid ${T.border}`,
                 borderLeft:`3px solid ${p.col}`,
-                borderRadius:'0 6px 6px 0',padding:'12px 16px',
+                borderRadius:0,padding:'12px 16px',
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',marginBottom:4}}>
-                  <div style={{fontSize:12,fontWeight:700,color:T.text0}}>{p.name}</div>
+                  <div style={{fontSize:14,fontWeight:700,color:T.text0}}>{p.name}</div>
                   <span className="mono" style={{
-                    fontSize:9,color:p.col,
+                    fontSize:12,color:p.col,
                     background:`${p.col}18`,border:`1px solid ${p.col}33`,
-                    padding:'1px 6px',borderRadius:2,
+                    padding:'1px 6px',borderRadius:0,
                   }}>{p.type}</span>
                 </div>
-                <div style={{fontSize:11,color:T.text2,lineHeight:1.5,marginBottom:4}}>{p.role}</div>
-                <div className="mono" style={{fontSize:9,color:T.text3}}>Budget: {p.budget}</div>
+                <div style={{fontSize:12,color:T.text2,lineHeight:1.5,marginBottom:4}}>{p.role}</div>
+                <div className="mono" style={{fontSize:12,color:T.text3}}>Budget: {p.budget}</div>
               </div>
             ))}
           </div>
@@ -260,17 +254,17 @@ export default function EntrepreneurshipPage() {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                  <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                  <YAxis domain={[0,100]} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
+                  <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                  <YAxis domain={[0,100]} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
                   <Tooltip content={<Tip/>}/>
                   <ReferenceLine y={50} stroke={T.text3} strokeDasharray="3 3"/>
-                  <Area type="monotone" dataKey="rate" stroke={T.teal} fill="url(#survG)" strokeWidth={2} name="Survival Rate %"/>
+                  <Area isAnimationActive={false} type="monotone" dataKey="rate" stroke={T.teal} fill="url(#survG)" strokeWidth={2} name="Survival Rate %"/>
                 </AreaChart>
               </ResponsiveContainer>
             </ChartCard>
 
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Key Structural Gaps
               </div>
               {[
@@ -279,9 +273,9 @@ export default function EntrepreneurshipPage() {
                 {gap:'Brain drain',col:T.amber,text:'QUB and Ulster University produce strong STEM graduates but a significant proportion migrate to Dublin, London or the US. The ecosystem does not have sufficient high-growth companies to absorb talent locally.'},
                 {gap:'Corporate venture gap',col:T.blue,text:'Large NI employers (Citi, Allstate, Deloitte, EY) do not operate corporate venture arms in NI. In ROI, corporate VC from Google, Microsoft and pharma companies is a major source of startup capital and talent development.'},
               ].map(s=>(
-                <div key={s.gap} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.gap}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.gap} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.gap}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>
@@ -295,38 +289,38 @@ export default function EntrepreneurshipPage() {
             <ResponsiveContainer width="100%" height={240}>
               <ComposedChart data={vcInvestment}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}m`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}m`}/>
                 <Tooltip content={<Tip/>}/>
-                <Bar dataKey="NI" fill={T.teal} opacity={0.8} name="NI (£m)"/>
-                <Line type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={2} dot={false} name="ROI (£m equiv)" strokeDasharray="4 2"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="NI" fill={T.teal} opacity={0.8} name="NI (£m)"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={2} dot={false} name="ROI (£m equiv)" strokeDasharray="4 2"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:8}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
               NOTE: NI figures are estimates. ROI figures from Invest Europe. Scale difference reflects both market size and ecosystem maturity.
             </div>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Funding Pipeline by Stage
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 NI ESTIMATE · 2024 · IFNI / CATALYST / TECHSTART / BEAUHURST
               </div>
               {startupEcosystem.map(s=>(
                 <div key={s.stage} style={{padding:'10px 0',borderBottom:`1px solid ${T.border}`}}>
                   <div style={{display:'flex',justifyContent:'space-between',marginBottom:4}}>
-                    <span style={{fontSize:12,color:T.text0,fontWeight:600}}>{s.stage}</span>
-                    <span className="mono" style={{fontSize:11,color:T.teal}}>{s.count} companies</span>
+                    <span style={{fontSize:14,color:T.text0,fontWeight:600}}>{s.stage}</span>
+                    <span className="mono" style={{fontSize:12,color:T.teal}}>{s.count} companies</span>
                   </div>
                   <div style={{display:'flex',justifyContent:'space-between',marginBottom:4}}>
-                    <span style={{fontSize:11,color:T.text3}}>Avg deal size</span>
-                    <span className="mono" style={{fontSize:11,color:T.gold}}>£{s.avgDeal}m</span>
+                    <span style={{fontSize:12,color:T.text3}}>Avg deal size</span>
+                    <span className="mono" style={{fontSize:12,color:T.gold}}>£{s.avgDeal}m</span>
                   </div>
-                  <div style={{fontSize:10,color:T.text3,lineHeight:1.4}}>{s.support}</div>
+                  <div style={{fontSize:12,color:T.text3,lineHeight:1.4}}>{s.support}</div>
                 </div>
               ))}
             </div>
@@ -341,19 +335,19 @@ export default function EntrepreneurshipPage() {
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={sectorBreakdown} layout="vertical">
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} horizontal={false}/>
-                <XAxis type="number" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis type="category" dataKey="sector" tick={{fontSize:9,fill:T.text1}} tickLine={false} width={160}/>
+                <XAxis type="number" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis type="category" dataKey="sector" tick={{fontSize:12,fill:T.text1}} tickLine={false} width={160}/>
                 <Tooltip content={<Tip/>}/>
-                <Bar dataKey="firms" fill={T.blue} opacity={0.6} name="Active firms" radius={[0,2,2,0]}/>
-                <Bar dataKey="funded" fill={T.teal} opacity={0.8} name="Funded firms" radius={[0,2,2,0]}/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="firms" fill={T.blue} opacity={0.6} name="Active firms" radius={[0,2,2,0]}/>
+                <Bar isAnimationActive={false} dataKey="funded" fill={T.teal} opacity={0.8} name="Funded firms" radius={[0,2,2,0]}/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Sector Strengths & Emerging Opportunities
               </div>
               {[
@@ -362,14 +356,14 @@ export default function EntrepreneurshipPage() {
                 {sector:'Agri-Food Tech',col:T.purple,strength:'NI\'s agri-food base (largest sector by trade) creates natural demand. Precision agriculture, supply chain AI, food safety automation. Cross-border supply chain = natural deployment environment.',gap:'Under-invested relative to sector size. No dedicated agri-food tech VC in NI. AFBI research not well-connected to startup ecosystem.'},
                 {sector:'Cybersecurity',col:T.amber,strength:'CSIT at QUB is a globally recognised centre. Titanic Quarter cybersecurity cluster. GCHQ-linked research. US defence contractor interest in Belfast talent.',gap:'Government/defence contracts dominate — less consumer or SME-facing products. IP often retained by larger corporate partners.'},
               ].map(s=>(
-                <div key={s.sector} style={{borderLeft:`3px solid ${s.col}`,padding:'10px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:4}}>{s.sector}</div>
-                  <div style={{fontSize:11,color:T.green,lineHeight:1.5,marginBottom:4}}>
-                    <span style={{color:T.text3,fontFamily:'monospace',fontSize:9,marginRight:6}}>STRENGTH</span>
+                <div key={s.sector} style={{borderLeft:`3px solid ${s.col}`,padding:'10px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>{s.sector}</div>
+                  <div style={{fontSize:12,color:T.green,lineHeight:1.5,marginBottom:4}}>
+                    <span style={{color:T.text3,fontFamily:'var(--font-mono)',fontSize:12,marginRight:6}}>STRENGTH</span>
                     {s.strength}
                   </div>
-                  <div style={{fontSize:11,color:T.amber,lineHeight:1.5}}>
-                    <span style={{color:T.text3,fontFamily:'monospace',fontSize:9,marginRight:6}}>GAP</span>
+                  <div style={{fontSize:12,color:T.amber,lineHeight:1.5}}>
+                    <span style={{color:T.text3,fontFamily:'var(--font-mono)',fontSize:12,marginRight:6}}>GAP</span>
                     {s.gap}
                   </div>
                 </div>
@@ -381,34 +375,34 @@ export default function EntrepreneurshipPage() {
 
       {view==='niroi'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               NI vs ROI — Startup Ecosystem Comparison
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               ESTIMATES · 2024 · IFNI / INVEST EUROPE / ENTERPRISE IRELAND
             </div>
             {niVsRoiComparison.map((r,i)=>(
               <div key={i} style={{padding:'10px 0',borderBottom:`1px solid ${T.border}`}}>
-                <div className="mono" style={{fontSize:9,color:T.text3,marginBottom:6}}>{r.metric.toUpperCase()}</div>
+                <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:6}}>{r.metric.toUpperCase()}</div>
                 <div style={{display:'flex',gap:10,alignItems:'center',marginBottom:4}}>
-                  <div style={{flex:1,background:T.bg2,borderRadius:4,padding:'6px 10px',textAlign:'center'}}>
-                    <div className="mono" style={{fontSize:9,color:T.teal,marginBottom:2}}>NI</div>
+                  <div style={{flex:1,background:T.bg2,borderRadius:0,padding:'6px 10px',textAlign:'center'}}>
+                    <div className="mono" style={{fontSize:12,color:T.teal,marginBottom:2}}>NI</div>
                     <div style={{fontSize:14,fontWeight:700,color:T.text0}}>{r.NI.toLocaleString()}</div>
                   </div>
-                  <div style={{flex:1,background:T.bg2,borderRadius:4,padding:'6px 10px',textAlign:'center'}}>
-                    <div className="mono" style={{fontSize:9,color:T.gold,marginBottom:2}}>ROI</div>
+                  <div style={{flex:1,background:T.bg2,borderRadius:0,padding:'6px 10px',textAlign:'center'}}>
+                    <div className="mono" style={{fontSize:12,color:T.gold,marginBottom:2}}>ROI</div>
                     <div style={{fontSize:14,fontWeight:700,color:T.text0}}>{r.ROI.toLocaleString()}</div>
                   </div>
                 </div>
-                <div className="mono" style={{fontSize:9,color:T.amber}}>{r.gap}</div>
+                <div className="mono" style={{fontSize:12,color:T.amber}}>{r.gap}</div>
               </div>
             ))}
           </div>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 What ROI Did Differently — Policy Lessons
               </div>
               {[
@@ -418,9 +412,9 @@ export default function EntrepreneurshipPage() {
                 {lesson:'Diaspora capital',col:T.amber,text:'The Irish diaspora (particularly US-based) is a significant source of angel and VC capital for ROI startups. NI has a diaspora but no organised mechanism to connect it to the startup ecosystem. The all-Ireland network TechIreland partially bridges this.'},
                 {lesson:'All-island opportunity',col:T.purple,text:'ROI startup ecosystem is all-island in practice — Dublin VCs invest in Belfast companies, NI founders participate in Enterprise Ireland programmes, and cross-border accelerators are growing. The Windsor Framework creates regulatory alignment that amplifies this.'},
               ].map(s=>(
-                <div key={s.lesson} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.lesson}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.lesson} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.lesson}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>

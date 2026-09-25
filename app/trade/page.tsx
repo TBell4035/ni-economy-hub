@@ -6,14 +6,8 @@ import {
   ResponsiveContainer, ReferenceLine, ReferenceArea
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const northSouthTrade = [
   {y:'2001',v:1.9},{y:'2005',v:2.2},{y:'2010',v:2.2},{y:'2015',v:1.9},
@@ -76,7 +70,7 @@ const lgdSales = [
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -90,13 +84,13 @@ const Tip = ({active,payload,label}:any) => {
 const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -110,18 +104,18 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
 }
 
 const ChartCard = ({title,subtitle,children}:{title:string,subtitle:string,children:React.ReactNode}) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -131,15 +125,15 @@ export default function TradePage() {
   const [view, setView] = useState<'overview'|'crossborder'|'services'|'geography'>('overview')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 04 · TRADE & WINDSOR FRAMEWORK
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Trade & the Windsor Framework
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           NI's trade flows have undergone the most dramatic structural shift in the region's
           economic history. This module combines NISRA NIETS 2024 (published 11 March 2026),
           CSO monthly cross-border goods data, and InterTradeIreland analysis.
@@ -166,7 +160,7 @@ export default function TradePage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='overview'?'Overview':v==='crossborder'?'Cross-Border':v==='services'?'Services':'Geography'}
@@ -191,15 +185,15 @@ export default function TradePage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceArea x1="2025F" x2="2025F" fill={T.bg3} opacity={0.8}/>
-                <Area type="monotone" dataKey="GB" stroke={T.blue} fill="url(#gbG)" strokeWidth={2} name="Great Britain"/>
-                <Area type="monotone" dataKey="ROI" stroke={T.green} fill="url(#roiG)" strokeWidth={2} name="Ireland"/>
-                <Area type="monotone" dataKey="EU" stroke={T.purple} fill={T.purple} fillOpacity={0.2} strokeWidth={1.5} name="Rest of EU"/>
-                <Area type="monotone" dataKey="world" stroke={T.gold} fill={T.gold} fillOpacity={0.2} strokeWidth={1.5} name="Rest of World"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Area isAnimationActive={false} type="monotone" dataKey="GB" stroke={T.blue} fill="url(#gbG)" strokeWidth={2} name="Great Britain"/>
+                <Area isAnimationActive={false} type="monotone" dataKey="ROI" stroke={T.green} fill="url(#roiG)" strokeWidth={2} name="Ireland"/>
+                <Area isAnimationActive={false} type="monotone" dataKey="EU" stroke={T.purple} fill={T.purple} fillOpacity={0.2} strokeWidth={1.5} name="Rest of EU"/>
+                <Area isAnimationActive={false} type="monotone" dataKey="world" stroke={T.gold} fill={T.gold} fillOpacity={0.2} strokeWidth={1.5} name="Rest of World"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </AreaChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -208,14 +202,14 @@ export default function TradePage() {
             <ResponsiveContainer width="100%" height={220}>
               <ComposedChart data={tradeBalance}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceArea x1="2025F" x2="2025F" fill={T.bg3} opacity={0.8}/>
-                <Bar dataKey="exports" fill={T.green} opacity={0.7} name="Exports (£bn)"/>
-                <Bar dataKey="imports" fill={T.red} opacity={0.6} name="Imports (£bn)"/>
-                <Line type="monotone" dataKey="balance" stroke={T.gold} strokeWidth={2.5} dot={{r:3}} name="Trade Surplus (£bn)"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="exports" fill={T.green} opacity={0.7} name="Exports (£bn)"/>
+                <Bar isAnimationActive={false} dataKey="imports" fill={T.red} opacity={0.6} name="Imports (£bn)"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="balance" stroke={T.gold} strokeWidth={2.5} dot={{r:3}} name="Trade Surplus (£bn)"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -241,16 +235,16 @@ export default function TradePage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={2}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={2}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceArea x1="2025F" x2="2026F" fill={T.bg3} opacity={0.6}/>
                 <ReferenceLine x="2020" stroke={T.amber} strokeDasharray="3 3"/>
                 <ReferenceLine x="2023" stroke={T.teal} strokeDasharray="3 3"/>
-                <Area type="monotone" dataKey="v" stroke={T.green} fill="url(#nsG)" strokeWidth={2} name="N-S Trade (£bn)"/>
+                <Area isAnimationActive={false} type="monotone" dataKey="v" stroke={T.green} fill="url(#nsG)" strokeWidth={2} name="N-S Trade (£bn)"/>
               </AreaChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:8}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
               Amber dashed = NI Protocol (2020) · Teal dashed = Windsor Framework (2023)
             </div>
           </ChartCard>
@@ -259,13 +253,13 @@ export default function TradePage() {
             <ResponsiveContainer width="100%" height={220}>
               <ComposedChart data={bilateralGoods}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceArea x1="2025F" x2="2025F" fill={T.bg3} opacity={0.8}/>
-                <Bar dataKey="NST" fill={T.teal} opacity={0.8} name="NI → Ireland"/>
-                <Bar dataKey="SNT" fill={T.blue} opacity={0.7} name="Ireland → NI"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="NST" fill={T.teal} opacity={0.8} name="NI → Ireland"/>
+                <Bar isAnimationActive={false} dataKey="SNT" fill={T.blue} opacity={0.7} name="Ireland → NI"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -281,19 +275,19 @@ export default function TradePage() {
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={servicesTrade} layout="vertical">
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} horizontal={false}/>
-                <XAxis type="number" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
-                <YAxis type="category" dataKey="type" tick={{fontSize:9,fill:T.text1}} tickLine={false} width={110}/>
+                <XAxis type="number" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
+                <YAxis type="category" dataKey="type" tick={{fontSize:12,fill:T.text1}} tickLine={false} width={110}/>
                 <Tooltip content={<Tip/>}/>
-                <Bar dataKey="exports" fill={T.green} opacity={0.8} name="Exports (£bn)" radius={[0,2,2,0]}/>
-                <Bar dataKey="imports" fill={T.blue} opacity={0.6} name="Imports (£bn)" radius={[0,2,2,0]}/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="exports" fill={T.green} opacity={0.8} name="Exports (£bn)" radius={[0,2,2,0]}/>
+                <Bar isAnimationActive={false} dataKey="imports" fill={T.blue} opacity={0.6} name="Imports (£bn)" radius={[0,2,2,0]}/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Services Trade — Why It Matters
               </div>
               {[
@@ -301,9 +295,9 @@ export default function TradePage() {
                 {title:'Fastest growing component',col:T.green,text:'Services exports grew +35.5% in 2024 to £9.3bn — now 23% of all NI external sales, up from 17% in 2019. Professional & business services lead at £1.24bn.'},
                 {title:'ICT growth signal',col:T.purple,text:'ICT services exports £0.82bn, growing faster than any other category. Belfast–Dublin tech corridor is driving cross-border digital service flows.'},
               ].map(s=>(
-                <div key={s.title} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.title}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.title} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.title}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>
@@ -318,17 +312,17 @@ export default function TradePage() {
             <div style={{paddingTop:8}}>
               {lgdSales.map(d=>(
                 <div key={d.lgd} style={{marginBottom:10}}>
-                  <div style={{display:'flex',justifyContent:'space-between',fontSize:11,marginBottom:3}}>
+                  <div style={{display:'flex',justifyContent:'space-between',fontSize:12,marginBottom:3}}>
                     <span style={{color:T.text1}}>{d.lgd}</span>
-                    <span className="mono" style={{color:T.teal,fontSize:11}}>
+                    <span className="mono" style={{color:T.teal,fontSize:12}}>
                       {d.pct}%
-                      <span style={{fontSize:9,marginLeft:6,color:d.change>=0?T.green:T.red}}>
+                      <span style={{fontSize:12,marginLeft:6,color:d.change>=0?T.green:T.red}}>
                         {d.change>=0?'+':''}{d.change}pp
                       </span>
                     </span>
                   </div>
-                  <div style={{background:T.bg3,height:5,borderRadius:2}}>
-                    <div style={{background:T.teal,height:5,width:`${d.pct*2.8}%`,borderRadius:2}}/>
+                  <div style={{background:T.bg3,height:5,borderRadius:0}}>
+                    <div style={{background:T.teal,height:5,width:`${d.pct*2.8}%`,borderRadius:0}}/>
                   </div>
                 </div>
               ))}
@@ -336,8 +330,8 @@ export default function TradePage() {
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Geographic Trade Findings
               </div>
               {[
@@ -345,9 +339,9 @@ export default function TradePage() {
                 {title:'Border LGDs: 33.2% combined',col:T.green,text:'Newry/Mourne/Down, Armagh/Banbridge/Craigavon and Derry/Strabane together account for 33.2% of NI external sales. These councils have the deepest cross-border trade integration.'},
                 {title:'East underperforms',col:T.amber,text:'Ards & North Down (-0.2pp) and Lisburn & Castlereagh (+0.4pp) show the weakest growth. Oriented toward domestic NI services with lower export intensity.'},
               ].map(s=>(
-                <div key={s.title} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.title}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.title} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.title}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>

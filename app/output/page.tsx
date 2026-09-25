@@ -6,14 +6,8 @@ import {
   Tooltip, Legend, ResponsiveContainer, ReferenceLine, ReferenceArea
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const gvaGrowth = [
   {y:'2001',NI:4.8,UK:2.6,ROI:5.8},{y:'2002',NI:5.7,UK:2.7,ROI:6.2},
@@ -65,7 +59,7 @@ const nabiSectors = [
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -80,13 +74,13 @@ const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,
   delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -100,8 +94,8 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
@@ -110,10 +104,10 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
 const ChartCard = ({title,subtitle,children}:{
   title:string,subtitle:string,children:React.ReactNode
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -126,22 +120,22 @@ const ForecastBadge = ({confidence,methodology,weaknesses,sources}:{
   return (
     <div style={{marginTop:14,borderTop:`1px solid ${T.border}`,paddingTop:14}}>
       <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:10}}>
-        <div className="mono" style={{fontSize:10,letterSpacing:2,color:T.text3}}>FORECAST CONFIDENCE</div>
-        <div style={{flex:1,height:4,background:T.bg3,borderRadius:2}}>
-          <div style={{width:`${confidence}%`,height:4,background:col,borderRadius:2}}/>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.text3}}>FORECAST CONFIDENCE</div>
+        <div style={{flex:1,height:4,background:T.bg3,borderRadius:0}}>
+          <div style={{width:`${confidence}%`,height:4,background:col,borderRadius:0}}/>
         </div>
-        <div className="mono" style={{fontSize:13,fontWeight:700,color:col,minWidth:40}}>{confidence}%</div>
+        <div className="mono" style={{fontSize:14,fontWeight:700,color:col,minWidth:40}}>{confidence}%</div>
       </div>
-      <div style={{fontSize:11,color:T.text2,lineHeight:1.6,marginBottom:8}}>{methodology}</div>
+      <div style={{fontSize:12,color:T.text2,lineHeight:1.6,marginBottom:8}}>{methodology}</div>
       {weaknesses.length>0&&(
-        <div style={{background:'#1a0808',border:'1px solid #3a1010',borderRadius:4,padding:'8px 12px',marginBottom:8}}>
-          <div className="mono" style={{fontSize:9,letterSpacing:2,color:T.red,marginBottom:5}}>⚠ MODEL WEAKNESSES</div>
+        <div style={{background:'rgba(140,47,38,.06)',border:'1px solid rgba(140,47,38,.28)',borderRadius:0,padding:'8px 12px',marginBottom:8}}>
+          <div className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.red,marginBottom:5}}>⚠ MODEL WEAKNESSES</div>
           {weaknesses.map((w,i)=>(
-            <div key={i} style={{fontSize:11,color:'#c06060',marginBottom:2}}>· {w}</div>
+            <div key={i} style={{fontSize:12,color:T.risk,marginBottom:2}}>· {w}</div>
           ))}
         </div>
       )}
-      <div className="mono" style={{fontSize:10,color:T.text3}}>
+      <div className="mono" style={{fontSize:12,color:T.text3}}>
         Sources: {sources.join(' · ')}
       </div>
     </div>
@@ -152,16 +146,16 @@ export default function OutputPage() {
   const [view, setView] = useState<'growth'|'levels'|'sectors'>('growth')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
 
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 02 · OUTPUT & GROWTH
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Economic Output & Growth
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           NI does not have an official GDP measure. The primary output indicator is GVA (Gross
           Value Added). The NICEI provides the most timely quarterly proxy; NIABI provides
           confirmed annual business economy GVA. These two measures are complementary —
@@ -180,7 +174,7 @@ export default function OutputPage() {
         <KPI label="GVA Per Head 2023" value="£29,234" sub="ONS Regional Accounts 2023" delta="81% of UK average" deltaPos={false} color={T.gold}/>
         <KPI label="Total Turnover 2024" value="£109.3" unit="bn" sub="NIABI 2024 · record high" delta="+7.5% YoY" color={T.blue}/>
         <KPI label="Construction GVA 2024" value="+30.7" unit="%" sub="Largest sector rise · NIABI 2024" delta="+£1.7bn in one year" color={T.amber}/>
-        <KPI label="NICEI Q1 2026" value="+3.6" unit="%" sub="Output y/y · NISRA (25 Jun 2026)" delta="+0.7% qtr · 12.1% above pre-COVID" color={T.teal}/>
+        <KPI label="NICEI Q2 2026" value="+2.3" unit="%" sub="Output y/y · NISRA (24 Sep 2026)" delta="+1.0% qtr · 12.7% above pre-COVID" color={T.teal}/>
       </div>
 
       <div style={{display:'flex',gap:0,borderBottom:`1px solid ${T.border}`,marginBottom:20}}>
@@ -190,7 +184,7 @@ export default function OutputPage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='growth'?'Growth Rates':v==='levels'?'GVA Levels':'Sector Detail'}
@@ -208,15 +202,15 @@ export default function OutputPage() {
             <ResponsiveContainer width="100%" height={220}>
               <ComposedChart data={gvaGrowth}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={3}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={3}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceLine y={0} stroke={T.border2}/>
                 <ReferenceArea x1="2025F" x2="2026F" fill={T.bg3} opacity={0.8}/>
-                <Bar dataKey="NI" fill={T.teal} opacity={0.75} name="NI GVA Growth"/>
-                <Line type="monotone" dataKey="UK" stroke={T.red} strokeWidth={2} dot={false} name="UK" strokeDasharray="4 2"/>
-                <Line type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={1.5} dot={false} name="ROI"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="NI" fill={T.teal} opacity={0.75} name="NI GVA Growth"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="UK" stroke={T.red} strokeWidth={2} dot={false} name="UK" strokeDasharray="4 2"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={1.5} dot={false} name="ROI"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
             <ForecastBadge
@@ -241,17 +235,17 @@ export default function OutputPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="q" tick={{fontSize:8,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={3}/>
-                <YAxis domain={[82,118]} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
+                <XAxis dataKey="q" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={3}/>
+                <YAxis domain={[82,118]} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceLine y={100} stroke={T.text3} strokeDasharray="3 3"/>
-                <ReferenceArea x1="Q2 20" x2="Q3 20" fill="#300000" opacity={0.5}/>
-                <Area type="monotone" dataKey="v" stroke={T.teal} fill="url(#niceiG)" strokeWidth={2} name="NICEI"/>
+                <ReferenceArea x1="Q2 20" x2="Q3 20" fill="#EAE5DA" opacity={0.7}/>
+                <Area isAnimationActive={false} type="monotone" dataKey="v" stroke={T.teal} fill="url(#niceiG)" strokeWidth={2} name="NICEI"/>
               </AreaChart>
             </ResponsiveContainer>
             <div style={{marginTop:14,borderTop:`1px solid ${T.border}`,paddingTop:14}}>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:8}}>WHAT IS THE NICEI?</div>
-              <p style={{fontSize:12,color:T.text2,lineHeight:1.65}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:8}}>WHAT IS THE NICEI?</div>
+              <p style={{fontSize:14,color:T.text2,lineHeight:1.65}}>
                 The NICEI is not GDP. It is a composite index weighted by production, services,
                 construction, public sector and agriculture using historic GVA shares. It does not
                 capture informal economy activity, cross-border income flows, or capital formation.
@@ -272,13 +266,13 @@ export default function OutputPage() {
             <ResponsiveContainer width="100%" height={240}>
               <LineChart data={gvaPerHead}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${(v/1000).toFixed(0)}k`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${(v/1000).toFixed(0)}k`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceArea x1="2025F" x2="2027F" fill={T.bg3} opacity={0.6}/>
-                <Line type="monotone" dataKey="NI" stroke={T.teal} strokeWidth={2} dot={{r:3,fill:T.teal}} name="NI GVA/head"/>
-                <Line type="monotone" dataKey="UK" stroke={T.red} strokeWidth={2} dot={{r:3,fill:T.red}} strokeDasharray="4 2" name="UK GVA/head"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="NI" stroke={T.teal} strokeWidth={2} dot={{r:3,fill:T.teal}} name="NI GVA/head"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="UK" stroke={T.red} strokeWidth={2} dot={{r:3,fill:T.red}} strokeDasharray="4 2" name="UK GVA/head"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </LineChart>
             </ResponsiveContainer>
             <ForecastBadge
@@ -294,30 +288,30 @@ export default function OutputPage() {
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
                 Growth Accounting Decomposition
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 SOLOW FRAMEWORK · NI 2024 ESTIMATE
               </div>
               <TheoryTag tag="solow"/>
               <div style={{
-                fontFamily:'monospace',background:T.bg0,
-                padding:'14px 16px',borderRadius:4,
-                fontSize:12,color:T.text1,margin:'12px 0',lineHeight:1.8,
+                fontFamily:'var(--font-mono)',background:T.bg0,
+                padding:'14px 16px',borderRadius:0,
+                fontSize:14,color:T.text1,margin:'12px 0',lineHeight:1.8,
               }}>
-                <div style={{color:T.text3,fontSize:10,marginBottom:6}}>
+                <div style={{color:T.text3,fontSize:12,marginBottom:6}}>
                   Δln(Y) = Δln(A) + α·Δln(K) + (1-α)·Δln(L)
                 </div>
                 <div>9.6% ≈ <span style={{color:T.amber}}>A</span> + 0.35×(~8.5%) + 0.65×(~1.5%)</div>
                 <div>9.6% ≈ <span style={{color:T.amber}}>A</span> + 2.98% + 0.98%</div>
                 <div style={{color:T.teal,marginTop:4}}>∴ TFP contribution (A) ≈ 5.6%</div>
-                <div style={{color:T.text3,fontSize:10,marginTop:8}}>
+                <div style={{color:T.text3,fontSize:12,marginTop:8}}>
                   // α=capital share ~0.35 · K growth driven by construction boom
                 </div>
               </div>
-              <p style={{fontSize:12,color:T.text2,lineHeight:1.65}}>
+              <p style={{fontSize:14,color:T.text2,lineHeight:1.65}}>
                 The unusually high TFP residual in 2024 is partly a statistical artefact of the
                 construction boom. In trend years (2017–2019), the TFP residual was near zero,
                 indicating NI growth was almost entirely factor-accumulation driven. Sustained
@@ -335,22 +329,22 @@ export default function OutputPage() {
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={nabiSectors} layout="vertical">
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} horizontal={false}/>
-                <XAxis type="number" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
-                <YAxis type="category" dataKey="sector" tick={{fontSize:9,fill:T.text1}} tickLine={false} width={130}/>
+                <XAxis type="number" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
+                <YAxis type="category" dataKey="sector" tick={{fontSize:12,fill:T.text1}} tickLine={false} width={130}/>
                 <Tooltip content={<Tip/>}/>
-                <Bar dataKey="turnover" fill={T.blue} opacity={0.7} name="Turnover (£bn)" radius={[0,2,2,0]}/>
-                <Bar dataKey="gva" fill={T.teal} opacity={0.8} name="GVA (£bn)" radius={[0,2,2,0]}/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="turnover" fill={T.blue} opacity={0.7} name="Turnover (£bn)" radius={[0,2,2,0]}/>
+                <Bar isAnimationActive={false} dataKey="gva" fill={T.teal} opacity={0.8} name="GVA (£bn)" radius={[0,2,2,0]}/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
                 NIABI 2024 — Key Sectoral Findings
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
                 CONFIRMED ACTUALS · NISRA 11 MARCH 2026
               </div>
               {[
@@ -359,9 +353,9 @@ export default function OutputPage() {
                 {sector:'Distribution',col:T.teal,text:'GVA +14.5% · turnover £16.3bn (largest by turnover). Cross-border logistics and wholesale distribution benefiting from N-S trade boom.'},
                 {sector:'ICT / Digital',col:T.purple,text:'Turnover £2.8bn · growing fastest per-employee. Undercounted in NIABI — excludes many platform and digital-native firms below survey threshold.'},
               ].map(s=>(
-                <div key={s.sector} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.sector}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.sector} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.sector}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>
