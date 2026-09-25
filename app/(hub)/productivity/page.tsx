@@ -189,7 +189,7 @@ export default function ProductivityPage() {
                 </RadarChart>
               </ResponsiveContainer>
             </ChartCard>
-            <Insight type="warning" text="NI's productivity gap with ROI is the most economically significant — and politically uncomfortable — comparison available. Even using modified GNI* (adjusted for multinational distortion), ROI is approximately 25-30% more productive than NI. This gap has widened continuously since the 1990s and no policy intervention has reversed it." />
+            <Insight type="warning" text="NI's productivity gap with ROI is the most economically significant — and politically uncomfortable — comparison available. Even using modified GNI* (adjusted for multinational distortion), ROI is approximately 25-30% more productive than NI. This gap has persisted since at least the 1990s, and no policy intervention to date has closed it." />
           </div>
         </div>
       )}

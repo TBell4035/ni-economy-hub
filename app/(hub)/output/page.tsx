@@ -114,25 +114,41 @@ const ChartCard = ({title,subtitle,children}:{
   </div>
 )
 
-const ForecastBadge = ({confidence,methodology,weaknesses,sources}:{
-  confidence:number,methodology:string,weaknesses:string[],sources:string[]
+type Level = 'Low' | 'Moderate' | 'High'
+
+// Forecast reliability, stated qualitatively. Replaces a single percentage
+// ("68%"), which read as a calibrated probability the models cannot support.
+// Each rating is a judgement about one driver of forecast reliability.
+const ForecastBadge = ({overall,dataQuality,modelStrength,externalUncertainty,methodology,weaknesses,sources}:{
+  overall:Level, dataQuality:Level, modelStrength:Level, externalUncertainty:Level,
+  methodology:string, weaknesses:string[], sources:string[]
 }) => {
-  const col = confidence>=70?T.green:confidence>=55?T.amber:T.red
+  const good = (l:Level) => l==='High' ? T.opportunity : l==='Moderate' ? T.ochre : T.risk
+  const bad  = (l:Level) => l==='High' ? T.risk : l==='Moderate' ? T.ochre : T.opportunity
+  const Row = ({k,v,col}:{k:string,v:Level,col:string}) => (
+    <div style={{display:'flex',justifyContent:'space-between',gap:12,padding:'4px 0',borderBottom:`1px solid ${T.border}`}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.06em',color:T.text3,textTransform:'uppercase'}}>{k}</span>
+      <span style={{fontSize:14,color:col,fontWeight:500}}>{v}</span>
+    </div>
+  )
   return (
     <div style={{marginTop:14,borderTop:`1px solid ${T.border}`,paddingTop:14}}>
-      <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:10}}>
-        <div className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.text3}}>FORECAST CONFIDENCE</div>
-        <div style={{flex:1,height:4,background:T.bg3,borderRadius:0}}>
-          <div style={{width:`${confidence}%`,height:4,background:col,borderRadius:0}}/>
-        </div>
-        <div className="mono" style={{fontSize:14,fontWeight:700,color:col,minWidth:40}}>{confidence}%</div>
+      <div style={{display:'flex',alignItems:'baseline',gap:10,marginBottom:10,flexWrap:'wrap'}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.text3}}>FORECAST RELIABILITY</div>
+        <div style={{fontSize:16,fontWeight:600,color:good(overall)}}>{overall}</div>
+        <div style={{fontSize:12,color:T.text3}}>· dashed values are estimates, not official statistics</div>
       </div>
-      <div style={{fontSize:12,color:T.text2,lineHeight:1.6,marginBottom:8}}>{methodology}</div>
+      <div style={{maxWidth:420,marginBottom:10}}>
+        <Row k="Data quality" v={dataQuality} col={good(dataQuality)} />
+        <Row k="Model strength" v={modelStrength} col={good(modelStrength)} />
+        <Row k="External uncertainty" v={externalUncertainty} col={bad(externalUncertainty)} />
+      </div>
+      <div style={{fontSize:14,color:T.text2,lineHeight:1.6,marginBottom:8}}>{methodology}</div>
       {weaknesses.length>0&&(
         <div style={{background:'rgba(140,47,38,.06)',border:'1px solid rgba(140,47,38,.28)',borderRadius:0,padding:'8px 12px',marginBottom:8}}>
           <div className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.red,marginBottom:5}}>⚠ MODEL WEAKNESSES</div>
           {weaknesses.map((w,i)=>(
-            <div key={i} style={{fontSize:12,color:T.risk,marginBottom:2}}>· {w}</div>
+            <div key={i} style={{fontSize:14,color:T.risk,marginBottom:2}}>· {w}</div>
           ))}
         </div>
       )}
@@ -215,7 +231,7 @@ export default function OutputPage() {
               </ComposedChart>
             </ResponsiveContainer>
             <ForecastBadge
-              confidence={68}
+              overall="Moderate" dataQuality="Moderate" modelStrength="Moderate" externalUncertainty="High"
               methodology="ARIMA(2,1,1) on NICEI quarterly series. Calibrated against ESRI/NIESR macro model projections. External assumption: UK fiscal stance neutral."
               weaknesses={[
                 "No NI-specific macro-econometric model with public access",
@@ -277,7 +293,7 @@ export default function OutputPage() {
               </LineChart>
             </ResponsiveContainer>
             <ForecastBadge
-              confidence={62}
+              overall="Low" dataQuality="Moderate" modelStrength="Low" externalUncertainty="High"
               methodology="Linear trend extrapolation on ONS Regional Accounts series. No structural model. Forecast assumes NI growth outperformance of UK continues at reduced rate post-2024 construction boom."
               weaknesses={[
                 "No NI-specific price deflator — nominal figures affected by UK CPI",
