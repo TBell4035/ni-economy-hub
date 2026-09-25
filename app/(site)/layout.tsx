@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import './landing.css'
+import TrackedLink from '@/components/TrackedLink'
 
 // Lough Signal site shell: sticky top bar + footer. The Hub has its own
 // sidebar layout under app/(hub); the two share only globals.css + fonts.
@@ -14,7 +15,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             <a href="/#work">How we work</a>
             <Link href="/hub">The Hub</Link>
             <a href="/#founder">About</a>
-            <a href="/#contact" className="cta">Start a conversation</a>
+            <TrackedLink href="/#contact" cta="nav" className="cta">Start a conversation</TrackedLink>
           </nav>
         </div>
       </header>

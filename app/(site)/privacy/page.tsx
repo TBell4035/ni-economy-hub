@@ -42,10 +42,10 @@ export default function PrivacyPage() {
           <p>If you have any question about how we use your data, contact us at the address above. You have the right to complain to the Information Commissioner&apos;s Office (ico.org.uk) at any time, though we would appreciate the chance to resolve it first.</p>
 
           <h2>2. What data we collect</h2>
-          <p><strong>When you send us an enquiry:</strong> your name, organisation and email address, what you tell us about the decision or problem you are working on, and optionally your sector and timing.</p>
+          <p><strong>When you send us an enquiry:</strong> your name, organisation and email address, what you tell us about the decision or problem you are working on, and your rough timing; optionally your sector, location, the service you are interested in and an indicative budget. We also note which page or link brought you to the form, so we know which parts of the site are useful — this is read from the link itself and nothing is stored on your device.</p>
           <p><strong>When you sign up for the Lough Signal briefing:</strong> your email address (required); optionally your name, company name and job title; and, if you choose to answer them, short questions about your business and the topics you care about.</p>
           <p><strong>When you give feedback on the NI Economy Hub:</strong> your comment, and optionally your name and organisation.</p>
-          <p><strong>Automatically:</strong> basic technical data needed to deliver and secure the site, such as your IP address at the point you submit a form (for security and to record consent). We do not set advertising or tracking cookies. If we use analytics, it is privacy-preserving and cookieless.</p>
+          <p><strong>Automatically:</strong> basic technical data needed to deliver and secure the site, such as your IP address at the point you submit a form (for security and to record consent). We use Vercel Web Analytics, which is cookieless and does not identify you, to count page views and button clicks. We do not set advertising or tracking cookies.</p>
           <p>We do not ask for special category data (such as health, ethnicity or political opinions). Please do not include it in free-text fields.</p>
 
           <h2>3. Why we use it, and our lawful basis</h2>

@@ -177,3 +177,26 @@
 /* Section kickers are ochre wayfinding (brand system). .sec-head p is more
    specific, so restate here — the v3 mockup had the same override. */
 .ls-site .sec-head .kicker{color:var(--ochre);font-size:13px}
+
+/* Service cards: decision-first, with deliverable / timescale / fee */
+.ls-site .svc .decision{color:var(--ink);font-size:15px;line-height:1.5;margin-bottom:10px;font-weight:500}
+.ls-site .svc .meta-list{margin:18px 0 14px;padding-top:12px;border-top:1px solid var(--rule)}
+.ls-site .svc .meta-list div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:14px}
+.ls-site .svc .meta-list dt{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--mist);text-transform:uppercase;padding-top:2px}
+.ls-site .svc .meta-list dd{color:var(--ink);text-align:right}
+
+/* Who it helps */
+.ls-site .who-grid{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:960px){.ls-site .who-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.ls-site .who-grid{grid-template-columns:1fr}}
+.ls-site .who-grid li{background:var(--bone);border:1px solid var(--rule);padding:24px 22px;display:flex;flex-direction:column}
+.ls-site .who-grid h4{font-family:var(--display);font-weight:500;font-size:20px;line-height:1.2;margin-bottom:10px}
+.ls-site .who-grid p{color:var(--slate);font-size:15px;line-height:1.55;flex:1;margin-bottom:14px}
+.ls-site .who-grid .who-svc{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--teal);text-transform:uppercase}
+
+/* How we work: what the client receives */
+.ls-site .steps .recv{color:var(--teal);font-size:14px;margin-top:6px}
+.ls-site .scope-note{margin-top:18px;padding:14px 16px;background:var(--paper);border-left:3px solid var(--ochre);font-size:15px;color:var(--slate)}
+
+/* Anchor jumps land below the sticky header, not under it */
+.ls-site section[id]{scroll-margin-top:72px}

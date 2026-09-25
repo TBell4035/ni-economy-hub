@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import ContactForm from './ContactForm'
+import TrackedLink from '@/components/TrackedLink'
 
 // Lough Signal landing page — from approved mockup v3 (Sep 2026).
 export default function Home() {
@@ -22,8 +22,8 @@ export default function Home() {
           <h1>The evidence behind <span className="accent">better decisions.</span></h1>
           <p className="lede"><strong>For organisations weighing an important decision</strong> — a new market, an investment, a funding bid, or a way of working that isn&apos;t keeping up. Lough Signal turns economic and business evidence into a clear, defensible basis for action, and helps you measure whether it worked.</p>
           <div className="actions">
-            <a href="#contact" className="btn btn-primary">Describe the decision you&apos;re working on</a>
-            <a href="#services" className="btn btn-ghost">What we do</a>
+            <TrackedLink href="#contact" cta="hero-primary" className="btn btn-primary">Describe the decision you&apos;re working on</TrackedLink>
+            <TrackedLink href="/hub" cta="hero-hub" className="btn btn-ghost">See the evidence in the NI Economy Hub</TrackedLink>
           </div>
         </div>
       </section>
@@ -64,38 +64,70 @@ export default function Home() {
               <span className="clayer">Outer ring · Economy</span>
               <h3>Economic Evidence Brief</h3>
               <p className="q">&ldquo;What does the evidence say?&rdquo;</p>
-              <p className="desc">A concise, source-backed analysis of a specific economic or market question — the grounding a board, funder or decision-maker needs before committing.</p>
-              <div className="meta"><span>Concise brief</span><span className="price">£500–1,500</span></div>
-              <a className="svc-cta" href="#contact">Discuss this type of question</a>
+              <p className="decision">For when you need to know whether the evidence supports a decision before you commit — to a board, a funder or your own team.</p>
+              <p className="desc">A concise, source-backed analysis of one specific economic or market question.</p>
+              <dl className="meta-list">
+                <div><dt>You receive</dt><dd>Written brief + walkthrough</dd></div>
+                <div><dt>Timescale</dt><dd>Typically 1–2 weeks</dd></div>
+                <div><dt>Typical fee</dt><dd className="price">£500–1,500</dd></div>
+              </dl>
+              <TrackedLink className="svc-cta" href="#contact" cta="svc-brief">Discuss this type of decision</TrackedLink>
             </div>
             <div className="svc market">
               <span className="clayer">Middle ring · Market</span>
               <h3>Market Opportunity Snapshot</h3>
               <p className="q">&ldquo;Where are the opportunities?&rdquo;</p>
-              <p className="desc">A substantial assessment of a market or expansion question: size, conditions, competition, costs, risks and the investment case.</p>
-              <div className="meta"><span>Assessment</span><span className="price">£1,000–4,000</span></div>
-              <a className="svc-cta" href="#contact">Discuss this type of question</a>
+              <p className="decision">For when you are deciding whether to enter a market, expand, or back a new product or site.</p>
+              <p className="desc">An assessment of size, conditions, competition, costs, risks and the investment case.</p>
+              <dl className="meta-list">
+                <div><dt>You receive</dt><dd>Assessment report + walkthrough</dd></div>
+                <div><dt>Timescale</dt><dd>Typically 2–4 weeks</dd></div>
+                <div><dt>Typical fee</dt><dd className="price">£1,000–4,000</dd></div>
+              </dl>
+              <TrackedLink className="svc-cta" href="#contact" cta="svc-snapshot">Discuss this type of decision</TrackedLink>
             </div>
             <div className="svc business">
               <span className="clayer">Core · Business</span>
               <h3>Data, Process &amp; Systems Review</h3>
               <p className="q">&ldquo;Can this be done better?&rdquo;</p>
-              <p className="desc">An evidence-led review of how an organisation runs: workflows, systems, reporting, manual effort — and where data or automation could remove friction.</p>
-              <div className="meta"><span>Audit + plan</span><span className="price">£1,500–4,000</span></div>
-              <a className="svc-cta" href="#contact">Discuss this type of question</a>
+              <p className="decision">For when the way the organisation runs is costing time or clarity, and you need to know what to fix first.</p>
+              <p className="desc">A review of workflows, systems, reporting and manual effort, with where data or automation could remove friction.</p>
+              <dl className="meta-list">
+                <div><dt>You receive</dt><dd>Audit + prioritised plan</dd></div>
+                <div><dt>Timescale</dt><dd>Typically 3–6 weeks</dd></div>
+                <div><dt>Typical fee</dt><dd className="price">£1,500–4,000</dd></div>
+              </dl>
+              <TrackedLink className="svc-cta" href="#contact" cta="svc-review">Discuss this type of decision</TrackedLink>
             </div>
           </div>
 
           <div className="grants-line">
             <span className="gtag">Grants capability</span>
             <p><strong>Applying for funding?</strong> Combined, these become the evidence base behind a bid — business plan, financial model, economic impact and phased cash-flow. Recently: the full case behind a £700k regional development programme.</p>
-            <a className="glink" href="#contact">Talk about a funding bid</a>
+            <TrackedLink className="glink" href="#contact" cta="grants">Talk about a funding bid</TrackedLink>
           </div>
         </div>
       </section>
 
+      {/* WHO IT HELPS */}
+      <section id="who" className="tone-paper">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="kicker">Who it helps</p>
+            <h2>Organisations with a decision to make.</h2>
+            <p>From owner-managed SMEs to public and third-sector bodies across Northern Ireland. What they have in common is a decision that needs to stand up to scrutiny.</p>
+          </div>
+          <ul className="who-grid">
+            <li><h4>Weighing a move</h4><p>A new market, product, site or investment — and you need to know if the case holds before committing.</p><span className="who-svc">Market Opportunity Snapshot</span></li>
+            <li><h4>Building a funding case</h4><p>A grant bid, business case or investment paper that has to convince an assessor or a board.</p><span className="who-svc">Grants capability</span></li>
+            <li><h4>Answering to a board or funder</h4><p>A question about the economy or your sector that needs a clear, sourced answer rather than a view.</p><span className="who-svc">Economic Evidence Brief</span></li>
+            <li><h4>Outgrowing how you work</h4><p>Reporting, systems or manual processes that no longer keep up with the organisation.</p><span className="who-svc">Data, Process &amp; Systems Review</span></li>
+          </ul>
+        </div>
+      </section>
+
       {/* HOW WE WORK */}
-      <section id="work" className="tone-paper">
+      <section id="work">
         <div className="wrap">
           <div className="sec-head">
             <p className="kicker">How we work</p>
@@ -103,13 +135,16 @@ export default function Home() {
             <p>The difference between advice and evidence is that evidence can be checked. Every engagement establishes where you are, recommends a change, and — where the work continues — measures what actually moved.</p>
           </div>
           <div className="process-grid">
+            <div>
             <ol className="steps">
-              <li><span className="n" /><div><h4>Understand</h4><p>Get clear on the real decision and the constraints that are actually binding — not the ones assumed.</p></div></li>
-              <li><span className="n" /><div><h4>Baseline</h4><p>Establish where things stand now, in evidence: the data, the position, the starting point you can measure against.</p></div></li>
-              <li><span className="n" /><div><h4>Recommend</h4><p>A grounded, defensible recommendation — what to do, what it depends on, and where the risk sits.</p></div></li>
-              <li><span className="n" /><div><h4>Transform</h4><p>Where the work continues: support putting the change in place, using the right mix of analysis, systems and automation.</p></div></li>
-              <li><span className="n" /><div><h4>Measure</h4><p>Return to the baseline and measure what changed. Evidence of outcome, not just activity.</p></div></li>
+              <li><span className="n" /><div><h4>Understand</h4><p>Get clear on the real decision and the constraints that are actually binding — not the ones assumed.</p><p className="recv">You receive: a short scope confirming the question, what is in and out, the timescale and the fee.</p></div></li>
+              <li><span className="n" /><div><h4>Baseline</h4><p>Establish where things stand now, in evidence: the data, the position, the starting point you can measure against.</p><p className="recv">You receive: the evidence base, with every source shown.</p></div></li>
+              <li><span className="n" /><div><h4>Recommend</h4><p>A grounded, defensible recommendation — what to do, what it depends on, and where the risk sits.</p><p className="recv">You receive: the written brief or report, and a walkthrough.</p></div></li>
+              <li><span className="n" /><div><h4>Transform</h4><p>Where the work continues: support putting the change in place, using the right mix of analysis, systems and automation.</p><p className="recv">Longer engagements only, scoped separately if you want to continue.</p></div></li>
+              <li><span className="n" /><div><h4>Measure</h4><p>Return to the baseline and measure what changed. Evidence of outcome, not just activity.</p><p className="recv">Longer engagements only: a before-and-after measure against the baseline.</p></div></li>
             </ol>
+            <p className="scope-note">A fixed-scope brief covers the first three steps for an agreed fee. Nothing beyond that is assumed or sold by default.</p>
+            </div>
             <aside className="example">
               <p className="tag">Worked example</p>
               <h4>The economic and financial case behind a £700k development programme.</h4>
@@ -125,7 +160,7 @@ export default function Home() {
       </section>
 
       {/* PROOF / HUB */}
-      <section id="hub">
+      <section id="hub" className="tone-paper">
         <div className="wrap">
           <div className="sec-head">
             <p className="kicker">Proof over promises</p>
@@ -142,14 +177,14 @@ export default function Home() {
               <p className="label">A Lough Signal product</p>
               <h3>NI Economy Hub</h3>
               <p>Independent economic intelligence for Northern Ireland decision-makers. Official data, original analysis and transparent scenarios.</p>
-              <Link href="/hub" className="btn btn-ghost">Explore the Hub</Link>
+              <TrackedLink href="/hub" cta="proof-hub" className="btn btn-ghost">Explore the Hub</TrackedLink>
             </div>
           </div>
         </div>
       </section>
 
       {/* FOUNDER */}
-      <section id="founder" className="tone-paper">
+      <section id="founder">
         <div className="wrap">
           <div className="sec-head" style={{ marginBottom: 40 }}><p className="kicker">Who you work with</p></div>
           <div className="founder founder-grid">

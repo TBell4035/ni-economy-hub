@@ -7,6 +7,7 @@ import {
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
 import { T } from '@/lib/tokens'
+import ServicePrompt from '@/components/ServicePrompt'
 
 
 const aiGvaProjection = [
@@ -329,6 +330,7 @@ export default function AIPage() {
           </div>
         </div>
       )}
+      <ServicePrompt from="ai" question="Working out where AI or automation could remove friction in your organisation?" cta="Discuss a Systems Review" />
     </div>
   )
 }

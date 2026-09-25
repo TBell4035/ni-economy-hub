@@ -7,6 +7,7 @@ import {
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
 import { T } from '@/lib/tokens'
+import ServicePrompt from '@/components/ServicePrompt'
 
 
 const gvaGrowth = [
@@ -363,6 +364,7 @@ export default function OutputPage() {
           </div>
         </div>
       )}
+      <ServicePrompt from="output" question="Weighing an investment or expansion against where the NI economy is heading?" cta="Discuss an Economic Evidence Brief" />
     </div>
   )
 }

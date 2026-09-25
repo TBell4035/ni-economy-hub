@@ -41,10 +41,16 @@ export async function POST(req: NextRequest) {
   const problem = str(body.problem, 4000);
   const sector = str(body.sector, 80);
   const timing = str(body.timing, 80);
+  const serviceCode = str(body.service, 60);
+  const location = str(body.location, 120);
+  const budget = str(body.budget, 40);
+  // Source attribution (no device storage): ?from= tag on internal CTAs + referrer host.
+  const from = str(body.from, 60)?.replace(/[^a-z0-9_-]/gi, "") || null;
+  const referrer = str(body.referrer, 120);
 
-  if (!name || !org || !isEmail(email) || !problem) {
+  if (!name || !org || !isEmail(email) || !problem || !timing) {
     return NextResponse.json(
-      { ok: false, error: "Please add your name, organisation, email and the decision you're working on." },
+      { ok: false, error: "Please add your name, organisation, email, the decision you're working on and a rough timing." },
       { status: 400 }
     );
   }
@@ -75,7 +81,7 @@ export async function POST(req: NextRequest) {
   if (!organisationId) {
     const { data: o, error: oErr } = await admin
       .from("organisation")
-      .insert({ name: org, sector, source: "lough_signal_site" })
+      .insert({ name: org, sector, location, source: "lough_signal_site" })
       .select("id")
       .single();
     if (oErr || !o) {
@@ -95,7 +101,7 @@ export async function POST(req: NextRequest) {
         organisation_id: organisationId,
         relationship: "prospect",
         lead_source: "lough_signal_site",
-        lead_source_detail: "contact_form",
+        lead_source_detail: ["contact_form", from && `from:${from}`, referrer && `ref:${referrer}`].filter(Boolean).join(" · "),
       })
       .select("id")
       .single();
@@ -108,13 +114,24 @@ export async function POST(req: NextRequest) {
     await admin.from("contact").update({ organisation_id: organisationId }).eq("id", contactId);
   }
 
+  // Link the stated service of interest to the service catalogue, if given.
+  let serviceId: string | null = null;
+  if (serviceCode && serviceCode !== "grants") {
+    const { data: svc } = await admin.from("service").select("id").eq("code", serviceCode).maybeSingle();
+    serviceId = svc?.id ?? null;
+  }
+
   const { error: pErr } = await admin.from("opportunity").insert({
     organisation_id: organisationId,
     primary_contact_id: contactId,
     title: `Website enquiry — ${org}`,
     problem,
-    trigger: timing,
-    source: "lough_signal_site",
+    service_id: serviceId,
+    // No dedicated columns yet for these; kept structured and greppable.
+    trigger: [`Timing: ${timing}`, budget && `Budget: ${budget}`, serviceCode === "grants" && "Interest: funding bid", referrer && `Referrer: ${referrer}`]
+      .filter(Boolean).join(" · "),
+    // Source per CTA so enquiries can be counted by where they came from.
+    source: from ? `lough_signal_site:${from}` : "lough_signal_site",
     status: "new",
   });
   if (pErr) {
