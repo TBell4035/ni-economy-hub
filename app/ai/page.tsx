@@ -191,7 +191,7 @@ export default function AIPage() {
                 {label:'Firm size structure (2025)',value:'36 anchor employers (10+ AI professionals) · 92 early-stage firms (0-2 staff) · thin mid-market'},
                 {label:'Top 10 firm concentration (2025)',value:'541 FTEs = 40% of 1,340 AI FTEs — concentration risk; 2026 Census reports broader-based growth'},
                 {label:'AICC investment',value:'£16.3m initiative · 260+ postgraduate scholars · 100+ SMEs engaged'},
-                {label:'Policy gap',value:'No published DfE AI strategy as of July 2026 — DfE Industrial Strategy consultation (Feb 2026) barely mentions AI. Economy Minister now references an AI Advisory Panel (Sep 2026)'},
+                {label:'Policy position (Sep 2026)',value:'Executive Office published a draft NI AI Strategy for consultation on 12 Aug 2026 (closes 7 Oct 2026). Eight principles for responsible AI, framed mainly around public-sector use. Policy commentators note many actions lack named owners, budgets or deadlines. Economy Minister references an AI Advisory Panel.'},
               ].map(r=>(
                 <div key={r.label} style={{padding:'8px 0',borderBottom:`1px solid ${T.border}`}}>
                   <div style={{fontSize:12,color:T.text3,marginBottom:3,fontFamily:'var(--font-mono)',letterSpacing:0.5}}>{r.label.toUpperCase()}</div>
@@ -202,7 +202,7 @@ export default function AIPage() {
           </div>
 
           <Insight type="insight" text="The 2026 Census finds 400 AI-engaged firms, 2,402 AI-related jobs and an estimated £214m of AI-related GVA — above the 2025 Census's mid scenario for 2028, two years early. The supply side has outrun expectations; the gap is now on the demand side. Around 45% of NI businesses report not using AI at all, NI accounted for under 1% of UK AI equity investment in 2025, and scaling smaller firms remains the stated weakness. For an SME owner the question is no longer whether local AI capability exists, but whether your business is using it." />
-          <Insight type="warning" text="There is no published NI AI strategy from DfE as of July 2026. The AICC provides a research and commercialisation infrastructure, but without a clear government strategy linking AI adoption to the productivity agenda, NI risks repeating the pattern identified in the Productivity 2040 report — public investment in innovation without economy-wide diffusion." />
+          <Insight type="warning" text="The Executive Office published a draft NI AI Strategy for consultation on 12 August 2026, closing 7 October. It sets eight principles for responsible AI and is framed mainly around the public sector, offering other sectors a blueprint rather than a business adoption programme. With around 45% of NI businesses not yet using AI, the risk identified in the Productivity 2040 report still applies: public investment in innovation without economy-wide diffusion. The thing to watch is whether the final strategy arrives with a funded delivery plan." />
         </div>
       )}
 
