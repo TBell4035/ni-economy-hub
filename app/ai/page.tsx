@@ -22,7 +22,7 @@ const aiGvaProjection = [
 ]
 
 const aiGvaChart = [
-  {y:'2024',actual:82},{y:'2025',mid:110,low:95,high:130},
+  {y:'2024',actual:82},{y:'2025',actual:214,mid:110,low:95,high:130},
   {y:'2026',mid:148,low:118,high:190},{y:'2027',mid:186,low:140,high:238},
   {y:'2028',mid:200,low:130,high:280},
 ]
@@ -41,11 +41,11 @@ const sectorRisk = [
 ]
 
 const adoptionComparison = [
-  {metric:'AI-active firms (% of total)',NI:0.24,Ireland:null,UK:null,note:'198 of 83,900 NI businesses'},
+  {metric:'AI-active firms (% of total)',NI:0.48,Ireland:null,UK:null,note:'400 of ~83,900 NI businesses · AICC Census 2026'},
   {metric:'Orgs using/planning AI (%)',NI:null,Ireland:92,UK:68,note:'Trinity/Microsoft 2026 · Ireland'},
   {metric:'Advanced AI deployment (%)',NI:null,Ireland:10,UK:8,note:'Trinity/Microsoft 2026'},
   {metric:'SME weekly time saving (2hrs+)',NI:null,Ireland:25,UK:null,note:'Large firms 54% vs SMEs 25%'},
-  {metric:'AI GVA (£m)',NI:82,Ireland:null,UK:null,note:'AICC Census 2025 confirmed'},
+  {metric:'AI GVA (£m)',NI:214,Ireland:null,UK:null,note:'AICC Census 2026 (was £82m in 2025 Census)'},
 ]
 
 const Tip = ({active,payload,label}:any) => {
@@ -115,11 +115,11 @@ export default function AIPage() {
           AI & Digital Economy
         </h1>
         <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
-          The first comprehensive baseline of NI's AI ecosystem was published in August 2025
-          by the AICC (Ulster University / QUB, funded by Invest NI and DfE). This module
-          draws on that Census alongside the Trinity/Microsoft AI Economy Ireland 2026 report
-          (April 2026) and NorthStar Briefing's analysis of NI's AI year (December 2025).
-          This is a new module with no equivalent in V1 or V2.
+          The AICC (Ulster University / QUB, funded by Invest NI and DfE) published the second
+          AI Capability Census in September 2026, prepared by Perspective Economics. It updates the
+          inaugural August 2025 baseline. This module draws on both Censuses alongside the
+          Trinity/Microsoft AI Economy Ireland 2026 report (April 2026) and NorthStar Briefing's
+          analysis of NI's AI year (December 2025).
         </p>
         <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
           <TheoryTag tag="diffusion"/>
@@ -129,11 +129,11 @@ export default function AIPage() {
       </div>
 
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(190px,1fr))',gap:10,marginBottom:24}}>
-        <KPI label="AI-Active Firms 2024" value="198" sub="AICC Census · Aug 2025 · of 83,900 total" delta="0.24% of NI business base" deltaPos={false} color={T.amber}/>
-        <KPI label="AI Sector GVA 2024" value="£82" unit="m" sub="AICC Census · confirmed baseline" delta="0.19% of total NI GVA" deltaPos={false} color={T.amber}/>
-        <KPI label="AI Revenue 2024" value="£188" unit="m" sub="AICC Census · Aug 2025" delta="Target: £200m GVA by 2028" color={T.teal}/>
-        <KPI label="AI Professionals 2024" value="1,340" sub="FTEs · top 10 firms = 40% (541)" delta="Target: 2,000+ by 2028" color={T.blue}/>
-        <KPI label="Belfast Concentration" value="73" unit="%" sub="Of AI firms · 89% of employment" delta="Regional expansion needed" deltaPos={false} color={T.amber}/>
+        <KPI label="AI-Active Firms" value="400" sub="AICC Census · Sep 2026 · of ~83,900 total" delta="Up from 198 · ~0.5% of NI firms" color={T.teal}/>
+        <KPI label="AI-Related GVA" value="£214" unit="m" sub="AICC Census · Sep 2026 · estimate" delta="Up from £82m · 2028 mid scenario passed" color={T.teal}/>
+        <KPI label="Equity Raised Since 2024" value="£158" unit="m" sub="Census firms · AICC 2026" delta="<1% of UK AI equity (2025)" deltaPos={false} color={T.amber}/>
+        <KPI label="AI-Related Jobs" value="2,402" sub="FTEs · AICC Census · Sep 2026" delta="+79% · 2028 ambition passed" color={T.blue}/>
+        <KPI label="Belfast Concentration" value="73" unit="%" sub="Of AI firms · 2025 Census · check 2026" delta="Regional expansion needed" deltaPos={false} color={T.amber}/>
         <KPI label="Ireland AI Adoption" value="92" unit="%" sub="Orgs using/planning AI · TCD/Microsoft" delta="NI equivalent: not measured" deltaPos={false} color={T.red}/>
       </div>
 
@@ -154,7 +154,7 @@ export default function AIPage() {
 
       {view==='ecosystem'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <ChartCard title="AI-Related GVA Projection (£m)" subtitle="AICC CENSUS 2025 · LOW / MID / HIGH SCENARIOS TO 2028">
+          <ChartCard title="AI GVA reached the 2028 target two years early" subtitle="AICC CENSUS 2026 OUTTURN vs 2025 CENSUS SCENARIOS · £M">
             <ResponsiveContainer width="100%" height={220}>
               <ComposedChart data={aiGvaChart}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
@@ -170,7 +170,7 @@ export default function AIPage() {
               </ComposedChart>
             </ResponsiveContainer>
             <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
-              Gold dashed = £200m target · Source: AICC Capability Census, August 2025
+              Ochre dashed = £200m (2025 Census mid scenario for 2028) · Bars = Census estimates · Lines = 2025 scenarios, now superseded · Source: AICC Capability Census 2025 & 2026
             </div>
           </ChartCard>
 
@@ -198,7 +198,7 @@ export default function AIPage() {
             </div>
           </div>
 
-          <Insight type="insight" text="NI's AI sector generated £82m GVA from 198 firms in 2024 — a solid baseline but 0.19% of total NI GVA. The AICC Census identifies a clear path to £200m GVA by 2028 under the mid-growth scenario. The structural challenge is that 40% of AI employment is concentrated in just 10 firms, and 92 of 198 firms are early-stage with 0-2 AI professionals." />
+          <Insight type="insight" text="The 2026 Census finds 400 AI-engaged firms, 2,402 AI-related jobs and an estimated £214m of AI-related GVA — above the 2025 Census's mid scenario for 2028, two years early. The supply side has outrun expectations; the gap is now on the demand side. Around 45% of NI businesses report not using AI at all, NI accounted for under 1% of UK AI equity investment in 2025, and scaling smaller firms remains the stated weakness. For an SME owner the question is no longer whether local AI capability exists, but whether your business is using it." />
           <Insight type="warning" text="There is no published NI AI strategy from DfE as of July 2026. The AICC provides a research and commercialisation infrastructure, but without a clear government strategy linking AI adoption to the productivity agenda, NI risks repeating the pattern identified in the Productivity 2040 report — public investment in innovation without economy-wide diffusion." />
         </div>
       )}

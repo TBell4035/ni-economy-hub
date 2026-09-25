@@ -113,8 +113,8 @@ export default function LabourPage() {
         </h1>
         <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           Employment, wages, inactivity and labour supply. Primary sources: NISRA Labour
-          Market Report, published monthly by DfE — most recent release July 2026
-          (Mar–May 2026 LFS data; HMRC payroll and claimant data to June 2026). HMRC PAYE RTI
+          Market Report, published monthly by DfE — most recent release September 2026
+          (May–Jul 2026 LFS data; HMRC payroll and claimant data to August 2026). HMRC PAYE RTI
           provides more timely monthly payroll data but excludes self-employed. LFS is the
           official ILO-standard measure.
         </p>
@@ -133,20 +133,20 @@ export default function LabourPage() {
         <span className="mono" style={{letterSpacing:'0.04em',fontSize:12,color:T.opportunity,marginRight:8}}>
           ↻ LATEST DATA
         </span>
-        NISRA Labour Market Report July 2026 (published 21 Jul 2026): Employment rate 72.1%
-        (Mar–May 2026). Unemployment 1.8% — the lowest of any UK region. Inactivity 26.5%.
-        Payrolled employees 820,800 and median monthly pay £2,480 (June 2026, +4.9% YoY).
-        Claimant count 33,800. NISRA flags a divergence: HMRC payroll shows employment rising
+        NISRA Labour Market Report September 2026 (published 15 Sep 2026): Employment rate 72.2%
+        (May–Jul 2026). Unemployment 2.4%, up 0.6pp on the quarter — the only statistically significant change. Inactivity 26.0%.
+        Payrolled employees 819,200 and median monthly pay £2,509 (August 2026 flash estimate, +5.6% YoY).
+        Claimant count 33,400. Next release 20 October 2026. NISRA flags a divergence: HMRC payroll shows employment rising
         over the year while the LFS shows no statistically significant change.
       </div>
 
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(190px,1fr))',gap:10,marginBottom:24}}>
-        <KPI label="Employment Rate (Mar–May 26)" value="72.1" unit="%" sub="LFS · NISRA Jul 2026" delta="+0.8pp over quarter" color={T.teal}/>
-        <KPI label="Unemployment Rate (Mar–May 26)" value="1.8" unit="%" sub="LFS · lowest UK region" delta="-0.4pp over quarter" color={T.green}/>
-        <KPI label="Economic Inactivity (Mar–May 26)" value="26.5" unit="%" sub="LFS · +6pp above UK avg" delta="Structural — health-driven" deltaPos={false} color={T.red}/>
-        <KPI label="Payrolled Employees Jun 2026" value="820,800" sub="HMRC RTI · +1.4% over year" delta="Employment rising on payroll data" color={T.teal}/>
-        <KPI label="Median Pay Jun 2026" value="£2,480" unit="/mo" sub="HMRC RTI · nominal" delta="+4.9% YoY · real terms positive" color={T.green}/>
-        <KPI label="Claimant Count Jun 2026" value="33,800" sub="3.3% of workforce" delta="Down from 37,700" color={T.teal}/>
+        <KPI label="Employment Rate (May–Jul 26)" value="72.2" unit="%" sub="LFS · NISRA Sep 2026" delta="+0.2pp over quarter" color={T.teal}/>
+        <KPI label="Unemployment Rate (May–Jul 26)" value="2.4" unit="%" sub="LFS · NISRA Sep 2026" delta="+0.6pp over quarter · significant" deltaPos={false} color={T.red}/>
+        <KPI label="Economic Inactivity (May–Jul 26)" value="26.0" unit="%" sub="LFS · +6pp above UK avg" delta="Structural — health-driven" deltaPos={false} color={T.red}/>
+        <KPI label="Payrolled Employees Aug 2026" value="819,200" sub="HMRC RTI flash · +0.8% over year" delta="Employment rising on payroll data" color={T.teal}/>
+        <KPI label="Median Pay Aug 2026" value="£2,509" unit="/mo" sub="HMRC RTI flash · nominal" delta="+5.6% YoY (nominal)" color={T.green}/>
+        <KPI label="Claimant Count Aug 2026" value="33,400" sub="3.3% of workforce" delta="+1.4% on month · 11.8% above Mar 2020" color={T.teal}/>
       </div>
 
       <div style={{display:'flex',gap:0,borderBottom:`1px solid ${T.border}`,marginBottom:20}}>
@@ -221,7 +221,7 @@ export default function LabourPage() {
               </p>
             </div>
 
-            <Insight type="insight" text="The headline story in the July 2026 release is a divergence between data sources, which NISRA itself flags. HMRC payroll data shows employment rising over the year (payrolled employees +1.4%), while the Labour Force Survey shows no statistically significant change in employment, unemployment or inactivity over the quarter or year. Unemployment at 1.8% is the lowest of any UK region, and the claimant count has fallen to 33,800. The 2024 LFS employment-rate peak of 74.0% partly reflected a since-revised vintage; the payroll series is the more reliable guide to the direction of travel." />
+            <Insight type="insight" text="The headline story in the September 2026 release is a divergence between data sources, which NISRA itself flags. HMRC payroll data shows employment rising over the year (payrolled employees +0.8%), while the Labour Force Survey shows no statistically significant change in employment, unemployment or inactivity over the year. The one significant move is unemployment rising 0.6pp over the quarter to 2.4% — worth watching, though still low by historical standards. The claimant count is broadly flat at 33,400. The 2024 LFS employment-rate peak of 74.0% partly reflected a since-revised vintage; the payroll series is the more reliable guide to the direction of travel." />
           </div>
         </div>
       )}
@@ -252,10 +252,10 @@ export default function LabourPage() {
                 JUNE 2026 · HMRC PAYE RTI
               </div>
               {[
-                {label:'NI Median Monthly Pay',value:'£2,480',color:T.teal},
+                {label:'NI Median Monthly Pay',value:'£2,509',color:T.teal},
                 {label:'UK Median Monthly Pay',value:'£2,700+',color:T.blue},
                 {label:'NI as % of UK',value:'~89%',color:T.amber},
-                {label:'NI YoY growth',value:'+4.9%',color:T.green},
+                {label:'NI YoY growth',value:'+5.6%',color:T.green},
                 {label:'UK CPI (2026)',value:'~3%',color:T.red},
                 {label:'Real wage position',value:'Positive',color:T.green},
               ].map(r=>(
@@ -266,7 +266,7 @@ export default function LabourPage() {
               ))}
             </div>
 
-            <Insight type="insight" text="Median monthly pay grew 4.9% YoY to £2,480 in June 2026 — comfortably above CPI, so NI workers continue to see modest real wage gains. However the NI-UK wage gap persists at approximately 11%, reflecting the structural public sector wage anchor and lower private sector productivity." />
+            <Insight type="insight" text="Median monthly pay grew 5.6% YoY to £2,509 in August 2026 (HMRC flash estimate, nominal, likely to be revised). However the NI-UK wage gap persists at approximately 11%, reflecting the structural public sector wage anchor and lower private sector productivity." />
             <Insight type="weak" text="PAYE RTI wage data is classified as 'statistics in development' by NISRA — subject to revision. The figures exclude self-employed income, which in NI's agricultural and construction sectors can be substantial. These are the best available monthly wage indicators but should be treated with appropriate caution." />
           </div>
         </div>

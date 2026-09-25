@@ -1,7 +1,7 @@
 {
-  "dataVersion": "v3.1",
+  "dataVersion": "v3.2",
   "publicationLabel": "September 2026",
-  "lastUpdated": "2026-03-11",
+  "lastUpdated": "2026-09-25",
   "primarySources": {
     "NIETS_2024": {
       "date": "2026-03-11",
@@ -34,6 +34,22 @@
     "AICC_CENSUS_2025": {
       "date": "2025-08-07",
       "url": "https://www.aicc.co/artificial-intelligence-capability-census"
+    },
+    "AICC_CENSUS_2026": {
+      "date": "2026-09-22",
+      "url": "https://www.aicc.co/artificial-intelligence-capability-census-2026"
+    },
+    "ELMS_SEP26": {
+      "date": "2026-09-15",
+      "url": "https://www.nisra.gov.uk/publications/labour-market-report-september-2026"
+    },
+    "NICEI_Q2_2026": {
+      "date": "2026-09-24",
+      "url": "https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index"
+    },
+    "NI_HPI_Q2_2026": {
+      "date": "2026-08-19",
+      "url": "https://www.gov.uk/government/statistics/northern-ireland-house-price-index-quarter-2-2026"
     }
   }
 }

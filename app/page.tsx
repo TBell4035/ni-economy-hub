@@ -226,10 +226,10 @@ export default function OverviewPage() {
               color={T.teal}
             />
             <KPI
-              label="NICEI Growth 2024"
-              value="+3.6" unit="%"
-              sub="Composite index proxy · NISRA"
-              delta="+2.2pp vs UK"
+              label="NICEI Q2 2026 (YoY)"
+              value="+2.3" unit="%"
+              sub="Composite index proxy · NISRA 24 Sep 2026"
+              delta="+1.0% on quarter · series high"
               color={T.teal}
             />
             <KPI
@@ -240,25 +240,25 @@ export default function OverviewPage() {
               color={T.gold}
             />
             <KPI
-              label="Employment Rate Mar–May 2026"
-              value="72.1" unit="%"
-              sub="LFS · NISRA Jul 2026"
-              delta="+0.8pp over quarter"
+              label="Employment Rate May–Jul 2026"
+              value="72.2" unit="%"
+              sub="LFS · NISRA Sep 2026"
+              delta="+0.2pp over quarter"
               color={T.teal}
             />
             <KPI
-              label="Economic Inactivity Mar–May 2026"
-              value="26.5" unit="%"
+              label="Economic Inactivity May–Jul 2026"
+              value="26.0" unit="%"
               sub="+6pp above UK avg · LFS"
               delta="Structural — health-driven"
               deltaPos={false}
               color={T.red}
             />
             <KPI
-              label="Median Pay Jun 2026"
-              value="£2,480" unit="/mo"
-              sub="HMRC RTI · +4.9% YoY"
-              delta="Real terms positive"
+              label="Median Pay Aug 2026"
+              value="£2,509" unit="/mo"
+              sub="HMRC RTI flash · nominal"
+              delta="+5.6% YoY"
               color={T.green}
             />
             <KPI
@@ -330,7 +330,7 @@ export default function OverviewPage() {
 
           {/* Insight boxes */}
           <Insight type="insight" text="NI's business economy grew 9.6% in GVA terms in 2024 (NIABI confirmed), outperforming UK growth of 1.4% by over 8 percentage points. Construction alone grew 30.7%, adding £1.7bn. This is the strongest confirmed growth in over a decade — but it is partly factor-accumulation driven (more buildings, more workers) rather than productivity driven. The TFP question remains open." />
-          <Insight type="warning" text="On the July 2026 data, unemployment is just 1.8% — the lowest of any UK region — and the claimant count has fallen to 33,800. Yet economic inactivity remains 26.5%, still around 6 percentage points above the UK average. This is the persistent structural problem: not a shortage of jobs but a large working-age population outside the labour market entirely, driven by long-term sickness. No demand-side policy can resolve it without NHS reform." />
+          <Insight type="warning" text="On the September 2026 data, unemployment is 2.4% and the claimant count 33,400 — still low, though unemployment rose significantly over the quarter. Yet economic inactivity remains 26.0%, still around 6 percentage points above the UK average. This is the persistent structural problem: not a shortage of jobs but a large working-age population outside the labour market entirely, driven by long-term sickness. No demand-side policy can resolve it without NHS reform." />
           <Insight type="opportunity" text="Cross-border trade reached £14.6bn in 2024 — a 16.8% increase in a single year, and 6.5x the 2015 level. NI runs a trade surplus with every external market simultaneously. No other UK region holds dual access to the UK Internal Market and EU Single Market for goods. This structural advantage has not been systematically leveraged by Invest NI or DfE in any published inward investment strategy." />
         </div>
       )}

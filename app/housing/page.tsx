@@ -164,9 +164,9 @@ export default function HousingPage() {
       </div>
 
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(190px,1fr))',gap:10,marginBottom:24}}>
-        <KPI label="Avg House Price Q1 2026" value="£198,015" sub="NISRA official NI HPI · +7.4% YoY" delta="Highest since pre-2008 peak" color={T.gold}/>
-        <KPI label="Annual Growth (to Q1 2026)" value="+7.4" unit="%" sub="NISRA official NI HPI" delta="Among fastest in UK" color={T.amber}/>
-        <KPI label="Belfast Avg Price Q4 2025" value="£178,000" sub="ONS · +5.4% YoY" delta="Below NI average growth" deltaPos={false} color={T.blue}/>
+        <KPI label="Standardised Price Q2 2026" value="£202,487" sub="LPS/NISRA NI HPI · 19 Aug 2026" delta="+2.1% on quarter" color={T.gold}/>
+        <KPI label="Annual Growth (to Q2 2026)" value="+9.2" unit="%" sub="LPS/NISRA NI HPI" delta="Among fastest in UK" color={T.amber}/>
+        <KPI label="Belfast Std. Price Q2 2026" value="£184,768" sub="LPS/NISRA NI HPI · +7.7% YoY" delta="Below NI average growth" deltaPos={false} color={T.blue}/>
         <KPI label="Belfast Monthly Rent Jan 26" value="£1,130" sub="ONS Private Rent · +5.8% YoY" delta="NI avg £880 · UK avg £1,367" color={T.teal}/>
         <KPI label="Price-to-Income Ratio 2025" value="6.5x" sub="NISRA std. price ÷ median salary" delta="Up from 4.5x in 2015" deltaPos={false} color={T.red}/>
         <KPI label="First-Time Buyers" value="~40" unit="%" sub="Of all transactions · Q4 2025" delta="High vs rest of UK" color={T.green}/>
