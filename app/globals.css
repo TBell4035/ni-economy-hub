@@ -107,3 +107,35 @@ a { color: var(--teal-brand); text-underline-offset: 3px; }
 }
 
 /* Page-load fades removed: the brand guide bans them. */
+
+/* ---------------------------------------------------------------------------
+   Hub responsive layer. Desktop keeps the sticky rail; below 820px the rail
+   becomes a slide-in drawer opened from TopBar's Menu button, and page-level
+   multi-column grids stack. Inline styles in the modules win over normal CSS,
+   hence !important here — scoped to small screens only.
+--------------------------------------------------------------------------- */
+.hub-menu-btn{display:none;align-items:center;gap:6px;background:transparent;border:1px solid var(--rule-strong);
+  color:var(--ink);font:500 14px var(--font-sans);padding:6px 10px;border-radius:2px;cursor:pointer;flex-shrink:0}
+.hub-cta-short{display:none}
+.hub-nav-backdrop{display:none}
+
+@media (max-width: 820px){
+  .hub-nav{position:fixed!important;left:0;top:0;z-index:60;width:264px!important;height:100vh!important;
+    transform:translateX(-100%);transition:transform .22s cubic-bezier(.2,.6,.2,1)!important;box-shadow:none}
+  .hub-nav.open{transform:none;box-shadow:0 0 0 100vmax rgba(22,25,28,.0)}
+  .hub-nav .hub-collapse{display:none}
+  .hub-nav-backdrop{display:block;position:fixed;inset:0;z-index:55;background:rgba(22,25,28,.35)}
+  .hub-menu-btn{display:inline-flex}
+  .hub-topbar{padding:10px 16px!important}
+  .hub-topbar-version{display:none}
+  .hub-cta-long{display:none}
+  .hub-cta-short{display:inline}
+  .hub-main{padding:20px 16px 32px!important}
+
+  /* Stack explicit multi-column page grids (keep auto-fill/auto-fit KPI grids) */
+  .hub-main [style*="grid-template-columns"]:not([style*="auto-fill"]):not([style*="auto-fit"]){grid-template-columns:1fr!important}
+  /* Tab rows and wide tables scroll sideways instead of overflowing the page */
+  .hub-main [style*="border-bottom:1px solid"][style*="display:flex"]{overflow-x:auto}
+  .hub-main table{display:block;overflow-x:auto}
+  .hub-main h1{font-size:32px!important}
+}

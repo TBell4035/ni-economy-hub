@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import modulesConfig from '@/config/modules.json'
@@ -12,7 +12,23 @@ const NAV_ITEMS = Object.entries(modulesConfig.modules)
 
 export default function Navigation() {
   const [collapsed, setCollapsed] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
+
+  // Phones: the rail becomes a slide-in drawer, opened from TopBar's Menu
+  // button via a window event (keeps the two components decoupled).
+  useEffect(() => {
+    const toggle = () => setMobileOpen(o => !o)
+    window.addEventListener('hub-nav-toggle', toggle)
+    return () => window.removeEventListener('hub-nav-toggle', toggle)
+  }, [])
+  useEffect(() => { setMobileOpen(false) }, [pathname])
+  useEffect(() => {
+    if (!mobileOpen) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileOpen(false) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [mobileOpen])
 
   const getHref = (id: string) => id === 'overview' ? '/hub' : `/${id}`
   const isActive = (id: string) => {
@@ -21,7 +37,12 @@ export default function Navigation() {
   }
 
   return (
+    <>
+    {mobileOpen && <div className="hub-nav-backdrop" onClick={() => setMobileOpen(false)} aria-hidden="true" />}
     <nav
+      id="hub-nav"
+      aria-label="Hub modules"
+      className={`hub-nav${mobileOpen ? ' open' : ''}`}
       style={{
         width: collapsed ? '52px' : '220px',
         flexShrink: 0,
@@ -125,7 +146,7 @@ export default function Navigation() {
       </div>
 
       {/* Collapse toggle */}
-      <div style={{
+      <div className="hub-collapse" style={{
         padding: '12px',
         borderTop: '1px solid var(--border)',
         flexShrink: 0
@@ -148,5 +169,6 @@ export default function Navigation() {
         </button>
       </div>
     </nav>
+    </>
   )
 }
