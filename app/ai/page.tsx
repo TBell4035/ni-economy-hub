@@ -22,8 +22,8 @@ const aiGvaProjection = [
 ]
 
 const aiGvaChart = [
-  {y:'2024',actual:82},{y:'2025',actual:214,mid:110,low:95,high:130},
-  {y:'2026',mid:148,low:118,high:190},{y:'2027',mid:186,low:140,high:238},
+  {y:'2024',actual:82},{y:'2025',mid:110,low:95,high:130},
+  {y:'2026',actual:214,mid:148,low:118,high:190},{y:'2027',mid:186,low:140,high:238},
   {y:'2028',mid:200,low:130,high:280},
 ]
 
@@ -134,7 +134,7 @@ export default function AIPage() {
         <KPI label="Equity Raised Since 2024" value="£158" unit="m" sub="Census firms · AICC 2026" delta="<1% of UK AI equity (2025)" deltaPos={false} color={T.amber}/>
         <KPI label="AI-Related Jobs" value="2,402" sub="FTEs · AICC Census · Sep 2026" delta="+79% · 2028 ambition passed" color={T.blue}/>
         <KPI label="Belfast Concentration" value="73" unit="%" sub="Of AI firms · 2025 Census · check 2026" delta="Regional expansion needed" deltaPos={false} color={T.amber}/>
-        <KPI label="Ireland AI Adoption" value="92" unit="%" sub="Orgs using/planning AI · TCD/Microsoft" delta="NI equivalent: not measured" deltaPos={false} color={T.red}/>
+        <KPI label="Ireland AI Adoption" value="92" unit="%" sub="Orgs using/planning AI · TCD/Microsoft" delta="NI: ~55% currently using AI (AICC 2026 · different measure)" deltaPos={false} color={T.amber}/>
       </div>
 
       <div style={{display:'flex',gap:0,borderBottom:`1px solid ${T.border}`,marginBottom:20}}>
@@ -180,15 +180,18 @@ export default function AIPage() {
                 NI AI Ecosystem — Structural Profile
               </div>
               <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
-                AICC CENSUS · PERSPECTIVE ECONOMICS · AUGUST 2025
+                AICC CENSUS 2026 (SEP 2026) · ROWS MARKED 2025 NOT YET UPDATED FROM FULL REPORT
               </div>
               {[
-                {label:'Sectoral strengths',value:'Services & consulting (35%), Software & development (33%), Health & life sciences (9%)'},
-                {label:'Business model',value:'51% developing/enhancing AI products · 33% providing AI implementation & advisory services'},
-                {label:'Firm size structure',value:'36 anchor employers (10+ AI professionals) · 92 early-stage firms (0-2 staff) · thin mid-market'},
-                {label:'Top 10 firm concentration',value:'541 FTEs = 40% of all AI employment — high concentration risk'},
+                {label:'Skills demand (2026)',value:'AI/ML job adverts up 161% (rolling 12 months) · median advertised AI salary ~£61,000, H1 2026'},
+                {label:'Adoption gap (2026)',value:'Around 45% of NI businesses report not currently using AI'},
+                {label:'Investment (2026)',value:'~£158m equity raised by Census firms since 2024 · NI under 1% of UK AI equity by value in 2025'},
+                {label:'Sectoral strengths (2025)',value:'Services & consulting (35%), Software & development (33%), Health & life sciences (9%)'},
+                {label:'Business model (2025)',value:'51% developing/enhancing AI products · 33% providing AI implementation & advisory services'},
+                {label:'Firm size structure (2025)',value:'36 anchor employers (10+ AI professionals) · 92 early-stage firms (0-2 staff) · thin mid-market'},
+                {label:'Top 10 firm concentration (2025)',value:'541 FTEs = 40% of 1,340 AI FTEs — concentration risk; 2026 Census reports broader-based growth'},
                 {label:'AICC investment',value:'£16.3m initiative · 260+ postgraduate scholars · 100+ SMEs engaged'},
-                {label:'Policy gap',value:'No published DfE AI strategy as of July 2026 — DfE Industrial Strategy consultation (Feb 2026) barely mentions AI'},
+                {label:'Policy gap',value:'No published DfE AI strategy as of July 2026 — DfE Industrial Strategy consultation (Feb 2026) barely mentions AI. Economy Minister now references an AI Advisory Panel (Sep 2026)'},
               ].map(r=>(
                 <div key={r.label} style={{padding:'8px 0',borderBottom:`1px solid ${T.border}`}}>
                   <div style={{fontSize:12,color:T.text3,marginBottom:3,fontFamily:'var(--font-mono)',letterSpacing:0.5}}>{r.label.toUpperCase()}</div>
@@ -269,7 +272,7 @@ export default function AIPage() {
               NI vs Ireland — AI Adoption Comparison
             </div>
             <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
-              AICC CENSUS (AUG 2025) vs TRINITY/MICROSOFT AI ECONOMY IRELAND 2026 (APR 2026)
+              AICC CENSUS 2026 (SEP 2026) vs TRINITY/MICROSOFT AI ECONOMY IRELAND 2026 (APR 2026)
             </div>
             <div style={{background:'rgba(140,47,38,.06)',border:'1px solid rgba(140,47,38,.28)',borderRadius:0,padding:'10px 12px',marginBottom:14,fontSize:12,color:T.risk}}>
               <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.red,display:'block',marginBottom:4}}>⚠ COMPARISON LIMITATION</span>
