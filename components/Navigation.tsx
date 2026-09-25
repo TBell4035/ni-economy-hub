@@ -14,9 +14,9 @@ export default function Navigation() {
   const [collapsed, setCollapsed] = useState(false)
   const pathname = usePathname()
 
-  const getHref = (id: string) => id === 'overview' ? '/' : `/${id}`
+  const getHref = (id: string) => id === 'overview' ? '/hub' : `/${id}`
   const isActive = (id: string) => {
-    if (id === 'overview') return pathname === '/'
+    if (id === 'overview') return pathname === '/hub'
     return pathname.startsWith(`/${id}`)
   }
 

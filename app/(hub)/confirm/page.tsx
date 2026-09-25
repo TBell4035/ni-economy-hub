@@ -33,7 +33,7 @@ export default async function ConfirmPage({
               Thanks — your email is confirmed and you'll receive the next Lough
               Signal briefing. In the meantime, explore the NI Economy Hub.
             </p>
-            <Link className="ls-button" href="/">Go to the Hub</Link>
+            <Link className="ls-button" href="/hub">Go to the Hub</Link>
           </>
         ) : (
           <>

@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase'
 import { computeScore, computeCategory, CATEGORY_CONFIG } from '@/lib/scoring'
 import type { IntelligenceEntry } from '@/lib/supabase'
 import { T } from '@/lib/tokens'
+import { formsOpen } from '@/lib/launch'
 
 
 const SEED_ENTRIES: IntelligenceEntry[] = [
@@ -172,7 +173,7 @@ export default function IntelligencePage() {
   })
 
   const handleSubmit = async () => {
-    if(!feedback.comment.trim()) return
+    if(!formsOpen || !feedback.comment.trim()) return
     setSubmitting(true)
     try {
       await supabase.from('feedback').insert({
@@ -214,9 +215,11 @@ export default function IntelligencePage() {
         </h1>
         <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:10}}>
           Commentary, research and analysis from economists, journalists and institutions
-          covering the NI economy. Each entry is scored using the confidence matrix:
-          Source Quality (1–5) × Alignment Multiplier (Confirms ×1, Challenges ×2, Extends ×3,
-          Unresolved +0). Scores 1–5 = Established · 6–10 = Active Review · 11–15 = Strategic Intelligence.
+          covering the NI economy. Entries are sorted with an editorial triage score — our own
+          judgement of source quality (1–5) weighted by how much the piece adds to the Hub&apos;s current
+          reading (confirms ×1, challenges ×2, extends ×3). It is a way of prioritising what to read,
+          not a statistical measure of confidence. Scores 1–5 = Established · 6–10 = Active Review ·
+          11–15 = Strategic Intelligence.
         </p>
         <div style={{background:T.bg2,border:`1px solid ${T.border}`,borderRadius:0,padding:'10px 14px',marginBottom:14,fontSize:14,color:T.text2,lineHeight:1.6}}>
           <span className="mono" style={{fontSize:12,color:T.teal,marginRight:8,letterSpacing:'0.08em'}}>◎ HOW TO USE</span>
@@ -371,7 +374,11 @@ export default function IntelligencePage() {
         <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:16}}>
           SUGGEST A SOURCE · CHALLENGE ANALYSIS · FLAG AN ERROR · NOMINATE AN ECONOMIST
         </div>
-        {submitted ? (
+        {!formsOpen ? (
+          <div role="status" style={{background:T.bg2,border:`1px solid ${T.border}`,borderLeft:`3px solid ${T.ochre}`,padding:'12px 16px',fontSize:14,color:T.text2,lineHeight:1.6}}>
+            Feedback opens shortly, once Lough Signal completes its data-protection registration.
+          </div>
+        ) : submitted ? (
           <div style={{background:'rgba(47,93,58,.07)',border:'1px solid rgba(47,93,58,.28)',borderRadius:0,padding:'12px 16px',fontSize:14,color:T.green}}>
             ✓ Feedback received. All submissions are reviewed and incorporated where appropriate.
           </div>

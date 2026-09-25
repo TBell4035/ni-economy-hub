@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, SupabaseNotConfiguredError } from "@/lib/supabaseAdmin";
 import { sendConfirmationEmail } from "@/lib/email";
+import { formsOpen } from "@/lib/launch";
 
 export const runtime = "nodejs";
 
@@ -16,6 +17,9 @@ function str(v: unknown, max = 200): string | null {
 }
 
 export async function POST(req: NextRequest) {
+  if (!formsOpen) {
+    return NextResponse.json({ error: "Sign-up is not open yet." }, { status: 403 });
+  }
   let body: Record<string, unknown>;
   try {
     body = await req.json();

@@ -74,3 +74,21 @@ Written and included in this reconciliation bundle under `lead-capture/` (subscr
 - Type floor: 14px prose, 12px for uppercase mono metadata only (guide carve-out, to add to v0.3).
 - Theory tags are neutral ink chips; `THEORY_TAGS[*].color` in `lib/designSystem.ts` is now unused.
 - Chart load animation disabled everywhere (guide bans load motion).
+
+## Site structure (branch `brand/hub-pass-2`)
+
+- `app/(site)/` — Lough Signal: `/` landing page (from approved mockup v3), `/privacy` (notice v1.0).
+- `app/(hub)/` — NI Economy Hub: overview moved from `/` to `/hub`; every module URL unchanged (`/labour`, `/ai`, …).
+- `app/api/contact` — landing enquiry form → organisation → contact → opportunity (source `lough_signal_site`). No email notification until an inbox exists.
+
+## Launch gate — `lib/launch.ts`
+
+All personal-data forms (landing enquiry, briefing sign-up, Hub feedback) are CLOSED unless
+`NEXT_PUBLIC_FORMS_OPEN=true`. Closed = holding message in the UI and 403 from the API.
+Open only when: Lough Signal Ltd incorporated · ICO registered · /privacy placeholders filled ·
+loughsignal.co.uk verified in Resend. Set `SITE_URL` to the real domain at the same time.
+
+## Correction
+
+The legacy Supabase project (`nrsxdipcctxkfbcomjio`) is NOT empty: it holds `intelligence_feed`
+(read by /intelligence) and `feedback`. Treat it as live.
