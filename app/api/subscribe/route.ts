@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin, SupabaseNotConfiguredError } from "@/lib/supabaseAdmin";
 import { sendConfirmationEmail } from "@/lib/email";
 
 export const runtime = "nodejs";
@@ -54,7 +54,16 @@ export async function POST(req: NextRequest) {
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
   const userAgent = req.headers.get("user-agent") ?? null;
 
-  const admin = supabaseAdmin;
+  let admin;
+  try {
+    admin = getSupabaseAdmin();
+  } catch (e) {
+    if (e instanceof SupabaseNotConfiguredError) {
+      console.error(e.message);
+      return NextResponse.json({ ok: false, error: "Service temporarily unavailable." }, { status: 503 });
+    }
+    throw e;
+  }
 
   // --- Look up the current wording versions to attach to consent events ---
   const { data: wordings, error: wErr } = await admin

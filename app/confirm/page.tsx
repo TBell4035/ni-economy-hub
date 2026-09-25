@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteUrl } from "@/lib/siteUrl";
 
 export const metadata = { title: "Confirming — Lough Signal" };
 
@@ -19,7 +20,7 @@ export default async function ConfirmPage({
   searchParams: Promise<{ token?: string }>;
 }) {
   const { token } = await searchParams;
-  const baseUrl = process.env.SITE_URL ?? "http://localhost:3000";
+  const baseUrl = siteUrl;
   const ok = token ? await confirmToken(token, baseUrl) : false;
 
   return (

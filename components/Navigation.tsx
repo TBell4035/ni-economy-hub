@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import modulesConfig from '@/config/modules.json'
 import meta from '@/data/economic/meta.json'
+import ModuleIcon from '@/components/ModuleIcon'
 
 const NAV_ITEMS = Object.entries(modulesConfig.modules)
   .sort((a, b) => a[1].order - b[1].order)
@@ -84,6 +85,9 @@ export default function Navigation() {
               key={item.id}
               href={href}
               style={{ textDecoration: 'none' }}
+              aria-label={collapsed ? item.label : undefined}
+              title={collapsed ? item.label : undefined}
+              aria-current={active ? 'page' : undefined}
             >
               <div
                 style={{
@@ -99,17 +103,17 @@ export default function Navigation() {
                 }}
               >
                 <span style={{
-                  fontSize: 14,
+                  display: 'inline-flex',
                   minWidth: 16,
-                  textAlign: 'center',
+                  justifyContent: 'center',
                   flexShrink: 0
                 }}>
-                  {item.icon}
+                  <ModuleIcon id={item.id} />
                 </span>
                 {!collapsed && (
-                  <span className="mono" style={{
-                    fontSize: 12,
-                    letterSpacing: 0.5
+                  <span style={{
+                    fontSize: 14,
+                    fontFamily: 'var(--font-sans)'
                   }}>
                     {item.label}
                   </span>
