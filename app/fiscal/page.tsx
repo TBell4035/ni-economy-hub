@@ -6,14 +6,8 @@ import {
   ResponsiveContainer, ReferenceLine, ReferenceArea
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const fiscalAnnual = [
   {y:'2010-11',spend:19.2,rev:12.8,deficit:6.4},
@@ -37,30 +31,30 @@ const healthSpend = [
 ]
 
 const deptAllocations = [
-  {dept:'Health',share:51,amt:'~£14.4bn',color:'#e05050'},
-  {dept:'Education',share:14,amt:'~£3.9bn',color:'#3a8fd4'},
-  {dept:'Infrastructure',share:8,amt:'~£2.2bn',color:'#e89020'},
-  {dept:'Communities',share:7,amt:'~£2.0bn',color:'#9a70d4'},
-  {dept:'Justice',share:6,amt:'~£1.7bn',color:'#6a88a0'},
-  {dept:'Economy (DfE)',share:4,amt:'~£1.1bn',color:'#12c4a4'},
-  {dept:'Agriculture',share:3,amt:'~£0.8bn',color:'#38c070'},
-  {dept:'Other / Executive',share:7,amt:'~£2.0bn',color:'#3a5268'},
+  {dept:'Health',share:51,amt:'~£14.4bn',color:T.c1},
+  {dept:'Education',share:14,amt:'~£3.9bn',color:T.c6},
+  {dept:'Infrastructure',share:8,amt:'~£2.2bn',color:T.c6},
+  {dept:'Communities',share:7,amt:'~£2.0bn',color:T.c6},
+  {dept:'Justice',share:6,amt:'~£1.7bn',color:T.c6},
+  {dept:'Economy (DfE)',share:4,amt:'~£1.1bn',color:T.c6},
+  {dept:'Agriculture',share:3,amt:'~£0.8bn',color:T.c6},
+  {dept:'Other / Executive',share:7,amt:'~£2.0bn',color:T.c6},
 ]
 
 const spendPerHead = [
-  {region:'Northern Ireland',val:16116,color:'#e8a020'},
-  {region:'Scotland',val:15400,color:'#12c4a4'},
-  {region:'London',val:15217,color:'#3a8fd4'},
-  {region:'Wales',val:15155,color:'#9a70d4'},
-  {region:'UK Average',val:13504,color:'#6a88a0'},
-  {region:'England',val:13134,color:'#3a5268'},
-  {region:'South East',val:12031,color:'#3a5268'},
+  {region:'Northern Ireland',val:16116,color:T.c1},
+  {region:'Scotland',val:15400,color:T.c6},
+  {region:'London',val:15217,color:T.c6},
+  {region:'Wales',val:15155,color:T.c6},
+  {region:'UK Average',val:13504,color:T.c3},
+  {region:'England',val:13134,color:T.c6},
+  {region:'South East',val:12031,color:T.c6},
 ]
 
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -74,13 +68,13 @@ const Tip = ({active,payload,label}:any) => {
 const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -94,18 +88,18 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
 }
 
 const ChartCard = ({title,subtitle,children}:{title:string,subtitle:string,children:React.ReactNode}) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -115,15 +109,15 @@ export default function FiscalPage() {
   const [view, setView] = useState<'overview'|'departments'|'barnett'|'transformation'>('overview')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 05 · FISCAL ARCHITECTURE
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Fiscal Architecture
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           NI's public finances are defined by almost total dependence on the Westminster Block
           Grant. This module cross-references HM Treasury CRA 2025, NI Fiscal Council assessments,
           NI Assembly research, Pivotal Policy, and media commentary. Where sources diverge,
@@ -137,11 +131,11 @@ export default function FiscalPage() {
       </div>
 
       {/* Sources panel */}
-      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:16,marginBottom:20}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:2,color:T.gold,marginBottom:10}}>
+      <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:16,marginBottom:20}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.gold,marginBottom:10}}>
           ▣ FISCAL DATA SOURCES — ALL FIGURES CROSS-REFERENCED
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,fontSize:11,color:T.text2,lineHeight:1.6}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,fontSize:12,color:T.text2,lineHeight:1.6}}>
           <div>
             <strong style={{color:T.text1}}>Block Grant (£17.7bn Barnett, 2024-25):</strong> HM Treasury Annual Report 2024-25.
             Total DEL (~£28bn) includes Barnett + non-Barnett additions.
@@ -171,7 +165,7 @@ export default function FiscalPage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='overview'?'Overview':v==='departments'?'Departments':v==='barnett'?'Barnett & Needs':'Transformation'}
@@ -187,14 +181,14 @@ export default function FiscalPage() {
               <ResponsiveContainer width="100%" height={220}>
                 <ComposedChart data={fiscalAnnual}>
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                  <XAxis dataKey="y" tick={{fontSize:8,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={1} angle={-30} textAnchor="end" height={40}/>
-                  <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
+                  <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={1} angle={-30} textAnchor="end" height={40}/>
+                  <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
                   <Tooltip content={<Tip/>}/>
                   <ReferenceArea x1="2025-26F" x2="2026-27F" fill={T.bg3} opacity={0.6}/>
-                  <Bar dataKey="spend" fill={T.blue} opacity={0.6} name="Total Spending"/>
-                  <Bar dataKey="rev" fill={T.teal} opacity={0.7} name="NI-Raised Revenue"/>
-                  <Line type="monotone" dataKey="deficit" stroke={T.red} strokeWidth={2} dot={false} name="Fiscal Gap"/>
-                  <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                  <Bar isAnimationActive={false} dataKey="spend" fill={T.blue} opacity={0.6} name="Total Spending"/>
+                  <Bar isAnimationActive={false} dataKey="rev" fill={T.teal} opacity={0.7} name="NI-Raised Revenue"/>
+                  <Line isAnimationActive={false} type="monotone" dataKey="deficit" stroke={T.red} strokeWidth={2} dot={false} name="Fiscal Gap"/>
+                  <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
                 </ComposedChart>
               </ResponsiveContainer>
             </div>
@@ -204,11 +198,11 @@ export default function FiscalPage() {
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={spendPerHead} layout="vertical">
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} horizontal={false}/>
-                <XAxis type="number" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${(v/1000).toFixed(0)}k`}/>
-                <YAxis type="category" dataKey="region" tick={{fontSize:9,fill:T.text1}} tickLine={false} width={110}/>
+                <XAxis type="number" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${(v/1000).toFixed(0)}k`}/>
+                <YAxis type="category" dataKey="region" tick={{fontSize:12,fill:T.text1}} tickLine={false} width={110}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceLine x={13504} stroke={T.text3} strokeDasharray="3 3"/>
-                <Bar dataKey="val" name="Spend per head (£)" radius={[0,2,2,0]}
+                <Bar isAnimationActive={false} dataKey="val" name="Spend per head (£)" radius={[0,2,2,0]}
   fill={T.teal}
   shape={(props:any)=>{
     const {region, x, y, width, height} = props
@@ -219,8 +213,8 @@ export default function FiscalPage() {
 />
               </BarChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:8}}>
-              Gold = NI · Dashed = UK average (£13,504) · Source: HMT CRA Nov 2025
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
+              Ochre = NI · Dashed = UK average (£13,504) · Source: HMT CRA Nov 2025
             </div>
           </ChartCard>
 
@@ -235,11 +229,11 @@ export default function FiscalPage() {
             <div style={{paddingTop:8}}>
               {deptAllocations.map(d=>(
                 <div key={d.dept} style={{display:'flex',alignItems:'center',gap:10,marginBottom:10}}>
-                  <div style={{width:130,fontSize:11,color:T.text1}}>{d.dept}</div>
-                  <div style={{flex:1,background:T.bg3,height:6,borderRadius:2}}>
-                    <div style={{background:d.color,height:6,width:`${d.share*1.8}%`,borderRadius:2}}/>
+                  <div style={{width:130,fontSize:12,color:T.text1}}>{d.dept}</div>
+                  <div style={{flex:1,background:T.bg3,height:6,borderRadius:0}}>
+                    <div style={{background:d.color,height:6,width:`${d.share*1.8}%`,borderRadius:0}}/>
                   </div>
-                  <div className="mono" style={{fontSize:11,color:T.text2,width:70,textAlign:'right'}}>{d.amt}</div>
+                  <div className="mono" style={{fontSize:12,color:T.text2,width:70,textAlign:'right'}}>{d.amt}</div>
                 </div>
               ))}
             </div>
@@ -256,11 +250,11 @@ export default function FiscalPage() {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                  <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                  <YAxis domain={[38,56]} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
+                  <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                  <YAxis domain={[38,56]} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${v}%`}/>
                   <Tooltip content={<Tip/>}/>
                   <ReferenceLine y={50} stroke={T.amber} strokeDasharray="3 3"/>
-                  <Area type="monotone" dataKey="pct" stroke={T.red} fill="url(#hG)" strokeWidth={2} name="Health % of Budget"/>
+                  <Area isAnimationActive={false} type="monotone" dataKey="pct" stroke={T.red} fill="url(#hG)" strokeWidth={2} name="Health % of Budget"/>
                 </AreaChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -273,11 +267,11 @@ export default function FiscalPage() {
 
       {view==='barnett'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               How the Barnett Formula Works
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               MECHANISM · SOURCE: NI FISCAL COUNCIL / HMT
             </div>
             <TheoryTag tag="barnett"/>
@@ -290,19 +284,19 @@ export default function FiscalPage() {
                 {step:'Note',text:'If UK switches from public services to defence spending, NI gets less — Barnett follows comparable functions only',col:T.amber},
               ].map(s=>(
                 <div key={s.step} style={{display:'flex',gap:12,alignItems:'flex-start'}}>
-                  <span className="mono" style={{fontSize:10,color:s.col,flexShrink:0,minWidth:50}}>{s.step}</span>
-                  <span style={{fontSize:12,color:T.text2,lineHeight:1.5}}>{s.text}</span>
+                  <span className="mono" style={{fontSize:12,color:s.col,flexShrink:0,minWidth:50}}>{s.step}</span>
+                  <span style={{fontSize:14,color:T.text2,lineHeight:1.5}}>{s.text}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Fiscal Framework Status
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 AS OF JULY 2026 · SOURCES: NI FISCAL COUNCIL, NI AFFAIRS COMMITTEE
               </div>
               {[
@@ -315,8 +309,8 @@ export default function FiscalPage() {
                 {label:'Water charges / rate reform',status:'○ Low political appetite',col:T.text3},
               ].map(r=>(
                 <div key={r.label} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'7px 0',borderBottom:`1px solid ${T.border}`}}>
-                  <span style={{fontSize:12,color:T.text2}}>{r.label}</span>
-                  <span className="mono" style={{fontSize:11,color:r.col}}>{r.status}</span>
+                  <span style={{fontSize:14,color:T.text2}}>{r.label}</span>
+                  <span className="mono" style={{fontSize:12,color:r.col}}>{r.status}</span>
                 </div>
               ))}
             </div>
@@ -327,11 +321,11 @@ export default function FiscalPage() {
 
       {view==='transformation'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               Public Sector Transformation Board
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               PSTB · £235M TRANSFORMATION FUND · SOURCE: NIO / NI FISCAL COUNCIL
             </div>
             {[
@@ -342,13 +336,13 @@ export default function FiscalPage() {
             ].map(r=>(
               <div key={r.label} style={{padding:'12px 0',borderBottom:`1px solid ${T.border}`}}>
                 <div style={{display:'flex',justifyContent:'space-between',marginBottom:3}}>
-                  <span style={{fontSize:12,color:T.text2}}>{r.label}</span>
-                  <span className="mono" style={{fontSize:13,fontWeight:700,color:r.col}}>{r.value}</span>
+                  <span style={{fontSize:14,color:T.text2}}>{r.label}</span>
+                  <span className="mono" style={{fontSize:14,fontWeight:700,color:r.col}}>{r.value}</span>
                 </div>
-                <div style={{fontSize:11,color:T.text3}}>{r.sub}</div>
+                <div style={{fontSize:12,color:T.text3}}>{r.sub}</div>
               </div>
             ))}
-            <div style={{marginTop:14,padding:12,background:T.bg2,borderRadius:4,fontSize:12,color:T.text2,lineHeight:1.6}}>
+            <div style={{marginTop:14,padding:12,background:T.bg2,borderRadius:0,fontSize:14,color:T.text2,lineHeight:1.6}}>
               The gap between bids (~£750m) and available funding (~£235m) means only 31% of
               identified transformation projects can be funded. Departments competing for
               transformation money creates perverse incentives — projects framed as
@@ -357,11 +351,11 @@ export default function FiscalPage() {
           </div>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 ALBs & NDPBs — Economic Footprint
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 KEY ARMS LENGTH BODIES · APPROXIMATE ANNUAL SPEND
               </div>
               {[
@@ -375,10 +369,10 @@ export default function FiscalPage() {
               ].map(r=>(
                 <div key={r.body} style={{padding:'8px 0',borderBottom:`1px solid ${T.border}`}}>
                   <div style={{display:'flex',justifyContent:'space-between',marginBottom:2}}>
-                    <span style={{fontSize:11,color:T.text1,fontWeight:600}}>{r.body}</span>
-                    <span className="mono" style={{fontSize:11,color:T.teal}}>{r.spend}</span>
+                    <span style={{fontSize:12,color:T.text1,fontWeight:600}}>{r.body}</span>
+                    <span className="mono" style={{fontSize:12,color:T.teal}}>{r.spend}</span>
                   </div>
-                  <div style={{fontSize:10,color:T.text3}}>{r.note}</div>
+                  <div style={{fontSize:12,color:T.text3}}>{r.note}</div>
                 </div>
               ))}
             </div>

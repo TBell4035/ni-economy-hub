@@ -6,14 +6,8 @@ import {
   ResponsiveContainer, ReferenceLine
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const aiGvaProjection = [
   {y:'2024',v:82,scenario:'actual'},
@@ -57,7 +51,7 @@ const adoptionComparison = [
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -71,13 +65,13 @@ const Tip = ({active,payload,label}:any) => {
 const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -91,18 +85,18 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
 }
 
 const ChartCard = ({title,subtitle,children}:{title:string,subtitle:string,children:React.ReactNode}) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -112,15 +106,15 @@ export default function AIPage() {
   const [view, setView] = useState<'ecosystem'|'risk'|'adoption'>('ecosystem')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 07 · AI & DIGITAL ECONOMY
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           AI & Digital Economy
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           The first comprehensive baseline of NI's AI ecosystem was published in August 2025
           by the AICC (Ulster University / QUB, funded by Invest NI and DfE). This module
           draws on that Census alongside the Trinity/Microsoft AI Economy Ireland 2026 report
@@ -150,7 +144,7 @@ export default function AIPage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='ecosystem'?'NI AI Ecosystem':v==='risk'?'Sector Risk & Opportunity':'Adoption Gap'}
@@ -164,28 +158,28 @@ export default function AIPage() {
             <ResponsiveContainer width="100%" height={220}>
               <ComposedChart data={aiGvaChart}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}m`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}m`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceLine y={200} stroke={T.gold} strokeDasharray="3 3"/>
-                <Bar dataKey="actual" fill={T.teal} opacity={0.9} name="Actual (£m)"/>
-                <Line type="monotone" dataKey="mid" stroke={T.teal} strokeWidth={2} dot={false} name="Mid scenario"/>
-                <Line type="monotone" dataKey="low" stroke={T.amber} strokeWidth={1.5} dot={false} name="Low scenario" strokeDasharray="4 2"/>
-                <Line type="monotone" dataKey="high" stroke={T.green} strokeWidth={1.5} dot={false} name="High scenario" strokeDasharray="4 2"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="actual" fill={T.teal} opacity={0.9} name="Actual (£m)"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="mid" stroke={T.teal} strokeWidth={2} dot={false} name="Mid scenario"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="low" stroke={T.amber} strokeWidth={1.5} dot={false} name="Low scenario" strokeDasharray="4 2"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="high" stroke={T.green} strokeWidth={1.5} dot={false} name="High scenario" strokeDasharray="4 2"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:8}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
               Gold dashed = £200m target · Source: AICC Capability Census, August 2025
             </div>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 NI AI Ecosystem — Structural Profile
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 AICC CENSUS · PERSPECTIVE ECONOMICS · AUGUST 2025
               </div>
               {[
@@ -197,8 +191,8 @@ export default function AIPage() {
                 {label:'Policy gap',value:'No published DfE AI strategy as of July 2026 — DfE Industrial Strategy consultation (Feb 2026) barely mentions AI'},
               ].map(r=>(
                 <div key={r.label} style={{padding:'8px 0',borderBottom:`1px solid ${T.border}`}}>
-                  <div style={{fontSize:10,color:T.text3,marginBottom:3,fontFamily:'monospace',letterSpacing:0.5}}>{r.label.toUpperCase()}</div>
-                  <div style={{fontSize:12,color:T.text1,lineHeight:1.5}}>{r.value}</div>
+                  <div style={{fontSize:12,color:T.text3,marginBottom:3,fontFamily:'var(--font-mono)',letterSpacing:0.5}}>{r.label.toUpperCase()}</div>
+                  <div style={{fontSize:14,color:T.text1,lineHeight:1.5}}>{r.value}</div>
                 </div>
               ))}
             </div>
@@ -211,44 +205,44 @@ export default function AIPage() {
 
       {view==='risk'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               Automation Risk vs AI Opportunity by Sector
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               ASSESSMENT · BASED ON FREY-OSBORNE / OECD 2023 FRAMEWORKS · NI SECTOR PROFILE
             </div>
             <div style={{display:'flex',justifyContent:'space-between',marginBottom:8}}>
-              <span className="mono" style={{fontSize:9,color:T.text3}}>SECTOR</span>
+              <span className="mono" style={{fontSize:12,color:T.text3}}>SECTOR</span>
               <div style={{display:'flex',gap:20}}>
-                <span className="mono" style={{fontSize:9,color:T.red}}>RISK</span>
-                <span className="mono" style={{fontSize:9,color:T.green}}>OPPORTUNITY</span>
+                <span className="mono" style={{fontSize:12,color:T.red}}>RISK</span>
+                <span className="mono" style={{fontSize:12,color:T.green}}>OPPORTUNITY</span>
               </div>
             </div>
             {sectorRisk.map(s=>(
-              <div key={s.sector} style={{marginBottom:10,padding:'8px 10px',background:T.bg2,borderRadius:4,borderLeft:`3px solid ${s.col}`}}>
-                <div style={{fontSize:11,color:T.text1,marginBottom:6}}>{s.sector}</div>
+              <div key={s.sector} style={{marginBottom:10,padding:'8px 10px',background:T.bg2,borderRadius:0,borderLeft:`3px solid ${s.col}`}}>
+                <div style={{fontSize:12,color:T.text1,marginBottom:6}}>{s.sector}</div>
                 <div style={{display:'flex',gap:8,alignItems:'center'}}>
-                  <span className="mono" style={{fontSize:9,color:T.text3,width:50}}>Risk</span>
-                  <div style={{flex:1,background:T.bg3,height:4,borderRadius:2}}>
-                    <div style={{background:T.red,height:4,width:`${s.risk*10}%`,borderRadius:2,opacity:0.7}}/>
+                  <span className="mono" style={{fontSize:12,color:T.text3,width:50}}>Risk</span>
+                  <div style={{flex:1,background:T.bg3,height:4,borderRadius:0}}>
+                    <div style={{background:T.red,height:4,width:`${s.risk*10}%`,borderRadius:0,opacity:0.7}}/>
                   </div>
-                  <span className="mono" style={{fontSize:9,color:T.red,width:20}}>{s.risk}</span>
+                  <span className="mono" style={{fontSize:12,color:T.red,width:20}}>{s.risk}</span>
                 </div>
                 <div style={{display:'flex',gap:8,alignItems:'center',marginTop:4}}>
-                  <span className="mono" style={{fontSize:9,color:T.text3,width:50}}>Opp.</span>
-                  <div style={{flex:1,background:T.bg3,height:4,borderRadius:2}}>
-                    <div style={{background:T.green,height:4,width:`${s.opportunity*10}%`,borderRadius:2,opacity:0.7}}/>
+                  <span className="mono" style={{fontSize:12,color:T.text3,width:50}}>Opp.</span>
+                  <div style={{flex:1,background:T.bg3,height:4,borderRadius:0}}>
+                    <div style={{background:T.green,height:4,width:`${s.opportunity*10}%`,borderRadius:0,opacity:0.7}}/>
                   </div>
-                  <span className="mono" style={{fontSize:9,color:T.green,width:20}}>{s.opportunity}</span>
+                  <span className="mono" style={{fontSize:12,color:T.green,width:20}}>{s.opportunity}</span>
                 </div>
               </div>
             ))}
           </div>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 NI-Specific Risk Factors
               </div>
               {[
@@ -257,9 +251,9 @@ export default function AIPage() {
                 {title:'Agri-food opportunity',col:T.green,text:'NI\'s agri-food sector has genuine comparative advantage in AI adoption — precision agriculture, supply chain AI, food safety automation. Cross-border supply chains create natural deployment contexts that are underexplored.'},
                 {title:'Transition pain is real',col:T.amber,text:'NorthStar Briefing (Dec 2025): NI will not be immune to AI-related job losses. The US Congressional report cited 54,000+ AI-related job losses in 2025. NI\'s service-heavy economy and low productivity base make it more exposed than higher-productivity regions.'},
               ].map(s=>(
-                <div key={s.title} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{s.title}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{s.text}</div>
+                <div key={s.title} style={{borderLeft:`3px solid ${s.col}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{s.title}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{s.text}</div>
                 </div>
               ))}
             </div>
@@ -270,37 +264,37 @@ export default function AIPage() {
 
       {view==='adoption'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               NI vs Ireland — AI Adoption Comparison
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               AICC CENSUS (AUG 2025) vs TRINITY/MICROSOFT AI ECONOMY IRELAND 2026 (APR 2026)
             </div>
-            <div style={{background:'#1a0808',border:'1px solid #3a1010',borderRadius:4,padding:'10px 12px',marginBottom:14,fontSize:11,color:'#c06060'}}>
-              <span className="mono" style={{fontSize:9,letterSpacing:2,color:T.red,display:'block',marginBottom:4}}>⚠ COMPARISON LIMITATION</span>
+            <div style={{background:'rgba(140,47,38,.06)',border:'1px solid rgba(140,47,38,.28)',borderRadius:0,padding:'10px 12px',marginBottom:14,fontSize:12,color:T.risk}}>
+              <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.red,display:'block',marginBottom:4}}>⚠ COMPARISON LIMITATION</span>
               Direct NI-Ireland comparison is not straightforward. The AICC Census measures AI-active firms (supply-side). The Trinity/Microsoft survey measures AI adoption intention across organisations (demand-side). These are different methodologies measuring different things. The gap is directionally real but not precisely measurable.
             </div>
             {adoptionComparison.map((r,i)=>(
               <div key={i} style={{padding:'10px 0',borderBottom:`1px solid ${T.border}`}}>
-                <div style={{fontSize:11,color:T.text1,marginBottom:6,fontWeight:600}}>{r.metric}</div>
+                <div style={{fontSize:12,color:T.text1,marginBottom:6,fontWeight:600}}>{r.metric}</div>
                 <div style={{display:'flex',gap:16,alignItems:'center',marginBottom:4}}>
-                  {r.NI!==null&&<div><span className="mono" style={{fontSize:10,color:T.text3}}>NI: </span><span className="mono" style={{fontSize:12,color:T.amber,fontWeight:700}}>{r.NI}{r.metric.includes('%')||r.metric.includes('(%)')?'':''}</span></div>}
-                  {r.Ireland!==null&&<div><span className="mono" style={{fontSize:10,color:T.text3}}>Ireland: </span><span className="mono" style={{fontSize:12,color:T.teal,fontWeight:700}}>{r.Ireland}%</span></div>}
-                  {r.UK!==null&&<div><span className="mono" style={{fontSize:10,color:T.text3}}>UK: </span><span className="mono" style={{fontSize:12,color:T.blue,fontWeight:700}}>{r.UK}%</span></div>}
+                  {r.NI!==null&&<div><span className="mono" style={{fontSize:12,color:T.text3}}>NI: </span><span className="mono" style={{fontSize:14,color:T.amber,fontWeight:700}}>{r.NI}{r.metric.includes('%')||r.metric.includes('(%)')?'':''}</span></div>}
+                  {r.Ireland!==null&&<div><span className="mono" style={{fontSize:12,color:T.text3}}>Ireland: </span><span className="mono" style={{fontSize:14,color:T.teal,fontWeight:700}}>{r.Ireland}%</span></div>}
+                  {r.UK!==null&&<div><span className="mono" style={{fontSize:12,color:T.text3}}>UK: </span><span className="mono" style={{fontSize:14,color:T.blue,fontWeight:700}}>{r.UK}%</span></div>}
                 </div>
-                <div className="mono" style={{fontSize:9,color:T.text3}}>{r.note}</div>
+                <div className="mono" style={{fontSize:12,color:T.text3}}>{r.note}</div>
               </div>
             ))}
           </div>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 The SME Adoption Gap
               </div>
               <TheoryTag tag="diffusion"/>
-              <p style={{fontSize:12,color:T.text2,lineHeight:1.65,marginTop:12,marginBottom:12}}>
+              <p style={{fontSize:14,color:T.text2,lineHeight:1.65,marginTop:12,marginBottom:12}}>
                 The Trinity/Microsoft AI Economy Ireland 2026 report (April 2026) finds a widening
                 maturity gap between large organisations and SMEs. AI adoption is near-universal
                 at 92% across Irish organisations — but just 10% describe their deployment as
@@ -316,12 +310,12 @@ export default function AIPage() {
                   {metric:'Large firms reporting significant gains',value:'8%',col:T.blue},
                 ].map(r=>(
                   <div key={r.metric} style={{display:'flex',justifyContent:'space-between',padding:'6px 0',borderBottom:`1px solid ${T.border}`}}>
-                    <span style={{fontSize:11,color:T.text2}}>{r.metric}</span>
-                    <span className="mono" style={{fontSize:12,color:r.col,fontWeight:700}}>{r.value}</span>
+                    <span style={{fontSize:12,color:T.text2}}>{r.metric}</span>
+                    <span className="mono" style={{fontSize:14,color:r.col,fontWeight:700}}>{r.value}</span>
                   </div>
                 ))}
               </div>
-              <p style={{fontSize:11,color:T.text3,marginTop:10,lineHeight:1.5}}>
+              <p style={{fontSize:12,color:T.text3,marginTop:10,lineHeight:1.5}}>
                 Source: Trinity College Dublin / Microsoft Ireland, AI Economy Ireland 2026, April 2026.
                 Survey of 250 organisations, Dec 2025–Jan 2026.
               </p>

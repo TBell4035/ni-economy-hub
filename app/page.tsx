@@ -7,15 +7,10 @@ import {
   Tooltip, Legend, ResponsiveContainer, ReferenceLine
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
+import meta from '@/data/economic/meta.json'
 
 // ── COLOUR PALETTE ────────────────────────────────────────────────
-const T = {
-  bg0: '#07090d', bg1: '#0d1117', bg2: '#131920', bg3: '#192230',
-  card: '#0f1620', border: '#1e2d3d', border2: '#243444',
-  text0: '#eef2f7', text1: '#b8c8d8', text2: '#6a88a0', text3: '#3a5268',
-  gold: '#e8a020', teal: '#12c4a4', blue: '#3a8fd4', red: '#e05050',
-  green: '#38c070', amber: '#e89020', purple: '#9a70d4', pink: '#d45090',
-}
 
 // ── DATA ──────────────────────────────────────────────────────────
 const gvaGrowth = [
@@ -66,16 +61,16 @@ const KPI = ({ label, value, unit, sub, delta, deltaPos, color }: {
 }) => (
   <div style={{
     background: T.card, border: `1px solid ${T.border}`,
-    borderTop: `2px solid ${color}`, borderRadius: 6, padding: '16px 18px',
+    borderTop: `2px solid ${color}`, borderRadius:0, padding: '16px 18px',
   }}>
-    <div className="mono" style={{ fontSize: 9, letterSpacing: 3, color: T.text3, textTransform: 'uppercase', marginBottom: 6 }}>
+    <div className="mono" style={{ fontSize: 12, letterSpacing:'0.12em', color: T.text3, textTransform: 'uppercase', marginBottom: 6 }}>
       {label}
     </div>
     <div style={{ fontSize: 24, fontWeight: 700, color: T.text0, lineHeight: 1, marginBottom: 4 }}>
-      {value}<span style={{ fontSize: 13, color: T.text2, marginLeft: 2 }}>{unit}</span>
+      {value}<span style={{ fontSize: 14, color: T.text2, marginLeft: 2 }}>{unit}</span>
     </div>
-    <div style={{ fontSize: 11, color: T.text2, marginBottom: 4 }}>{sub}</div>
-    <div className="mono" style={{ fontSize: 11, color: deltaPos === false ? T.red : T.green }}>
+    <div style={{ fontSize: 12, color: T.text2, marginBottom: 4 }}>{sub}</div>
+    <div className="mono" style={{ fontSize: 12, color: deltaPos === false ? T.red : T.green }}>
       {delta}
     </div>
   </div>
@@ -92,10 +87,10 @@ const Insight = ({ type, text }: { type: 'insight'|'warning'|'opportunity'|'expl
   return (
     <div style={{
       background: `${c.col}08`, borderLeft: `3px solid ${c.col}`,
-      borderRadius: '0 4px 4px 0', padding: '10px 14px',
-      marginBottom: 10, fontSize: 13, color: T.text1, lineHeight: 1.65,
+      borderRadius:0, padding: '10px 14px',
+      marginBottom: 10, fontSize: 14, color: T.text1, lineHeight: 1.65,
     }}>
-      <span className="mono" style={{ fontSize: 9, letterSpacing: 2, color: c.col, marginRight: 8 }}>
+      <span className="mono" style={{ fontSize: 12, letterSpacing:'0.08em', color: c.col, marginRight: 8 }}>
         {c.label}
       </span>
       {text}
@@ -108,11 +103,11 @@ const ChartCard = ({ title, subtitle, children }: {
 }) => (
   <div style={{
     background: T.card, border: `1px solid ${T.border}`,
-    borderRadius: 6, padding: 20,
+    borderRadius:0, padding: 20,
   }}>
     <div style={{ marginBottom: 16 }}>
-      <div style={{ fontSize: 13, fontWeight: 700, color: T.text0, marginBottom: 3 }}>{title}</div>
-      <div className="mono" style={{ fontSize: 10, color: T.text3, letterSpacing: 0.5 }}>{subtitle}</div>
+      <div style={{ fontSize: 14, fontWeight: 700, color: T.text0, marginBottom: 3 }}>{title}</div>
+      <div className="mono" style={{ fontSize: 12, color: T.text3, letterSpacing: 0.5 }}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -123,7 +118,7 @@ const Tip = ({ active, payload, label }: any) => {
   return (
     <div style={{
       background: T.bg2, border: `1px solid ${T.border2}`,
-      padding: '10px 14px', borderRadius: 4, fontSize: 11, fontFamily: 'monospace',
+      padding: '10px 14px', borderRadius:0, fontSize: 12, fontFamily: 'var(--font-mono)',
     }}>
       <div style={{ color: T.text0, fontWeight: 700, marginBottom: 6 }}>{label}</div>
       {payload.map((p: any, i: number) => (
@@ -140,48 +135,48 @@ export default function OverviewPage() {
   const [activeTab, setActiveTab] = useState<'snapshot'|'structure'>('snapshot')
 
   return (
-    <div style={{ maxWidth: 1100 }} className="page-enter">
+    <div style={{ maxWidth: 1100 }}>
 
       {/* ── MASTHEAD ── */}
       <div style={{
         background: `linear-gradient(135deg, ${T.bg2} 0%, ${T.bg3} 100%)`,
-        border: `1px solid ${T.border}`, borderRadius: 6,
+        border: `1px solid ${T.border}`, borderRadius:0,
         padding: '28px 32px', marginBottom: 24, position: 'relative', overflow: 'hidden',
       }}>
         <div style={{
           position: 'absolute', top: 0, right: 0, width: 300, height: '100%',
-          background: 'radial-gradient(ellipse at right center, rgba(18,196,164,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at right center, rgba(15,76,74,.05) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}/>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 4, color: T.teal, marginBottom: 10 }}>
-          NORTHERN IRELAND · ECONOMIC INTELLIGENCE · JULY 2026
+        <div className="mono" style={{ fontSize: 12, letterSpacing:'0.14em', color: T.teal, marginBottom: 10 }}>
+          NORTHERN IRELAND · ECONOMIC INTELLIGENCE · {meta.publicationLabel.toUpperCase()}
         </div>
-        <h1 style={{
-          margin: '0 0 12px', fontSize: 30, fontWeight: 800,
-          color: T.text0, lineHeight: 1.1, letterSpacing: -0.5,
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,
+          margin: '0 0 12px', fontSize:40, fontWeight:400,
+          color: T.text0, letterSpacing:-0.4,
         }}>
           Northern Ireland<br/>
           <span style={{ color: T.gold }}>Economy Hub</span>
         </h1>
-<p style={{ margin: '0 0 6px', color: T.text2, fontSize: 13, maxWidth: 620, lineHeight: 1.7 }}>
+<p style={{ margin: '0 0 6px', color: T.text2, fontSize: 14, maxWidth: 620, lineHeight: 1.7 }}>
   A multi-dimensional analytical framework integrating output, labour, trade, fiscal,
   productivity and AI data within Keynesian, New Growth and Regional Economics theory.
   Every forecast is confidence-rated. Every data gap is flagged. Based on all available
   official NI statistics to Q1 2026 / mid-2026, and a purpose-built NI macro-model.
 </p>
-<p style={{ margin: '0 0 18px', fontSize: 12, lineHeight: 1.6 }}>
-  <span style={{ color: T.text3, fontFamily: 'monospace', fontSize: 10, letterSpacing: 1 }}>
+<p style={{ margin: '0 0 18px', fontSize: 14, lineHeight: 1.6 }}>
+  <span style={{ color: T.text3, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing:'0.04em' }}>
     BUILT & MAINTAINED BY{' '}
   </span>
   <a
     href="https://www.linkedin.com/in/thomas-bell-299883a0/"
     target="_blank"
     rel="noopener noreferrer"
-    style={{ color: T.teal, textDecoration: 'none', fontFamily: 'monospace', fontSize: 10, letterSpacing: 1 }}
+    style={{ color: T.teal, textDecoration: 'none', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing:'0.04em' }}
   >
     THOMAS BELL
   </a>
-  <span style={{ color: T.text3, fontFamily: 'monospace', fontSize: 10, letterSpacing: 1 }}>
+  <span style={{ color: T.text3, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing:'0.04em' }}>
         {' '}· ECONOMIST · LOUGH SIGNAL · NORTHERN IRELAND
   </span>
 </p>
@@ -206,7 +201,7 @@ export default function OverviewPage() {
             border: 'none',
             borderBottom: `2px solid ${activeTab === tab ? T.teal : 'transparent'}`,
             padding: '8px 20px', cursor: 'pointer',
-            fontSize: 11, fontFamily: 'monospace', letterSpacing: 1,
+            fontSize: 12, fontFamily: 'var(--font-mono)', letterSpacing:'0.04em',
             textTransform: 'uppercase', transition: 'all 0.12s',
           }}>
             {tab === 'snapshot' ? 'Economic Snapshot' : 'Structural Position'}
@@ -296,17 +291,17 @@ export default function OverviewPage() {
               <ResponsiveContainer width="100%" height={200}>
                 <ComposedChart data={gvaGrowth}>
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                  <XAxis dataKey="y" tick={{ fontSize:9, fill:T.text3, fontFamily:'monospace' }} tickLine={false}/>
-                  <YAxis tick={{ fontSize:9, fill:T.text3, fontFamily:'monospace' }} tickLine={false} tickFormatter={v=>`${v}%`}/>
+                  <XAxis dataKey="y" tick={{ fontSize:12, fill:T.text3, fontFamily:'var(--font-mono)' }} tickLine={false}/>
+                  <YAxis tick={{ fontSize:12, fill:T.text3, fontFamily:'var(--font-mono)' }} tickLine={false} tickFormatter={v=>`${v}%`}/>
                   <Tooltip content={<Tip/>}/>
                   <ReferenceLine y={0} stroke={T.border2}/>
-                  <Bar dataKey="NI" fill={T.teal} opacity={0.8} name="NI"/>
-                  <Line type="monotone" dataKey="UK" stroke={T.red} strokeWidth={2} dot={false} name="UK" strokeDasharray="4 2"/>
-                  <Line type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={1.5} dot={false} name="ROI"/>
-                  <Legend wrapperStyle={{ fontSize:10, fontFamily:'monospace' }}/>
+                  <Bar isAnimationActive={false} dataKey="NI" fill={T.teal} opacity={0.8} name="NI"/>
+                  <Line isAnimationActive={false} type="monotone" dataKey="UK" stroke={T.red} strokeWidth={2} dot={false} name="UK" strokeDasharray="4 2"/>
+                  <Line isAnimationActive={false} type="monotone" dataKey="ROI" stroke={T.gold} strokeWidth={1.5} dot={false} name="ROI"/>
+                  <Legend wrapperStyle={{ fontSize:12, fontFamily:'var(--font-mono)' }}/>
                 </ComposedChart>
               </ResponsiveContainer>
-              <div className="mono" style={{ fontSize:9, color:T.text3, marginTop:8 }}>
+              <div className="mono" style={{ fontSize:12, color:T.text3, marginTop:8 }}>
                 NOTE: NIABI 2024 confirms aGVA +9.6% · NICEI proxy shows +3.6% · both valid, different measures
               </div>
             </ChartCard>
@@ -324,10 +319,10 @@ export default function OverviewPage() {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                  <XAxis dataKey="q" tick={{ fontSize:9, fill:T.text3, fontFamily:'monospace' }} tickLine={false}/>
-                  <YAxis domain={[102,118]} tick={{ fontSize:9, fill:T.text3, fontFamily:'monospace' }} tickLine={false}/>
+                  <XAxis dataKey="q" tick={{ fontSize:12, fill:T.text3, fontFamily:'var(--font-mono)' }} tickLine={false}/>
+                  <YAxis domain={[102,118]} tick={{ fontSize:12, fill:T.text3, fontFamily:'var(--font-mono)' }} tickLine={false}/>
                   <Tooltip content={<Tip/>}/>
-                  <Area type="monotone" dataKey="v" stroke={T.teal} fill="url(#niceiG)" strokeWidth={2} name="NICEI"/>
+                  <Area isAnimationActive={false} type="monotone" dataKey="v" stroke={T.teal} fill="url(#niceiG)" strokeWidth={2} name="NICEI"/>
                 </AreaChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -353,11 +348,11 @@ export default function OverviewPage() {
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={gvaPerHead} layout="vertical">
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} horizontal={false}/>
-                  <XAxis type="number" tick={{ fontSize:9, fill:T.text3, fontFamily:'monospace' }} tickLine={false} tickFormatter={v=>`£${(v/1000).toFixed(0)}k`}/>
-                  <YAxis type="category" dataKey="region" tick={{ fontSize:9, fill:T.text1 }} tickLine={false} width={90}/>
+                  <XAxis type="number" tick={{ fontSize:12, fill:T.text3, fontFamily:'var(--font-mono)' }} tickLine={false} tickFormatter={v=>`£${(v/1000).toFixed(0)}k`}/>
+                  <YAxis type="category" dataKey="region" tick={{ fontSize:12, fill:T.text1 }} tickLine={false} width={90}/>
                   <Tooltip content={<Tip/>}/>
                   <ReferenceLine x={36100} stroke={T.red} strokeDasharray="3 3"/>
-                  <Bar dataKey="gva" name="GVA per head (£)"
+                  <Bar isAnimationActive={false} dataKey="gva" name="GVA per head (£)"
                     fill={T.teal}
                     shape={(props: any) => {
                       const isNI = props.region === 'N Ireland'
@@ -367,7 +362,7 @@ export default function OverviewPage() {
                   />
                 </BarChart>
               </ResponsiveContainer>
-              <div className="mono" style={{ fontSize:9, color:T.text3, marginTop:8 }}>
+              <div className="mono" style={{ fontSize:12, color:T.text3, marginTop:8 }}>
                 Gold = N Ireland · Red dashed line = UK average (£36,100) · NI at 81% of UK avg
               </div>
             </ChartCard>
@@ -385,10 +380,10 @@ export default function OverviewPage() {
                 <ResponsiveContainer width="100%" height={220}>
                   <RadarChart data={radarData}>
                     <PolarGrid stroke={T.border}/>
-                    <PolarAngleAxis dataKey="metric" tick={{ fontSize:9, fill:T.text2, fontFamily:'monospace' }}/>
+                    <PolarAngleAxis dataKey="metric" tick={{ fontSize:12, fill:T.text2, fontFamily:'var(--font-mono)' }}/>
                     <Radar name="NI" dataKey="NI" stroke={T.teal} fill={T.teal} fillOpacity={0.2}/>
                     <Radar name="ROI" dataKey="ROI" stroke={T.gold} fill={T.gold} fillOpacity={0.1}/>
-                    <Legend wrapperStyle={{ fontSize:10, fontFamily:'monospace' }}/>
+                    <Legend wrapperStyle={{ fontSize:12, fontFamily:'var(--font-mono)' }}/>
                     <Tooltip content={<Tip/>}/>
                   </RadarChart>
                 </ResponsiveContainer>
@@ -397,24 +392,24 @@ export default function OverviewPage() {
               {/* Sector composition */}
               <div style={{
                 background: T.card, border: `1px solid ${T.border}`,
-                borderRadius: 6, padding: 20, marginTop: 16,
+                borderRadius:0, padding: 20, marginTop: 16,
               }}>
-                <div style={{ fontSize:13, fontWeight:700, color:T.text0, marginBottom:4 }}>
+                <div style={{ fontSize:14, fontWeight:700, color:T.text0, marginBottom:4 }}>
                   GVA Sector Composition
                 </div>
-                <div className="mono" style={{ fontSize:10, color:T.text3, marginBottom:14 }}>
+                <div className="mono" style={{ fontSize:12, color:T.text3, marginBottom:14 }}>
                   % OF TOTAL · NISRA NICEI Q4 2024 SECTORAL WEIGHTS
                 </div>
                 {sectorGVA.map(s => (
                   <div key={s.sector} style={{ marginBottom: 10 }}>
-                    <div style={{ display:'flex', justifyContent:'space-between', fontSize:12, marginBottom:3 }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', fontSize:14, marginBottom:3 }}>
                       <span style={{ color:T.text1 }}>{s.sector}</span>
-                      <span className="mono" style={{ fontSize:11, color: s.growth > 0 ? T.green : T.red }}>
+                      <span className="mono" style={{ fontSize:12, color: s.growth > 0 ? T.green : T.red }}>
                         {s.share}% · {s.growth > 0 ? '+' : ''}{s.growth}pp
                       </span>
                     </div>
-                    <div style={{ background:T.bg3, height:5, borderRadius:2 }}>
-                      <div style={{ background:s.color, height:5, width:`${s.share * 1.8}%`, borderRadius:2 }}/>
+                    <div style={{ background:T.bg3, height:5, borderRadius:0 }}>
+                      <div style={{ background:s.color, height:5, width:`${s.share * 1.8}%`, borderRadius:0 }}/>
                     </div>
                   </div>
                 ))}

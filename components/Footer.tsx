@@ -1,20 +1,23 @@
+import meta from '@/data/economic/meta.json'
+
+// Version + date come ONLY from data/economic/meta.json. Edit there, not here.
 export default function Footer() {
   return (
     <footer style={{
-      borderTop: '1px solid var(--border)',
-      padding: '16px 28px',
-      background: 'var(--bg1)',
+      borderTop: '1px solid var(--rule)',
+      padding: '20px 28px',
+      background: 'var(--bone)',
       display: 'flex',
       justifyContent: 'space-between',
       flexWrap: 'wrap',
-      gap: 8,
+      gap: 12,
       flexShrink: 0,
     }}>
-      <span className="mono" style={{ fontSize: 9, color: 'var(--text3)' }}>
-        NI ECONOMY HUB V3 · ACADEMIC & POLICY INTELLIGENCE · MAY 2026
+      <span className="mono" style={{ fontSize: 12, color: 'var(--mist)', textTransform: 'uppercase' }}>
+        NI Economy Hub · a Lough Signal product · {meta.dataVersion} · {meta.publicationLabel}
       </span>
-      <span className="mono" style={{ fontSize: 9, color: 'var(--text3)' }}>
-        NISRA · ONS · NERI · ESRI · INTERTRADEIRELAND · NI FISCAL COUNCIL · HMRC · QUB · UU
+      <span className="mono" style={{ fontSize: 12, color: 'var(--mist)', textTransform: 'uppercase' }}>
+        Sources: NISRA · ONS · HMRC · HMT · NI Fiscal Council · ESRI · QUB · UU
       </span>
     </footer>
   )

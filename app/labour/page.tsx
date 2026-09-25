@@ -6,14 +6,8 @@ import {
   Tooltip, Legend, ResponsiveContainer, ReferenceLine, ReferenceArea
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const labourAnnual = [
   {y:'2004',emp:66.8,unemp:5.2,inact:29.8},{y:'2006',emp:67.5,unemp:4.4,inact:29.2},
@@ -54,7 +48,7 @@ const inactivityReasons = [
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -68,13 +62,13 @@ const Tip = ({active,payload,label}:any) => {
 const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -88,18 +82,18 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
 }
 
 const ChartCard = ({title,subtitle,children}:{title:string,subtitle:string,children:React.ReactNode}) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -109,15 +103,15 @@ export default function LabourPage() {
   const [view, setView] = useState<'rates'|'wages'|'inactivity'>('rates')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 03 · LABOUR MARKET
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Labour Market
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           Employment, wages, inactivity and labour supply. Primary sources: NISRA Labour
           Market Report, published monthly by DfE — most recent release July 2026
           (Mar–May 2026 LFS data; HMRC payroll and claimant data to June 2026). HMRC PAYE RTI
@@ -132,11 +126,11 @@ export default function LabourPage() {
       </div>
 
       <div style={{
-        background:'#0e1a10',border:'1px solid #1e3a20',
-        borderRadius:4,padding:'10px 14px',marginBottom:20,
-        fontSize:11,color:'#70b880'
+        background:'rgba(47,93,58,.07)',border:'1px solid rgba(47,93,58,.28)',
+        borderRadius:0,padding:'10px 14px',marginBottom:20,
+        fontSize:12,color:T.text1
       }}>
-        <span className="mono" style={{letterSpacing:1,fontSize:9,color:'#38c070',marginRight:8}}>
+        <span className="mono" style={{letterSpacing:'0.04em',fontSize:12,color:T.opportunity,marginRight:8}}>
           ↻ LATEST DATA
         </span>
         NISRA Labour Market Report July 2026 (published 21 Jul 2026): Employment rate 72.1%
@@ -162,7 +156,7 @@ export default function LabourPage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='rates'?'Employment Rates':v==='wages'?'Wages':'Inactivity'}
@@ -179,18 +173,18 @@ export default function LabourPage() {
             <ResponsiveContainer width="100%" height={260}>
               <LineChart data={labourAnnual}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={2}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={2}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
                 <Tooltip content={<Tip/>}/>
-                <ReferenceArea x1="2008" x2="2013" fill="#1a0a00" opacity={0.4}/>
-                <ReferenceArea x1="2020" x2="2021" fill="#1a0000" opacity={0.4}/>
-                <Line type="monotone" dataKey="emp" stroke={T.green} strokeWidth={2} dot={false} name="Employment Rate"/>
-                <Line type="monotone" dataKey="inact" stroke={T.amber} strokeWidth={2} dot={false} name="Inactivity Rate"/>
-                <Line type="monotone" dataKey="unemp" stroke={T.red} strokeWidth={1.5} dot={false} name="Unemployment Rate"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <ReferenceArea x1="2008" x2="2013" fill="#EAE5DA" opacity={0.7}/>
+                <ReferenceArea x1="2020" x2="2021" fill="#EAE5DA" opacity={0.7}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="emp" stroke={T.green} strokeWidth={2} dot={false} name="Employment Rate"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="inact" stroke={T.amber} strokeWidth={2} dot={false} name="Inactivity Rate"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="unemp" stroke={T.red} strokeWidth={1.5} dot={false} name="Unemployment Rate"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </LineChart>
             </ResponsiveContainer>
-            <div className="mono" style={{fontSize:9,color:T.text3,marginTop:8}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginTop:8}}>
               Shaded areas: Global Financial Crisis (2008–13) and COVID-19 (2020–21)
             </div>
           </ChartCard>
@@ -206,19 +200,19 @@ export default function LabourPage() {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                  <XAxis dataKey="m" tick={{fontSize:8,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={3}/>
-                  <YAxis domain={[680,830]} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
+                  <XAxis dataKey="m" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={3}/>
+                  <YAxis domain={[680,830]} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
                   <Tooltip content={<Tip/>}/>
-                  <Area type="monotone" dataKey="v" stroke={T.blue} fill="url(#payeG)" strokeWidth={2} name="PAYE Employees (000s)"/>
+                  <Area isAnimationActive={false} type="monotone" dataKey="v" stroke={T.blue} fill="url(#payeG)" strokeWidth={2} name="PAYE Employees (000s)"/>
                 </AreaChart>
               </ResponsiveContainer>
             </ChartCard>
 
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:16}}>
-              <div className="mono" style={{fontSize:9,letterSpacing:2,color:T.text3,marginBottom:10}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:16}}>
+              <div className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:T.text3,marginBottom:10}}>
                 PAYE RTI vs LFS — KEY DISTINCTION
               </div>
-              <p style={{fontSize:12,color:T.text2,lineHeight:1.65}}>
+              <p style={{fontSize:14,color:T.text2,lineHeight:1.65}}>
                 LFS (survey) measures 16–64 participation including self-employed.
                 PAYE RTI (administrative) measures payrolled employees only — more
                 timely but subject to revision. Self-employed in NI are approximately
@@ -238,23 +232,23 @@ export default function LabourPage() {
             <ResponsiveContainer width="100%" height={240}>
               <ComposedChart data={wages}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="m" tick={{fontSize:8,fill:T.text3,fontFamily:'monospace'}} tickLine={false} interval={2}/>
-                <YAxis domain={[2000,3000]} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}`}/>
+                <XAxis dataKey="m" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} interval={2}/>
+                <YAxis domain={[2000,3000]} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceArea x1="Mar 26F" x2="Aug 26F" fill={T.bg3} opacity={0.6}/>
-                <Line type="monotone" dataKey="median" stroke={T.teal} strokeWidth={2} dot={false} name="Median (£)"/>
-                <Line type="monotone" dataKey="mean" stroke={T.gold} strokeWidth={1.5} dot={false} name="Mean (£)" strokeDasharray="3 2"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Line isAnimationActive={false} type="monotone" dataKey="median" stroke={T.teal} strokeWidth={2} dot={false} name="Median (£)"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="mean" stroke={T.gold} strokeWidth={1.5} dot={false} name="Mean (£)" strokeDasharray="3 2"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
                 NI vs UK Wage Comparison
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
                 JUNE 2026 · HMRC PAYE RTI
               </div>
               {[
@@ -266,8 +260,8 @@ export default function LabourPage() {
                 {label:'Real wage position',value:'Positive',color:T.green},
               ].map(r=>(
                 <div key={r.label} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'8px 0',borderBottom:`1px solid ${T.border}`}}>
-                  <span style={{fontSize:12,color:T.text2}}>{r.label}</span>
-                  <span className="mono" style={{fontSize:12,color:r.color,fontWeight:700}}>{r.value}</span>
+                  <span style={{fontSize:14,color:T.text2}}>{r.label}</span>
+                  <span className="mono" style={{fontSize:14,color:r.color,fontWeight:700}}>{r.value}</span>
                 </div>
               ))}
             </div>
@@ -285,30 +279,30 @@ export default function LabourPage() {
             <div style={{paddingTop:12}}>
               {inactivityReasons.map(d=>(
                 <div key={d.reason} style={{marginBottom:12}}>
-                  <div style={{display:'flex',justifyContent:'space-between',fontSize:12,marginBottom:4}}>
+                  <div style={{display:'flex',justifyContent:'space-between',fontSize:14,marginBottom:4}}>
                     <span style={{color:T.text1}}>{d.reason}</span>
-                    <span className="mono" style={{color:T.text3,fontSize:11}}>{d.pct}%</span>
+                    <span className="mono" style={{color:T.text3,fontSize:12}}>{d.pct}%</span>
                   </div>
-                  <div style={{background:T.bg3,height:6,borderRadius:3}}>
+                  <div style={{background:T.bg3,height:6,borderRadius:0}}>
                     <div style={{
                       background:d.reason.includes('sick')?T.red:T.teal,
-                      height:6,width:`${d.pct}%`,borderRadius:3
+                      height:6,width:`${d.pct}%`,borderRadius:0
                     }}/>
                   </div>
                 </div>
               ))}
-              <div className="mono" style={{fontSize:9,color:T.text3,marginTop:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginTop:12}}>
                 Long-term sick is primary driver — direct link to NHS waiting list crisis
               </div>
             </div>
           </ChartCard>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
                 The Health–Inactivity–Productivity Link
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 STRUCTURAL ANALYSIS · CROSS-MODULE REFERENCE
               </div>
               <TheoryTag tag="hysteresis"/>
@@ -322,8 +316,8 @@ export default function LabourPage() {
                   {step:'06',text:'Policy implication: demand-side stimulus alone cannot resolve this',col:T.teal},
                 ].map(s=>(
                   <div key={s.step} style={{display:'flex',gap:12,alignItems:'flex-start'}}>
-                    <span className="mono" style={{fontSize:10,color:s.col,flexShrink:0,marginTop:2}}>{s.step}</span>
-                    <span style={{fontSize:12,color:T.text2,lineHeight:1.5}}>{s.text}</span>
+                    <span className="mono" style={{fontSize:12,color:s.col,flexShrink:0,marginTop:2}}>{s.step}</span>
+                    <span style={{fontSize:14,color:T.text2,lineHeight:1.5}}>{s.text}</span>
                   </div>
                 ))}
               </div>

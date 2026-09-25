@@ -62,6 +62,15 @@ Written and included in this reconciliation bundle under `lead-capture/` (subscr
 
 - [ ] Old empty Supabase project: retire or migrate its intended feedback/intelligence tables?
 - [ ] `lib/supabase.ts` hardcoded fallbacks → move to env vars (redesign)
-- [ ] Disclosure fix (Catalyst → Lough Signal) — pending, tiny, next after reconciliation
-- [ ] Version strings (`V3 · May 2026` etc.) → wire to `data/meta.json`
+- [x] Disclosure fix (Catalyst → Lough Signal) — live (commits cfb09b5, 84bfe5a)
+- [x] Version strings → all read `data/economic/meta.json` (`dataVersion`, `publicationLabel`) — branch `brand/hub-light-restyle`
 - [ ] Incorporation + ICO registration — gate go-live (Thomas)
+
+## Design system (branch `brand/hub-light-restyle`)
+
+- `lib/tokens.ts` is the ONLY colour/type/spacing source for TSX. `app/globals.css` `:root` mirrors it for CSS — change both together.
+- The thirteen per-page `const T = {...}` dark palettes are deleted. Pages `import { T } from '@/lib/tokens'`.
+- Fonts self-hosted in `public/fonts/` (Newsreader, Inter Tight, JetBrains Mono; SIL OFL). No Google Fonts requests.
+- Type floor: 14px prose, 12px for uppercase mono metadata only (guide carve-out, to add to v0.3).
+- Theory tags are neutral ink chips; `THEORY_TAGS[*].color` in `lib/designSystem.ts` is now unused.
+- Chart load animation disabled everywhere (guide bans load motion).

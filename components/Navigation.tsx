@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import modulesConfig from '@/config/modules.json'
+import meta from '@/data/economic/meta.json'
 
 const NAV_ITEMS = Object.entries(modulesConfig.modules)
   .sort((a, b) => a[1].order - b[1].order)
@@ -43,17 +44,17 @@ export default function Navigation() {
         {collapsed ? (
           <div style={{
             width: 32, height: 32,
-            background: 'rgba(18,196,164,0.12)',
-            border: '1px solid rgba(18,196,164,0.3)',
-            borderRadius: 4,
+            background: 'rgba(15,76,74,.08)',
+            border: '1px solid rgba(15,76,74,.3)',
+            borderRadius:0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: 'var(--teal)', fontWeight: 700, fontSize: 12,
-            fontFamily: 'monospace',
+            color: 'var(--teal)', fontWeight: 700, fontSize: 14,
+            fontFamily: 'var(--font-mono)',
           }}>NI</div>
         ) : (
           <>
             <div className="mono" style={{
-              fontSize: 9, letterSpacing: 3,
+              fontSize: 12, letterSpacing:'0.12em',
               color: 'var(--teal)', marginBottom: 4
             }}>
               NORTHERN IRELAND
@@ -65,9 +66,9 @@ export default function Navigation() {
               Economy Hub
             </div>
             <div className="mono" style={{
-              fontSize: 9, color: 'var(--text3)', marginTop: 2
+              fontSize: 12, color: 'var(--text3)', marginTop: 2
             }}>
-              V3 · May 2026
+              {meta.dataVersion} · {meta.publicationLabel}
             </div>
           </>
         )}
@@ -90,7 +91,7 @@ export default function Navigation() {
                   alignItems: 'center',
                   gap: 12,
                   padding: collapsed ? '9px 14px' : '9px 20px',
-                  background: active ? 'rgba(18,196,164,0.1)' : 'transparent',
+                  background: active ? 'rgba(15,76,74,.08)' : 'transparent',
                   borderLeft: `2px solid ${active ? 'var(--teal)' : 'transparent'}`,
                   color: active ? 'var(--teal)' : 'var(--text2)',
                   cursor: 'pointer',
@@ -107,7 +108,7 @@ export default function Navigation() {
                 </span>
                 {!collapsed && (
                   <span className="mono" style={{
-                    fontSize: 11,
+                    fontSize: 12,
                     letterSpacing: 0.5
                   }}>
                     {item.label}
@@ -134,9 +135,9 @@ export default function Navigation() {
             width: '100%',
             padding: '6px',
             cursor: 'pointer',
-            fontSize: 10,
-            fontFamily: 'monospace',
-            borderRadius: 3,
+            fontSize: 12,
+            fontFamily: 'var(--font-mono)',
+            borderRadius:0,
           }}
         >
           {collapsed ? '→' : '← Collapse'}

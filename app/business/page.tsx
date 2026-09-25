@@ -6,14 +6,8 @@ import {
   ResponsiveContainer, ReferenceLine
 } from 'recharts'
 import TheoryTag from '@/components/TheoryTag'
+import { T } from '@/lib/tokens'
 
-const T = {
-  bg0:'#07090d',bg1:'#0d1117',bg2:'#131920',bg3:'#192230',
-  card:'#0f1620',border:'#1e2d3d',border2:'#243444',
-  text0:'#eef2f7',text1:'#b8c8d8',text2:'#6a88a0',text3:'#3a5268',
-  gold:'#e8a020',teal:'#12c4a4',blue:'#3a8fd4',red:'#e05050',
-  green:'#38c070',amber:'#e89020',purple:'#9a70d4',
-}
 
 const totalBusinesses = [
   {y:'2012',v:72170},{y:'2013',v:72480},{y:'2014',v:73510},
@@ -65,7 +59,7 @@ const rdExpenditure = [
 const Tip = ({active,payload,label}:any) => {
   if(!active||!payload?.length) return null
   return (
-    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:4,fontSize:11,fontFamily:'monospace'}}>
+    <div style={{background:T.bg2,border:`1px solid ${T.border2}`,padding:'10px 14px',borderRadius:0,fontSize:12,fontFamily:'var(--font-mono)'}}>
       <div style={{color:T.text0,fontWeight:700,marginBottom:6}}>{label}</div>
       {payload.map((p:any,i:number)=>(
         <div key={i} style={{color:p.color||T.text1,marginBottom:2}}>
@@ -79,13 +73,13 @@ const Tip = ({active,payload,label}:any) => {
 const KPI = ({label,value,unit,sub,delta,deltaPos,color}:{
   label:string,value:string,unit?:string,sub:string,delta:string,deltaPos?:boolean,color:string
 }) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:6,padding:'16px 18px'}}>
-    <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderTop:`2px solid ${color}`,borderRadius:0,padding:'16px 18px'}}>
+    <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.text3,textTransform:'uppercase',marginBottom:6}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color:T.text0,lineHeight:1,marginBottom:4}}>
-      {value}<span style={{fontSize:13,color:T.text2,marginLeft:2}}>{unit}</span>
+      {value}<span style={{fontSize:14,color:T.text2,marginLeft:2}}>{unit}</span>
     </div>
-    <div style={{fontSize:11,color:T.text2,marginBottom:4}}>{sub}</div>
-    <div className="mono" style={{fontSize:11,color:deltaPos===false?T.red:T.green}}>{delta}</div>
+    <div style={{fontSize:12,color:T.text2,marginBottom:4}}>{sub}</div>
+    <div className="mono" style={{fontSize:12,color:deltaPos===false?T.red:T.green}}>{delta}</div>
   </div>
 )
 
@@ -99,18 +93,18 @@ const Insight = ({type,text}:{type:'insight'|'warning'|'opportunity'|'explain'|'
   }
   const c = cfg[type]
   return (
-    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:'0 4px 4px 0',padding:'10px 14px',marginBottom:10,fontSize:13,color:T.text1,lineHeight:1.65}}>
-      <span className="mono" style={{fontSize:9,letterSpacing:2,color:c.col,marginRight:8}}>{c.label}</span>
+    <div style={{background:`${c.col}08`,borderLeft:`3px solid ${c.col}`,borderRadius:0,padding:'10px 14px',marginBottom:10,fontSize:14,color:T.text1,lineHeight:1.65}}>
+      <span className="mono" style={{fontSize:12,letterSpacing:'0.08em',color:c.col,marginRight:8}}>{c.label}</span>
       {text}
     </div>
   )
 }
 
 const ChartCard = ({title,subtitle,children}:{title:string,subtitle:string,children:React.ReactNode}) => (
-  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
+  <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
     <div style={{marginBottom:16}}>
-      <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
-      <div className="mono" style={{fontSize:10,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
+      <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:3}}>{title}</div>
+      <div className="mono" style={{fontSize:12,color:T.text3,letterSpacing:0.5}}>{subtitle}</div>
     </div>
     {children}
   </div>
@@ -120,15 +114,15 @@ export default function BusinessPage() {
   const [view, setView] = useState<'structure'|'niabi'|'investni'>('structure')
 
   return (
-    <div style={{maxWidth:1100}} className="page-enter">
+    <div style={{maxWidth:1100}}>
       <div style={{marginBottom:24}}>
-        <div className="mono" style={{fontSize:9,letterSpacing:3,color:T.teal,marginBottom:6}}>
+        <div className="mono" style={{fontSize:12,letterSpacing:'0.12em',color:T.teal,marginBottom:6}}>
           MODULE 08 · BUSINESS ECONOMY
         </div>
-        <h1 style={{fontSize:26,fontWeight:800,color:T.text0,marginBottom:10,letterSpacing:-0.5}}>
+        <h1 style={{fontFamily:'var(--font-display)',lineHeight:1.1,fontSize:40,fontWeight:400,color:T.text0,marginBottom:10,letterSpacing:-0.4}}>
           Business Economy
         </h1>
-        <p style={{fontSize:13,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
+        <p style={{fontSize:14,color:T.text2,maxWidth:720,lineHeight:1.7,marginBottom:14}}>
           Structure, size and activity of the NI business base. Primary sources:
           Inter-Departmental Business Register (IDBR) via ONS UK Business Counts;
           NI Annual Business Inquiry (NIABI) 2024 — published 11 March 2026;
@@ -157,7 +151,7 @@ export default function BusinessPage() {
             color:view===v?T.teal:T.text2,
             border:'none',borderBottom:`2px solid ${view===v?T.teal:'transparent'}`,
             padding:'8px 20px',cursor:'pointer',
-            fontSize:11,fontFamily:'monospace',letterSpacing:1,
+            fontSize:12,fontFamily:'var(--font-mono)',letterSpacing:'0.04em',
             textTransform:'uppercase',transition:'all 0.12s',
           }}>
             {v==='structure'?'Business Structure':v==='niabi'?'NIABI 2024':'Invest NI'}
@@ -177,10 +171,10 @@ export default function BusinessPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis domain={[68000,88000]} tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${(v/1000).toFixed(0)}k`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis domain={[68000,88000]} tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${(v/1000).toFixed(0)}k`}/>
                 <Tooltip content={<Tip/>}/>
-                <Area type="monotone" dataKey="v" stroke={T.teal} fill="url(#bizG)" strokeWidth={2} name="Total Businesses"/>
+                <Area isAnimationActive={false} type="monotone" dataKey="v" stroke={T.teal} fill="url(#bizG)" strokeWidth={2} name="Total Businesses"/>
               </AreaChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -189,33 +183,33 @@ export default function BusinessPage() {
             <ResponsiveContainer width="100%" height={200}>
               <ComposedChart data={birthsDeaths}>
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`${(v/1000).toFixed(1)}k`}/>
+                <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`${(v/1000).toFixed(1)}k`}/>
                 <Tooltip content={<Tip/>}/>
                 <ReferenceLine y={0} stroke={T.border2}/>
-                <Bar dataKey="births" fill={T.green} opacity={0.7} name="Births"/>
-                <Bar dataKey="deaths" fill={T.red} opacity={0.6} name="Deaths"/>
-                <Line type="monotone" dataKey="net" stroke={T.gold} strokeWidth={2} dot={false} name="Net Change"/>
-                <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                <Bar isAnimationActive={false} dataKey="births" fill={T.green} opacity={0.7} name="Births"/>
+                <Bar isAnimationActive={false} dataKey="deaths" fill={T.red} opacity={0.6} name="Deaths"/>
+                <Line isAnimationActive={false} type="monotone" dataKey="net" stroke={T.gold} strokeWidth={2} dot={false} name="Net Change"/>
+                <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
               </ComposedChart>
             </ResponsiveContainer>
           </ChartCard>
 
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
               Business Size Distribution 2024
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               IDBR · ONS UK BUSINESS COUNTS · % OF ALL NI ENTERPRISES
             </div>
             {sizeBands.map(d=>(
               <div key={d.band} style={{marginBottom:10}}>
-                <div style={{display:'flex',justifyContent:'space-between',fontSize:11,marginBottom:3}}>
+                <div style={{display:'flex',justifyContent:'space-between',fontSize:12,marginBottom:3}}>
                   <span style={{color:T.text1}}>{d.band}</span>
-                  <span className="mono" style={{color:T.teal,fontSize:11}}>{d.pct}% · {d.count.toLocaleString()}</span>
+                  <span className="mono" style={{color:T.teal,fontSize:12}}>{d.pct}% · {d.count.toLocaleString()}</span>
                 </div>
-                <div style={{background:T.bg3,height:5,borderRadius:2}}>
-                  <div style={{background:T.teal,height:5,width:`${d.pct}%`,borderRadius:2}}/>
+                <div style={{background:T.bg3,height:5,borderRadius:0}}>
+                  <div style={{background:T.teal,height:5,width:`${d.pct}%`,borderRadius:0}}/>
                 </div>
               </div>
             ))}
@@ -234,10 +228,10 @@ export default function BusinessPage() {
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={niabiTurnover} layout="vertical">
                 <CartesianGrid strokeDasharray="2 4" stroke={T.border} horizontal={false}/>
-                <XAxis type="number" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
-                <YAxis type="category" dataKey="sector" tick={{fontSize:9,fill:T.text1}} tickLine={false} width={130}/>
+                <XAxis type="number" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}bn`}/>
+                <YAxis type="category" dataKey="sector" tick={{fontSize:12,fill:T.text1}} tickLine={false} width={130}/>
                 <Tooltip content={<Tip/>}/>
-                <Bar dataKey="turnover" fill={T.blue} opacity={0.8} name="Turnover (£bn)" radius={[0,2,2,0]}/>
+                <Bar isAnimationActive={false} dataKey="turnover" fill={T.blue} opacity={0.8} name="Turnover (£bn)" radius={[0,2,2,0]}/>
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -247,13 +241,13 @@ export default function BusinessPage() {
               <ResponsiveContainer width="100%" height={180}>
                 <ComposedChart data={rdExpenditure}>
                   <CartesianGrid strokeDasharray="2 4" stroke={T.border} vertical={false}/>
-                  <XAxis dataKey="y" tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false}/>
-                  <YAxis tick={{fontSize:9,fill:T.text3,fontFamily:'monospace'}} tickLine={false} tickFormatter={v=>`£${v}m`}/>
+                  <XAxis dataKey="y" tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false}/>
+                  <YAxis tick={{fontSize:12,fill:T.text3,fontFamily:'var(--font-mono)'}} tickLine={false} tickFormatter={v=>`£${v}m`}/>
                   <Tooltip content={<Tip/>}/>
-                  <Bar dataKey="berd" stackId="rd" fill={T.purple} opacity={0.8} name="Business R&D (£m)"/>
-                  <Bar dataKey="herd" stackId="rd" fill={T.blue} opacity={0.7} name="HE R&D (£m)"/>
-                  <Line type="monotone" dataKey="total" stroke={T.gold} strokeWidth={2} dot={false} name="Total R&D (£m)"/>
-                  <Legend wrapperStyle={{fontSize:10,fontFamily:'monospace'}}/>
+                  <Bar isAnimationActive={false} dataKey="berd" stackId="rd" fill={T.purple} opacity={0.8} name="Business R&D (£m)"/>
+                  <Bar isAnimationActive={false} dataKey="herd" stackId="rd" fill={T.blue} opacity={0.7} name="HE R&D (£m)"/>
+                  <Line isAnimationActive={false} type="monotone" dataKey="total" stroke={T.gold} strokeWidth={2} dot={false} name="Total R&D (£m)"/>
+                  <Legend wrapperStyle={{fontSize:12,fontFamily:'var(--font-mono)'}}/>
                 </ComposedChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -266,15 +260,15 @@ export default function BusinessPage() {
 
       {view==='investni'&&(
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
-          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-            <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:4}}>
+          <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+            <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:4}}>
               Invest NI — Strategy 2024-27 & Annual Report 2024-25
             </div>
-            <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:14}}>
+            <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:14}}>
               SOURCES: INVEST NI AR 2024-25 (OCT 2025) · STRATEGY 2024-27 (NOV 2024)
             </div>
             <div style={{marginBottom:16}}>
-              <div style={{fontSize:12,fontWeight:700,color:T.gold,marginBottom:8}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.gold,marginBottom:8}}>
                 New Economic Vision (Feb 2024) — 4 Priorities:
               </div>
               {[
@@ -284,13 +278,13 @@ export default function BusinessPage() {
                 {p:'4',text:'Deliver much improved regional balance',col:T.amber},
               ].map(r=>(
                 <div key={r.p} style={{display:'flex',gap:10,alignItems:'flex-start',marginBottom:8}}>
-                  <span className="mono" style={{fontSize:10,color:r.col,flexShrink:0}}>0{r.p}</span>
-                  <span style={{fontSize:12,color:T.text2}}>{r.text}</span>
+                  <span className="mono" style={{fontSize:12,color:r.col,flexShrink:0}}>0{r.p}</span>
+                  <span style={{fontSize:14,color:T.text2}}>{r.text}</span>
                 </div>
               ))}
             </div>
             <div style={{borderTop:`1px solid ${T.border}`,paddingTop:14}}>
-              <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:8}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:8}}>
                 Key Strategy Shifts vs Previous Period:
               </div>
               {[
@@ -299,20 +293,20 @@ export default function BusinessPage() {
                 {change:'Dual-market exploitation',detail:'Windsor Framework dual access explicitly referenced as competitive advantage to be leveraged'},
                 {change:'Independent Review response',detail:'New client definition, operating model restructure, commitment to renewal following critical review'},
               ].map(r=>(
-                <div key={r.change} style={{borderLeft:`3px solid ${T.teal}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{r.change}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.5}}>{r.detail}</div>
+                <div key={r.change} style={{borderLeft:`3px solid ${T.teal}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{r.change}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.5}}>{r.detail}</div>
                 </div>
               ))}
             </div>
           </div>
 
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:6,padding:20}}>
-              <div style={{fontSize:13,fontWeight:700,color:T.text0,marginBottom:12}}>
+            <div style={{background:T.card,border:`1px solid ${T.border}`,borderRadius:0,padding:20}}>
+              <div style={{fontSize:14,fontWeight:700,color:T.text0,marginBottom:12}}>
                 Invest NI — Critical Assessment
               </div>
-              <div className="mono" style={{fontSize:10,color:T.text3,marginBottom:12}}>
+              <div className="mono" style={{fontSize:12,color:T.text3,marginBottom:12}}>
                 NI PRODUCTIVITY 2040 (JAN 2025) · NI AUDIT OFFICE PERFORMANCE REVIEW
               </div>
               {[
@@ -321,9 +315,9 @@ export default function BusinessPage() {
                 {issue:'Contact centre legacy',severity:'medium',text:'Over 9,000 jobs created before 2008 were in contact centres — only a third paid above private sector average. Quality over quantity shift is welcome but late.'},
                 {issue:'Budget uncertainty',severity:'high',text:'Absence of multi-year budget continues to constrain Invest NI planning and delivery. Cannot make long-term commitments to investors without multi-year resource certainty.'},
               ].map(r=>(
-                <div key={r.issue} style={{borderLeft:`3px solid ${r.severity==='high'?T.red:T.amber}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:'0 4px 4px 0'}}>
-                  <div style={{fontSize:11,fontWeight:700,color:T.text0,marginBottom:3}}>{r.issue}</div>
-                  <div style={{fontSize:11,color:T.text2,lineHeight:1.55}}>{r.text}</div>
+                <div key={r.issue} style={{borderLeft:`3px solid ${r.severity==='high'?T.red:T.amber}`,padding:'8px 12px',background:T.bg2,marginBottom:8,borderRadius:0}}>
+                  <div style={{fontSize:12,fontWeight:700,color:T.text0,marginBottom:3}}>{r.issue}</div>
+                  <div style={{fontSize:12,color:T.text2,lineHeight:1.55}}>{r.text}</div>
                 </div>
               ))}
             </div>
